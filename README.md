@@ -20,9 +20,11 @@ The package offers:
 
 This is a research project by [Loft Data Science Team](https://medium.com/loftbr/datascience/home), however we invite the community to contribute. Please help by trying it out, reporting bugs, and letting us know what you think!
 
-## [TODO] Installation
+## Installation
 
-...
+```
+pip install xgbse
+```
 
 ## Usage
 
