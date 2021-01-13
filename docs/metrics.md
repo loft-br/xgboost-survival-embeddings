@@ -1,3 +1,4 @@
+# xgbse.metrics
 ::: xgbse.metrics
     handler: python
     rendering:

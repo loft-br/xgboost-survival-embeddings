@@ -29,12 +29,12 @@ benchmark_packages = [
 
 all_packages = install_requires + dev_packages + benchmark_packages
 
-with open("README.md", "r", encoding="utf-8") as fh:
+with open("docs/index.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="xgbse",
-    version="0.1.0b",
+    version="0.1.1",
     author="Squad Portfolio",
     author_email="davi.vieira@loft.com.br",
     description="Improving XGBoost survival analysis with embeddings and debiased estimators",

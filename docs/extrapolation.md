@@ -1,3 +1,4 @@
+# xgbse.extrapolation
 ::: xgbse.extrapolation
     handler: python
     rendering:

@@ -1,3 +1,4 @@
+# xgbse._debiased_bce.XGBSEDebiasedBCE
 ::: xgbse._debiased_bce.XGBSEDebiasedBCE
     handler: python
     rendering:
