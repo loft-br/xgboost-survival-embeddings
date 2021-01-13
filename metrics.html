@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Loft Data Science Team">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Metrics - XGBoost Survival Embeddings</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Metrics";
+    var mkdocs_page_input_path = "metrics.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> XGBoost Survival Embeddings</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="base.html">Base</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="bce.html">BCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="kaplan.html">Kaplan</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="meta.html">Meta</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="extrapolation.html">Extrapolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="metrics.html">Metrics</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Examples</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="examples/how_xgbse_works.html">How XGBSE works</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="benchmarks/benchmarks.html">Benchmarks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">XGBoost Survival Embeddings</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modules &raquo;</li>
+        
+      
+    
+    <li>Metrics</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/metrics.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <div class="doc doc-object doc-module">
+<h2 class="hidden-toc" id="xgbse.metrics" style="visibility: hidden; position: absolute;">
+        <a class="headerlink" href="#xgbse.metrics" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="xgbse.metrics.approx_brier_score">
+
+<code class="highlight">approx_brier_score(y_true, survival, aggregate='mean')</code>
+
+
+      <a class="headerlink" href="#xgbse.metrics.approx_brier_score" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Estimate brier score for all survival time windows. Aggregate scores for an approximate
+integrated brier score estimate.</p>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>y_true</strong> (<code>structured array(numpy.bool_, numpy.number</code>) – binary event indicator as first field,
+and time of event or time of censoring as second field.</p>
+</li>
+<li>
+<p><strong>survival</strong> (<code>[pd.DataFrame, np.array]</code>) – A dataframe of survival probabilities
+for all times (columns), from a time_bins array, for all samples of X (rows).
+If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p>
+</li>
+<li>
+<p><strong>aggregate</strong> (<code>[string, None]</code>) – How to aggregate brier scores from different time windows
+'mean' takes simple average
+None returns full list of brier scores for each time window</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>[Float, np.array]</code> – single value if aggregate is 'mean'
+    np.array if aggregate is None</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="xgbse.metrics.concordance_index">
+
+<code class="highlight">concordance_index(y_true, survival, risk_strategy='mean', which_window=None)</code>
+
+
+      <a class="headerlink" href="#xgbse.metrics.concordance_index" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Compute the C-index for a structured array of ground truth times and events
+and a predicted survival curve using different strategies for estimating risk from it</p>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>y_true</strong> (<code>structured array(numpy.bool_, numpy.number</code>) – binary event indicator as first field,
+and time of event or time of censoring as second field.</p>
+</li>
+<li>
+<p><strong>survival</strong> (<code>[pd.DataFrame, np.array]</code>) – A dataframe of survival probabilities
+for all times (columns), from a time_bins array, for all samples of X (rows).
+If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p>
+</li>
+<li>
+<p><strong>risk_strategy</strong> (<code>string</code>) – {'mean','window','midpoint','precomputed'}, default='mean'
+Stratetegy to compute risks from the survival curve. For a given sample:
+'mean' averages probabilities across all times
+'window': lets user choose on of the time windows available (by which_window argument)
+    and uses probabilities of this specific window
+'midpoint': selects the most central window of index int(survival.columns.shape[0]/2)
+    and uses probabilities of this specific window
+'precomputed': assumes user has already calculated risk.
+    The survival argument is assumed to contain an array of risks instead</p>
+</li>
+<li>
+<p><strong>which_window</strong> (<code>object</code>) – which window to use when risk_strategy is 'window'. Should be one
+of the columns of the dataframe. Will raise ValueError if column is not present</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>Float</code> – Concordance index for y_true and survival</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="xgbse.metrics.dist_calibration_score">
+
+<code class="highlight">dist_calibration_score(y_true, survival, n_bins=10, returns='pval')</code>
+
+
+      <a class="headerlink" href="#xgbse.metrics.dist_calibration_score" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Estimate D-Calibration for the survival predictions.</p>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>y_true</strong> (<code>structured array(numpy.bool_, numpy.number</code>) – binary event indicator as first field,
+and time of event or time of censoring as second field.</p>
+</li>
+<li>
+<p><strong>survival</strong> (<code>[pd.DataFrame, np.array]</code>) – A dataframe of survival probabilities
+for all times (columns), from a time_bins array, for all samples of X (rows).
+If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p>
+</li>
+<li>
+<p><strong>n_bins</strong> (<code>Int</code>) – number of bins to equally divide the [0, 1] interval</p>
+</li>
+<li>
+<p><strong>returns</strong> (<code>string</code>) – What information to return from the function
+'statistic' returns the chi squared test statistic
+'pval' returns the chi squared test p value
+'max_deviation' returns the maximum percentage deviation from the expected value,
+calculated as abs(expected_percentage - real_percentage)
+'histogram' returns the full calibration histogram per bin
+'all' returns all of the above in a dictionary</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>[Float, np.array, Dict]</code> – single value if returns is in ['statistic','pval','max_deviation']
+    np.array if returns is 'histogram'
+    dict if returns is 'all'</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="examples/how_xgbse_works.html" class="btn btn-neutral float-right" title="How XGBSE works">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="converters.html" class="btn btn-neutral" title="Converters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/loft-br/xgboost-survival-embeddings/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="converters.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="examples/how_xgbse_works.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Loft Data Science Team">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Benchmarks - XGBoost Survival Embeddings</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Benchmarks";
+    var mkdocs_page_input_path = "benchmarks/benchmarks.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> XGBoost Survival Embeddings</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../base.html">Base</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../bce.html">BCE</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../kaplan.html">Kaplan</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../meta.html">Meta</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../extrapolation.html">Extrapolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../converters.html">Converters</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../metrics.html">Metrics</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Examples</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../examples/how_xgbse_works.html">How XGBSE works</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="benchmarks.html">Benchmarks</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#flchain">FLCHAIN</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metabric">METABRIC</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rrnlnph">RRNLNPH</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sac3">SAC3</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#support">SUPPORT</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">XGBoost Survival Embeddings</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Benchmarks</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/benchmarks/benchmarks.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="benchmarks"><strong>Benchmarks</strong><a class="headerlink" href="#benchmarks" title="Permanent link">&para;</a></h3>
+<p>In the examples folder you'll find benchmarks comparing <code>xgbse</code> to other survival analysis methods. We show 6 metrics (see [9] for details):</p>
+<ul>
+<li><code>c-index</code>: concordance index. Equivalent to AUC with censored data.</li>
+<li><code>dcal_max_dev</code>: maximum decile deviation from calibrated distribution. </li>
+<li><code>dcal_pval</code>: p-value from chi-square test checking for D-Calibration. If larger than 0.05 then the model is D-Calibrated.</li>
+<li><code>ibs</code>: approximate integrated brier score, the average brier score across all time windows.</li>
+<li><code>inference_time</code>: time to perform inference.</li>
+<li><code>training_time</code>: time to perform training.</li>
+</ul>
+<p>We executed all methods with default parameters, except for <code>num_boosting_rounds</code>, which was set to <code>10</code> for vanilla XGBoost, and <code>1000</code> for <code>xgbse</code>, as vanilla XGBoost was overfitting with the same setting as <code>xgbse</code>. No early stopping was used for XGBoost. We show results below for five datasets. </p>
+<h4 id="flchain"><a href="https://github.com/vincentarelbundock/Rdatasets">FLCHAIN</a><a class="headerlink" href="#flchain" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left">model</th>
+<th align="right">c-index</th>
+<th align="right">dcal_max_dev</th>
+<th align="right">dcal_pval</th>
+<th align="right">ibs</th>
+<th align="right">inference_time</th>
+<th align="right">training_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Weibull AFT</td>
+<td align="right">0.789</td>
+<td align="right">0.013</td>
+<td align="right">0.849</td>
+<td align="right">0.099</td>
+<td align="right">0.01</td>
+<td align="right">0.84</td>
+</tr>
+<tr>
+<td align="left">Cox-PH</td>
+<td align="right">0.788</td>
+<td align="right">0.011</td>
+<td align="right">0.971</td>
+<td align="right">0.099</td>
+<td align="right">0.007</td>
+<td align="right">1.192</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Debiased BCE</td>
+<td align="right">0.784</td>
+<td align="right">0.03</td>
+<td align="right">0.036</td>
+<td align="right">0.101</td>
+<td align="right">0.47</td>
+<td align="right">46.155</td>
+</tr>
+<tr>
+<td align="left">XGB - AFT</td>
+<td align="right">0.782</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.065</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Bootstrap Trees</td>
+<td align="right">0.781</td>
+<td align="right">0.009</td>
+<td align="right">0.985</td>
+<td align="right">0.1</td>
+<td align="right">0.425</td>
+<td align="right">17.498</td>
+</tr>
+<tr>
+<td align="left">XGB - Cox</td>
+<td align="right">0.779</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.085</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Neighbors</td>
+<td align="right">0.769</td>
+<td align="right">0.02</td>
+<td align="right">0.732</td>
+<td align="right">0.103</td>
+<td align="right">5.807</td>
+<td align="right">31.366</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Tree</td>
+<td align="right">0.768</td>
+<td align="right">0.011</td>
+<td align="right">0.929</td>
+<td align="right">0.103</td>
+<td align="right">0.003</td>
+<td align="right">0.212</td>
+</tr>
+<tr>
+<td align="left">Conditional Survival Forest</td>
+<td align="right">0.761</td>
+<td align="right">0.03</td>
+<td align="right">0.031</td>
+<td align="right">0.106</td>
+<td align="right">109.553</td>
+<td align="right">1.103</td>
+</tr>
+</tbody>
+</table>
+<h4 id="metabric"><a href="https://github.com/jaredleekatzman/DeepSurv/tree/master/experiments/data">METABRIC</a><a class="headerlink" href="#metabric" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left">model</th>
+<th align="right">c-index</th>
+<th align="right">dcal_max_dev</th>
+<th align="right">dcal_pval</th>
+<th align="right">ibs</th>
+<th align="right">inference_time</th>
+<th align="right">training_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">XGBSE - Debiased BCE</td>
+<td align="right">0.632</td>
+<td align="right">0.032</td>
+<td align="right">0.381</td>
+<td align="right">0.157</td>
+<td align="right">0.369</td>
+<td align="right">14.198</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Neighbors</td>
+<td align="right">0.627</td>
+<td align="right">0.024</td>
+<td align="right">0.525</td>
+<td align="right">0.156</td>
+<td align="right">0.791</td>
+<td align="right">25.679</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Bootstrap Trees</td>
+<td align="right">0.624</td>
+<td align="right">0.024</td>
+<td align="right">0.563</td>
+<td align="right">0.155</td>
+<td align="right">0.466</td>
+<td align="right">11.956</td>
+</tr>
+<tr>
+<td align="left">Conditional Survival Forest</td>
+<td align="right">0.623</td>
+<td align="right">0.032</td>
+<td align="right">0.289</td>
+<td align="right">0.152</td>
+<td align="right">31.874</td>
+<td align="right">0.201</td>
+</tr>
+<tr>
+<td align="left">Weibull AFT</td>
+<td align="right">0.622</td>
+<td align="right">0.024</td>
+<td align="right">0.667</td>
+<td align="right">0.154</td>
+<td align="right">0.008</td>
+<td align="right">0.39</td>
+</tr>
+<tr>
+<td align="left">Cox-PH</td>
+<td align="right">0.622</td>
+<td align="right">0.026</td>
+<td align="right">0.567</td>
+<td align="right">0.154</td>
+<td align="right">0.004</td>
+<td align="right">0.217</td>
+</tr>
+<tr>
+<td align="left">XGB - Cox</td>
+<td align="right">0.619</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.023</td>
+</tr>
+<tr>
+<td align="left">XGB - AFT</td>
+<td align="right">0.61</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.024</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Tree</td>
+<td align="right">0.59</td>
+<td align="right">0.036</td>
+<td align="right">0.18</td>
+<td align="right">0.165</td>
+<td align="right">0.014</td>
+<td align="right">0.114</td>
+</tr>
+</tbody>
+</table>
+<h4 id="rrnlnph"><a href="https://github.com/havakv/pycox/blob/master/pycox/simulations/relative_risk.py">RRNLNPH</a><a class="headerlink" href="#rrnlnph" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left">model</th>
+<th align="right">c-index</th>
+<th align="right">dcal_max_dev</th>
+<th align="right">dcal_pval</th>
+<th align="right">ibs</th>
+<th align="right">inference_time</th>
+<th align="right">training_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">XGBSE - Debiased BCE</td>
+<td align="right">0.827</td>
+<td align="right">0.044</td>
+<td align="right">0</td>
+<td align="right">0.098</td>
+<td align="right">0.982</td>
+<td align="right">128.98</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Bootstrap Trees</td>
+<td align="right">0.826</td>
+<td align="right">0.035</td>
+<td align="right">0</td>
+<td align="right">0.097</td>
+<td align="right">0.419</td>
+<td align="right">40.945</td>
+</tr>
+<tr>
+<td align="left">XGB - Cox</td>
+<td align="right">0.826</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.056</td>
+</tr>
+<tr>
+<td align="left">XGB - AFT</td>
+<td align="right">0.825</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.051</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Neighbors</td>
+<td align="right">0.823</td>
+<td align="right">0.034</td>
+<td align="right">0</td>
+<td align="right">0.1</td>
+<td align="right">66.891</td>
+<td align="right">112.969</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Tree</td>
+<td align="right">0.821</td>
+<td align="right">0.044</td>
+<td align="right">0</td>
+<td align="right">0.101</td>
+<td align="right">0.005</td>
+<td align="right">0.506</td>
+</tr>
+<tr>
+<td align="left">Conditional Survival Forest</td>
+<td align="right">0.811</td>
+<td align="right">0.067</td>
+<td align="right">0</td>
+<td align="right">0.113</td>
+<td align="right">5786.26</td>
+<td align="right">17.024</td>
+</tr>
+<tr>
+<td align="left">Weibull AFT</td>
+<td align="right">0.787</td>
+<td align="right">0.057</td>
+<td align="right">0</td>
+<td align="right">0.136</td>
+<td align="right">0.008</td>
+<td align="right">0.262</td>
+</tr>
+<tr>
+<td align="left">Cox-PH</td>
+<td align="right">0.787</td>
+<td align="right">0.055</td>
+<td align="right">0</td>
+<td align="right">0.135</td>
+<td align="right">0.011</td>
+<td align="right">2.362</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sac3"><a href="https://github.com/havakv/pycox/blob/master/pycox/simulations/discrete_logit_hazard.py">SAC3</a><a class="headerlink" href="#sac3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left">model</th>
+<th align="right">c-index</th>
+<th align="right">dcal_max_dev</th>
+<th align="right">dcal_pval</th>
+<th align="right">ibs</th>
+<th align="right">inference_time</th>
+<th align="right">training_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">XGBSE - Debiased BCE</td>
+<td align="right">0.699</td>
+<td align="right">0.038</td>
+<td align="right">0</td>
+<td align="right">0.162</td>
+<td align="right">4.067</td>
+<td align="right">689.045</td>
+</tr>
+<tr>
+<td align="left">Cox-PH</td>
+<td align="right">0.682</td>
+<td align="right">0.035</td>
+<td align="right">0</td>
+<td align="right">0.165</td>
+<td align="right">0.037</td>
+<td align="right">2.138</td>
+</tr>
+<tr>
+<td align="left">Weibull AFT</td>
+<td align="right">0.682</td>
+<td align="right">0.039</td>
+<td align="right">0</td>
+<td align="right">0.165</td>
+<td align="right">0.037</td>
+<td align="right">2.057</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Bootstrap Trees</td>
+<td align="right">0.677</td>
+<td align="right">0.043</td>
+<td align="right">0</td>
+<td align="right">0.168</td>
+<td align="right">3.134</td>
+<td align="right">220.772</td>
+</tr>
+<tr>
+<td align="left">XGB - AFT</td>
+<td align="right">0.671</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.003</td>
+<td align="right">0.735</td>
+</tr>
+<tr>
+<td align="left">XGB - Cox</td>
+<td align="right">0.67</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.002</td>
+<td align="right">0.913</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Neighbors</td>
+<td align="right">0.631</td>
+<td align="right">0.038</td>
+<td align="right">0</td>
+<td align="right">0.186</td>
+<td align="right">1318.84</td>
+<td align="right">531.032</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Tree</td>
+<td align="right">0.631</td>
+<td align="right">0.034</td>
+<td align="right">0</td>
+<td align="right">0.191</td>
+<td align="right">0.069</td>
+<td align="right">2.717</td>
+</tr>
+<tr>
+<td align="left">Conditional Survival Forest</td>
+<td align="right">0.622</td>
+<td align="right">0.044</td>
+<td align="right">0</td>
+<td align="right">0.187</td>
+<td align="right">691.939</td>
+<td align="right">837.069</td>
+</tr>
+</tbody>
+</table>
+<h4 id="support"><a href="https://github.com/jaredleekatzman/DeepSurv/tree/master/experiments/data">SUPPORT</a><a class="headerlink" href="#support" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th align="left">model</th>
+<th align="right">c-index</th>
+<th align="right">dcal_max_dev</th>
+<th align="right">dcal_pval</th>
+<th align="right">ibs</th>
+<th align="right">inference_time</th>
+<th align="right">training_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">XGB - Cox</td>
+<td align="right">0.612</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.137</td>
+</tr>
+<tr>
+<td align="left">XGB - AFT</td>
+<td align="right">0.612</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">nan</td>
+<td align="right">0.001</td>
+<td align="right">0.05</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Bootstrap Trees</td>
+<td align="right">0.607</td>
+<td align="right">0.103</td>
+<td align="right">0</td>
+<td align="right">0.188</td>
+<td align="right">0.524</td>
+<td align="right">19.814</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Debiased BCE</td>
+<td align="right">0.607</td>
+<td align="right">0.119</td>
+<td align="right">0</td>
+<td align="right">0.19</td>
+<td align="right">1.221</td>
+<td align="right">62.017</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Tree</td>
+<td align="right">0.598</td>
+<td align="right">0.097</td>
+<td align="right">0</td>
+<td align="right">0.203</td>
+<td align="right">0.005</td>
+<td align="right">0.194</td>
+</tr>
+<tr>
+<td align="left">Conditional Survival Forest</td>
+<td align="right">0.595</td>
+<td align="right">0.166</td>
+<td align="right">0</td>
+<td align="right">0.195</td>
+<td align="right">115.486</td>
+<td align="right">2.626</td>
+</tr>
+<tr>
+<td align="left">Cox-PH</td>
+<td align="right">0.578</td>
+<td align="right">0.16</td>
+<td align="right">0</td>
+<td align="right">0.201</td>
+<td align="right">0.01</td>
+<td align="right">0.519</td>
+</tr>
+<tr>
+<td align="left">XGBSE - Kaplan Neighbors</td>
+<td align="right">0.578</td>
+<td align="right">0.11</td>
+<td align="right">0</td>
+<td align="right">0.202</td>
+<td align="right">8.933</td>
+<td align="right">49.236</td>
+</tr>
+<tr>
+<td align="left">Weibull AFT</td>
+<td align="right">0.576</td>
+<td align="right">0.138</td>
+<td align="right">0</td>
+<td align="right">0.201</td>
+<td align="right">0.009</td>
+<td align="right">0.624</td>
+</tr>
+</tbody>
+</table>
+<p>General comments:</p>
+<ul>
+<li><code>XGBSEDebiasedBCE</code> show the most promising results, being the best method in 3 datasets and competitive in other 2. </li>
+<li>Other <code>xgbse</code> methods show good results too. In particular <code>XGBSEKaplanTree</code> with <code>XGBSEBootstrapEstimator</code> shows promising results, pointing to a direction for further research.</li>
+<li>Linear methods such as the <strong>Weibull AFT</strong> and <strong>Cox-PH</strong> from <code>lifelines</code> are surprisingly strong, specially for datasets with a small number of samples.</li>
+<li><code>xgbse</code> methods show competitive results to vanilla <code>xgboost</code> as measured by C-index, while showing good results for "survival curve metrics". Thus, we can use <code>xgbse</code> as a calibrated replacement to vanilla <code>xgboost</code>.</li>
+<li><strong>Conditional Survival Forest</strong> does not show consistent results. Also, it shows very high inference time, higher than training, which is unusual. It is the less efficient method of the group, followed by <code>XGBSEKaplanNeighbors</code>.</li>
+<li><code>xgbse</code> takes longer to fit than vanilla <code>xgboost</code>. Specially for <code>XGBSEDebiasedBCE</code>, we have to build N logistic regressions where N is the number of time windows we'll predict. In all cases we used N = 30.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../examples/how_xgbse_works.html" class="btn btn-neutral" title="How XGBSE works"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/loft-br/xgboost-survival-embeddings/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../examples/how_xgbse_works.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

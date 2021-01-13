@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Loft Data Science Team">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Kaplan - XGBoost Survival Embeddings</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Kaplan";
+    var mkdocs_page_input_path = "kaplan.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> XGBoost Survival Embeddings</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Modules</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="base.html">Base</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="bce.html">BCE</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="kaplan.html">Kaplan</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#xgbse._kaplan_neighbors.XGBSEKaplanNeighbors--xgbsekaplanneighbor">XGBSEKaplanNeighbor</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="meta.html">Meta</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="extrapolation.html">Extrapolation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Examples</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="examples/how_xgbse_works.html">How XGBSE works</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="benchmarks/benchmarks.html">Benchmarks</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">XGBoost Survival Embeddings</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Modules &raquo;</li>
+        
+      
+    
+    <li>Kaplan</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/kaplan.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <div class="doc doc-object doc-class">
+<h2 class="hidden-toc" id="xgbse._kaplan_neighbors.XGBSEKaplanNeighbors" style="visibility: hidden; position: absolute;">
+        <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanNeighbors" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents first">
+<h3 id="xgbse._kaplan_neighbors.XGBSEKaplanNeighbors--xgbsekaplanneighbor">XGBSEKaplanNeighbor<a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanNeighbors--xgbsekaplanneighbor" title="Permanent link">&para;</a></h3>
+<p>Convert xgboost into a nearest neighbor model, where we use hamming distance to define
+similar elements as the ones that co-ocurred the most at the ensemble terminal nodes.</p>
+<p>Then, at each neighbor-set compute survival estimates with the Kaplan-Meier estimator.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h2 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanNeighbors.__init__">
+
+<code class="highlight">__init__(self, xgb_params={'objective': 'survival:aft', 'eval_metric': 'aft-nloglik', 'aft_loss_distribution': 'normal', 'aft_loss_distribution_scale': 1, 'tree_method': 'hist', 'learning_rate': 0.05, 'max_depth': 8, 'booster': 'dart', 'subsample': 0.5, 'min_child_weight': 50, 'colsample_bynode': 0.5}, n_neighbors=30, radius=None)</code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanNeighbors.__init__" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>xgb_params</strong> (<code>Dict</code>) – parameters for XGBoost model, see
+https://xgboost.readthedocs.io/en/latest/parameter.html</p>
+</li>
+<li>
+<p><strong>n_neighbors</strong> (<code>Int</code>) – number of neighbors for computing KM estimates</p>
+</li>
+<li>
+<p><strong>radius</strong> (<code>Float</code>) – If set, uses a radius around the point for neighbors search</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h2 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanNeighbors.fit">
+
+<code class="highlight">fit(self, X, y, num_boost_round=1000, validation_data=None, early_stopping_rounds=None, verbose_eval=0, persist_train=True, index_id=None, time_bins=None)</code>
+
+
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanNeighbors.fit" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Transform feature space by fitting a XGBoost model and outputting its leaf indices.
+Build search index in the new space to allow nearest neighbor queries at scoring time.</p>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>X</strong> (<code>[pd.DataFrame, np.array]</code>) – design matrix to fit XGBoost model</p>
+</li>
+<li>
+<p><strong>y</strong> (<code>structured array(numpy.bool_, numpy.number</code>) – binary event indicator as first field,
+and time of event or time of censoring as second field.</p>
+</li>
+<li>
+<p><strong>num_boost_round</strong> (<code>Int</code>) – Number of boosting iterations.</p>
+</li>
+<li>
+<p><strong>validation_data</strong> (<code>Tuple</code>) – Validation data in the format of a list of tuples [(X, y)]
+if user desires to use early stopping</p>
+</li>
+<li>
+<p><strong>early_stopping_rounds</strong> (<code>Int</code>) – Activates early stopping.
+Validation metric needs to improve at least once
+in every <strong>early_stopping_rounds</strong> round(s) to continue training.
+See xgboost.train documentation.</p>
+</li>
+<li>
+<p><strong>verbose_eval</strong> (<code>[Bool, Int]</code>) – level of verbosity. See xgboost.train documentation.</p>
+</li>
+<li>
+<p><strong>persist_train</strong> (<code>Bool</code>) – whether or not to persist training data to use explainability
+through prototypes</p>
+</li>
+<li>
+<p><strong>index_id</strong> (<code>pd.Index</code>) – user defined index if intended to use explainability
+through prototypes</p>
+</li>
+<li>
+<p><strong>time_bins</strong> (<code>np.array</code>) – specified time windows to use when making survival predictions</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>XGBSEKaplanNeighbors</code> – fitted instance of XGBSEKaplanNeighbors</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h2 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanNeighbors.predict">
+
+<code class="highlight">predict(self, X, time_bins=None, return_ci=False, ci_width=0.683, return_interval_probs=False)</code>
+
+
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanNeighbors.predict" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Make queries to nearest neighbor search index build on the transformed XGBoost space.
+Compute a Kaplan-Meier estimator for each neighbor-set. Predict the KM estimators.</p>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>X</strong> (<code>pd.DataFrame</code>) – data frame with samples to generate predictions</p>
+</li>
+<li>
+<p><strong>time_bins</strong> (<code>np.array</code>) – specified time windows to use when making survival predictions</p>
+</li>
+<li>
+<p><strong>return_ci</strong> (<code>Bool</code>) – whether to return confidence intervals via the Exponential Greenwood formula</p>
+</li>
+<li>
+<p><strong>ci_width</strong> (<code>Float</code>) – width of confidence interval</p>
+</li>
+<li>
+<p><strong>return_interval_probs</strong> (<code>Bool</code>) – Boolean indicating if interval probabilities are
+supposed to be returned. If False the cumulative survival is returned.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>(pd.DataFrame)</code> – A dataframe of survival probabilities
+for all times (columns), from a time_bins array, for all samples of X
+(rows). If return_interval_probs is True, the interval probabilities are returned
+instead of the cumulative survival probabilities.</p>
+<p>upper_ci (np.array): upper confidence interval for the survival
+probability values</p>
+<p>lower_ci (np.array): lower confidence interval for the survival
+probability values</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="hidden-toc" id="xgbse._kaplan_neighbors.XGBSEKaplanTree" style="visibility: hidden; position: absolute;">
+        <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents first">
+<h3 id="xgbse._kaplan_neighbors.XGBSEKaplanTree--xgbsekaplantree">XGBSEKaplanTree<a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree--xgbsekaplantree" title="Permanent link">&para;</a></h3>
+<p>Single tree implementation as a simplification to <code>XGBSEKaplanNeighbors</code>.
+Instead of doing nearest neighbor searches, fit a single tree via <code>xgboost</code>
+and calculate KM curves at each of its leaves.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h2 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanTree.fit">
+
+<code class="highlight">fit(self, X, y, persist_train=True, index_id=None, time_bins=None, ci_width=0.683, **xgb_kwargs)</code>
+
+
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.fit" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Fit a single decision tree using xgboost. For each leaf in the tree,
+build a Kaplan-Meier estimator.</p>
+<p>Args:</p>
+<div class="codehilite">
+<pre><span></span><code><span class="n">X</span> <span class="p">([</span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">]):</span> <span class="n">design</span> <span class="n">matrix</span> <span class="k">to</span> <span class="n">fit</span> <span class="n">XGBoost</span> <span class="n">model</span>
+
+<span class="n">y</span> <span class="p">(</span><span class="n">structured</span> <span class="nb">array</span><span class="p">(</span><span class="n">numpy</span><span class="p">.</span><span class="n">bool_</span><span class="p">,</span> <span class="n">numpy</span><span class="p">.</span><span class="nb">number</span><span class="p">)):</span> <span class="nb">binary</span> <span class="n">event</span> <span class="n">indicator</span> <span class="k">as</span> <span class="k">first</span> <span class="n">field</span><span class="p">,</span>
+    <span class="k">and</span> <span class="k">time</span> <span class="k">of</span> <span class="n">event</span> <span class="k">or</span> <span class="k">time</span> <span class="k">of</span> <span class="n">censoring</span> <span class="k">as</span> <span class="k">second</span> <span class="n">field</span><span class="p">.</span>
+
+<span class="n">persist_train</span> <span class="p">(</span><span class="n">Bool</span><span class="p">):</span> <span class="n">whether</span> <span class="k">or</span> <span class="k">not</span> <span class="k">to</span> <span class="n">persist</span> <span class="n">training</span> <span class="k">data</span> <span class="k">to</span> <span class="n">use</span> <span class="n">explainability</span>
+    <span class="n">through</span> <span class="n">prototypes</span>
+
+<span class="n">index_id</span> <span class="p">(</span><span class="n">pd</span><span class="p">.</span><span class="k">Index</span><span class="p">):</span> <span class="k">user</span> <span class="k">defined</span> <span class="k">index</span> <span class="k">if</span> <span class="n">intended</span> <span class="k">to</span> <span class="n">use</span> <span class="n">explainability</span>
+    <span class="n">through</span> <span class="n">prototypes</span>
+
+<span class="n">time_bins</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">):</span> <span class="n">specified</span> <span class="k">time</span> <span class="n">windows</span> <span class="k">to</span> <span class="n">use</span> <span class="k">when</span> <span class="n">making</span> <span class="n">survival</span> <span class="n">predictions</span>
+
+<span class="n">ci_width</span> <span class="p">(</span><span class="nb">Float</span><span class="p">):</span> <span class="n">width</span> <span class="k">of</span> <span class="n">confidence</span> <span class="nb">interval</span>
+</code></pre>
+</div>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>XGBSEKaplanTree</code> – Trained instance of XGBSEKaplanTree</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h2 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanTree.predict">
+
+<code class="highlight">predict(self, X, return_ci=False, return_interval_probs=False)</code>
+
+
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.predict" title="Permanent link">&para;</a></h2>
+<div class="doc doc-contents ">
+<p>Run samples through tree until terminal nodes. Predict the Kaplan-Meier
+estimator associated to the leaf node each sample ended into.</p>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><strong>X</strong> (<code>pd.DataFrame</code>) – data frame with samples to generate predictions</p>
+</li>
+<li>
+<p><strong>return_ci</strong> (<code>Bool</code>) – whether to return confidence intervals via the Exponential Greenwood formula</p>
+</li>
+<li>
+<p><strong>return_interval_probs</strong> (<code>Bool</code>) – Boolean indicating if interval probabilities are
+supposed to be returned. If False the cumulative survival is returned.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="field-list">
+<colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+<tbody valign="top">
+<tr class="field">
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<ul class="first simple">
+<li>
+<p><code>preds_df (pd.DataFrame)</code> – A dataframe of survival probabilities
+    for all times (columns), from a time_bins array, for all samples of X
+    (rows). If return_interval_probs is True, the interval probabilities are returned
+    instead of the cumulative survival probabilities.</p>
+<p>upper_ci (np.array): upper confidence interval for the survival
+    probability values</p>
+<p>lower_ci (np.array): lower confidence interval for the survival
+    probability values</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="meta.html" class="btn btn-neutral float-right" title="Meta">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="bce.html" class="btn btn-neutral" title="BCE"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/loft-br/xgboost-survival-embeddings/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="bce.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="meta.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
