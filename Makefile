@@ -1,8 +1,8 @@
 black:
-	black xgbse setup.py --check
+	black xgbse setup.py tests/ --check
 
 flake:
-	flake8 xgbse setup.py
+	flake8 xgbse setup.py tests/
 
 test:
 	pytest --cov-report term-missing --cov=xgbse tests/
