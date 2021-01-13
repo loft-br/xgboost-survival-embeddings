@@ -29,12 +29,17 @@ benchmark_packages = [
 
 all_packages = install_requires + dev_packages + benchmark_packages
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
 
 setuptools.setup(
     name="xgbse",
-    version="0.1.0",
+    version="0.1.0b",
     author="Squad Portfolio",
     author_email="davi.vieira@loft.com.br",
+    description="Improving XGBoost survival analysis with embeddings and debiased estimators",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     install_requires=install_requires,
     extras_require={
@@ -44,6 +49,4 @@ setuptools.setup(
     },
     python_requires=">=3.7",
     url="https://github.com/loft-br/xgboost-survival-embeddings",
-    description="A liquidity library to survival analysis using Gradient Boosting Embeddings",
-    long_description=open("README.md").read(),
 )
