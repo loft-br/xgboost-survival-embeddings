@@ -1,0 +1,34 @@
+site_name: XGBoost Survival Embeddings
+repo_url: https://github.com/loft-br/xgboost-survival-embeddings
+site_description: Better XGBoost survival analysis with embeddings and debiased estimators.
+site_author: Loft Data Science Team
+use_directory_urls: false
+nav:
+  - Home: index.md
+  - Modules:
+      - Base: base.md
+      - BCE: bce.md
+      - Kaplan: kaplan.md
+      - Meta: meta.md
+      - Extrapolation: extrapolation.md
+      - Converters: converters.md
+      - Metrics: metrics.md
+  - Examples:
+      - How XGBSE works: examples/how_xgbse_works.md
+  - Benchmarks: benchmarks/benchmarks.md
+plugins:
+  - mkdocstrings:
+      watch:
+        - xgbse
+  - search
+copyright:
+theme: readthedocs
+markdown_extensions:
+  - codehilite
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.tabbed
+  - pymdownx.highlight:
+      use_pygments: true
+  - toc:
+      permalink: true
