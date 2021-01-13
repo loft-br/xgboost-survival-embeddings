@@ -44,6 +44,6 @@ setuptools.setup(
     },
     python_requires=">=3.7",
     url="https://github.com/loft-br/xgboost-survival-embeddings",
-    description="A liquidity library to survival analysis using Gradient Boosting Embeddings",
+    description="Improving XGBoost Survival Analysis with embeddings and debiased estimators",
     long_description=open("README.md").read(),
 )
