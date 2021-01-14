@@ -36,7 +36,7 @@ setuptools.setup(
     name="xgbse",
     version="0.1.1",
     author="Loft Data Science Team",
-    author_email="https://medium.com/loftbr/datascience/home",
+    author_email="bandits@loft.com.br",
     description="Improving XGBoost survival analysis with embeddings and debiased estimators",
     long_description=long_description,
     long_description_content_type="text/markdown",
