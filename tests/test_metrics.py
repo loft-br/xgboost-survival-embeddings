@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 from xgbse.metrics import concordance_index, approx_brier_score, dist_calibration_score
 
@@ -79,6 +80,16 @@ def test_concordance_index():
 
     assert concordance_index(y_train, km_survival) == 0.5
     assert concordance_index(y_test, preds) > 0.5
+    assert np.isclose(
+        concordance_index(y_test, T_test.values, risk_strategy="precomputed"),
+        0,
+        atol=0.02,
+    )
+    assert np.isclose(
+        concordance_index(y_test, -T_test.values, risk_strategy="precomputed"),
+        1,
+        atol=0.02,
+    )
 
 
 def test_approx_brier_score():
