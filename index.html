@@ -1,119 +1,498 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Loft Data Science Team">
-  
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <title>Home - XGBoost Survival Embeddings</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="css/theme.css" />
-  <link rel="stylesheet" href="css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Home";
-    var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="js/jquery-2.1.1.min.js" defer></script>
-  <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> XGBoost Survival Embeddings</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Better XGBoost survival analysis with embeddings and debiased estimators.">
+      
+      
+      
+        <meta name="author" content="Loft Data Science Team">
+      
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Home - XGBoost Survival Embeddings</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xgbse-xgboost-survival-embeddings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="index.html">Home</a>
-    <ul class="current">
-    </ul>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Modules</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="base.html">Base</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="bce.html">BCE</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="kaplan.html">Kaplan</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="meta.html">Meta</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="extrapolation.html">Extrapolation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="metrics.html">Metrics</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Examples</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="examples/how_xgbse_works.html">How XGBSE works</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="benchmarks/benchmarks.html">Benchmarks</a>
-                    </li>
-                </ul>
+  
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="./index.html" title="XGBoost Survival Embeddings" class="md-header-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            XGBoost Survival Embeddings
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">XGBoost Survival Embeddings</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
     
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
       
-    
-    <li>Home</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/index.md"
-          class="icon icon-github"> Edit on GitHub</a>
-      
-    </li>
-  </ul>
-  
-  <hr/>
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-          <div role="main">
-            <div class="section">
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
               
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    XGBoost Survival Embeddings
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="index.html" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse-xgboost-survival-embeddings" class="md-nav__link">
+    xgbse: XGBoost Survival Embeddings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="basic-usage.html" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Modules
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modules" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Modules
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="base.html" class="md-nav__link">
+      Base
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="bce.html" class="md-nav__link">
+      BCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="kaplan.html" class="md-nav__link">
+      Kaplan
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="meta.html" class="md-nav__link">
+      Meta
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="extrapolation.html" class="md-nav__link">
+      Extrapolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="converters.html" class="md-nav__link">
+      Converters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="metrics.html" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="examples/how_xgbse_works.html" class="md-nav__link">
+      How XGBSE works
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="benchmarks/benchmarks.html" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse-xgboost-survival-embeddings" class="md-nav__link">
+    xgbse: XGBoost Survival Embeddings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>Home</h1>
+                
                 <h2 id="xgbse-xgboost-survival-embeddings"><code>xgbse</code>: XGBoost Survival Embeddings<a class="headerlink" href="#xgbse-xgboost-survival-embeddings" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><em>"There are two cultures in the use of statistical modeling to reach conclusions from data. One assumes that the data are generated by a given stochastic data model. The other uses algorithmic models and treats the data mechanism as unknown."</em> - Leo Breiman, <a href="https://projecteuclid.org/euclid.ss/1009213726">Statistical Modeling: The Two Cultures</a></p>
@@ -133,836 +512,74 @@
 <li>explainability through prototypes</li>
 </ul>
 <p>This is a research project by <a href="https://medium.com/loftbr/datascience/home">Loft Data Science Team</a>, however we invite the community to contribute. Please help by trying it out, reporting bugs, and letting us know what you think!</p>
-<h2 id="todo-installation">[TODO] Installation<a class="headerlink" href="#todo-installation" title="Permanent link">&para;</a></h2>
-<p>...</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<h3 id="basic-usage"><em>Basic usage</em><a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h3>
-<p>The package follows <code>scikit-learn</code> API, with a minor adaptation to work with time and event data (<code>y</code> as a <code>numpy</code> structured array of times and events). <code>.predict()</code> returns a dataframe where each column is a time window and values represent the probability of survival before or exactly at the time window.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># importing dataset from pycox package</span>
-<span class="kn">from</span> <span class="nn">pycox.datasets</span> <span class="kn">import</span> <span class="n">metabric</span>
-
-<span class="c1"># importing model and utils from xgbse</span>
-<span class="kn">from</span> <span class="nn">xgbse</span> <span class="kn">import</span> <span class="n">XGBEmbedKaplanNeighbors</span>
-<span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
-
-<span class="c1"># getting data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">metabric</span><span class="o">.</span><span class="n">read_df</span><span class="p">()</span>
-
-<span class="c1"># splitting to X, y format</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">convert_to_structured</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
-
-<span class="c1"># fitting xgbse model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBEmbedKaplanNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">event_probs</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">event_probs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="err">pip install xgbse</span>
 </code></pre></div>
-
-<table>
-<thead>
-<tr>
-<th>index</th>
-<th>15</th>
-<th>30</th>
-<th>45</th>
-<th>60</th>
-<th>75</th>
-<th>90</th>
-<th>105</th>
-<th>120</th>
-<th>135</th>
-<th>150</th>
-<th>165</th>
-<th>180</th>
-<th>195</th>
-<th>210</th>
-<th>225</th>
-<th>240</th>
-<th>255</th>
-<th>270</th>
-<th>285</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0.98</td>
-<td>0.87</td>
-<td>0.81</td>
-<td>0.74</td>
-<td>0.71</td>
-<td>0.66</td>
-<td>0.53</td>
-<td>0.47</td>
-<td>0.42</td>
-<td>0.4</td>
-<td>0.3</td>
-<td>0.25</td>
-<td>0.21</td>
-<td>0.16</td>
-<td>0.12</td>
-<td>0.098</td>
-<td>0.085</td>
-<td>0.062</td>
-<td>0.054</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0.99</td>
-<td>0.89</td>
-<td>0.79</td>
-<td>0.7</td>
-<td>0.64</td>
-<td>0.58</td>
-<td>0.53</td>
-<td>0.46</td>
-<td>0.42</td>
-<td>0.39</td>
-<td>0.33</td>
-<td>0.31</td>
-<td>0.3</td>
-<td>0.24</td>
-<td>0.21</td>
-<td>0.18</td>
-<td>0.16</td>
-<td>0.11</td>
-<td>0.095</td>
-</tr>
-<tr>
-<td>2</td>
-<td>0.94</td>
-<td>0.78</td>
-<td>0.63</td>
-<td>0.57</td>
-<td>0.54</td>
-<td>0.49</td>
-<td>0.44</td>
-<td>0.37</td>
-<td>0.34</td>
-<td>0.32</td>
-<td>0.26</td>
-<td>0.23</td>
-<td>0.21</td>
-<td>0.16</td>
-<td>0.13</td>
-<td>0.11</td>
-<td>0.098</td>
-<td>0.072</td>
-<td>0.062</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0.99</td>
-<td>0.95</td>
-<td>0.93</td>
-<td>0.88</td>
-<td>0.84</td>
-<td>0.81</td>
-<td>0.73</td>
-<td>0.67</td>
-<td>0.57</td>
-<td>0.52</td>
-<td>0.45</td>
-<td>0.37</td>
-<td>0.33</td>
-<td>0.28</td>
-<td>0.23</td>
-<td>0.19</td>
-<td>0.16</td>
-<td>0.12</td>
-<td>0.1</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0.98</td>
-<td>0.92</td>
-<td>0.82</td>
-<td>0.77</td>
-<td>0.72</td>
-<td>0.68</td>
-<td>0.63</td>
-<td>0.6</td>
-<td>0.57</td>
-<td>0.55</td>
-<td>0.51</td>
-<td>0.48</td>
-<td>0.45</td>
-<td>0.42</td>
-<td>0.38</td>
-<td>0.33</td>
-<td>0.3</td>
-<td>0.22</td>
-<td>0.2</td>
-</tr>
-</tbody>
-</table>
-<p>You can also get interval predictions (probability of failing exactly at each time window) using <code>return_interval_probs</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># point predictions</span>
-<span class="n">interval_probs</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">return_interval_probs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">interval_probs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
-<table>
-<thead>
-<tr>
-<th>index</th>
-<th>15</th>
-<th>30</th>
-<th>45</th>
-<th>60</th>
-<th>75</th>
-<th>90</th>
-<th>105</th>
-<th>120</th>
-<th>135</th>
-<th>150</th>
-<th>165</th>
-<th>180</th>
-<th>195</th>
-<th>210</th>
-<th>225</th>
-<th>240</th>
-<th>255</th>
-<th>270</th>
-<th>285</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0.024</td>
-<td>0.1</td>
-<td>0.058</td>
-<td>0.07</td>
-<td>0.034</td>
-<td>0.05</td>
-<td>0.12</td>
-<td>0.061</td>
-<td>0.049</td>
-<td>0.026</td>
-<td>0.096</td>
-<td>0.049</td>
-<td>0.039</td>
-<td>0.056</td>
-<td>0.04</td>
-<td>0.02</td>
-<td>0.013</td>
-<td>0.023</td>
-<td>0.0078</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0.014</td>
-<td>0.097</td>
-<td>0.098</td>
-<td>0.093</td>
-<td>0.052</td>
-<td>0.065</td>
-<td>0.054</td>
-<td>0.068</td>
-<td>0.034</td>
-<td>0.038</td>
-<td>0.053</td>
-<td>0.019</td>
-<td>0.018</td>
-<td>0.052</td>
-<td>0.038</td>
-<td>0.027</td>
-<td>0.018</td>
-<td>0.05</td>
-<td>0.015</td>
-</tr>
-<tr>
-<td>2</td>
-<td>0.06</td>
-<td>0.16</td>
-<td>0.15</td>
-<td>0.054</td>
-<td>0.033</td>
-<td>0.053</td>
-<td>0.046</td>
-<td>0.073</td>
-<td>0.032</td>
-<td>0.014</td>
-<td>0.06</td>
-<td>0.03</td>
-<td>0.017</td>
-<td>0.055</td>
-<td>0.031</td>
-<td>0.016</td>
-<td>0.014</td>
-<td>0.027</td>
-<td>0.0097</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0.011</td>
-<td>0.034</td>
-<td>0.021</td>
-<td>0.053</td>
-<td>0.038</td>
-<td>0.038</td>
-<td>0.08</td>
-<td>0.052</td>
-<td>0.1</td>
-<td>0.049</td>
-<td>0.075</td>
-<td>0.079</td>
-<td>0.037</td>
-<td>0.052</td>
-<td>0.053</td>
-<td>0.041</td>
-<td>0.026</td>
-<td>0.04</td>
-<td>0.017</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0.016</td>
-<td>0.067</td>
-<td>0.099</td>
-<td>0.046</td>
-<td>0.05</td>
-<td>0.042</td>
-<td>0.051</td>
-<td>0.028</td>
-<td>0.03</td>
-<td>0.018</td>
-<td>0.048</td>
-<td>0.022</td>
-<td>0.029</td>
-<td>0.038</td>
-<td>0.035</td>
-<td>0.047</td>
-<td>0.031</td>
-<td>0.08</td>
-<td>0.027</td>
-</tr>
-</tbody>
-</table>
-<h3 id="survival-curves-and-confidence-intervals"><em>Survival curves and confidence intervals</em><a class="headerlink" href="#survival-curves-and-confidence-intervals" title="Permanent link">&para;</a></h3>
-<p><code>XBGSEKaplanTree</code> and <code>XBGSEKaplanNeighbors</code> support estimation of survival curves and confidence intervals via the Exponential Greenwood formula out-of-the-box via the <code>return_ci</code> argument:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># fitting xgbse model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEKaplanNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># plotting CIs</span>
-<span class="n">plot_ci</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_ci_1.png"></p>
-<p><code>XGBSEDebiasedBCE</code> does not support estimation of confidence intervals out-of-the-box, but we provide the <code>XGBSEBootstrapEstimator</code> to get non-parametric confidence intervals. As the stacked logistic regressions are trained with more samples (in comparison to neighbor-sets in <code>XGBSEKaplanNeighbors</code>), confidence intervals are more concentrated:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># base model as BCE</span>
-<span class="n">base_model</span> <span class="o">=</span> <span class="n">XGBSEDebiasedBCE</span><span class="p">(</span><span class="n">PARAMS_XGB_AFT</span><span class="p">,</span> <span class="n">PARAMS_LR</span><span class="p">)</span>
-
-<span class="c1"># bootstrap meta estimator</span>
-<span class="n">bootstrap_estimator</span> <span class="o">=</span> <span class="n">XGBSEBootstrapEstimator</span><span class="p">(</span><span class="n">base_model</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
-<span class="c1"># fitting the meta estimator</span>
-<span class="n">bootstrap_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="p">,</span>
-    <span class="n">y_train</span><span class="p">,</span>
-    <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">),</span>
-    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">bootstrap_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># plotting CIs</span>
-<span class="n">plot_ci</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_ci_2.png"></p>
-<p>The bootstrap abstraction can be used for <code>XBGSEKaplanTree</code> and <code>XBGSEKaplanNeighbors</code> as well, however, the confidence interval will be estimated via bootstrap only (not Exponential Greenwood formula):</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># base model</span>
-<span class="n">base_model</span> <span class="o">=</span> <span class="n">XGBSEKaplanTree</span><span class="p">(</span><span class="n">PARAMS_TREE</span><span class="p">)</span>
-
-<span class="c1"># bootstrap meta estimator</span>
-<span class="n">bootstrap_estimator</span> <span class="o">=</span> <span class="n">XGBSEBootstrapEstimator</span><span class="p">(</span><span class="n">base_model</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-
-<span class="c1"># fitting the meta estimator</span>
-<span class="n">bootstrap_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="p">,</span>
-    <span class="n">y_train</span><span class="p">,</span>
-    <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">bootstrap_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># plotting CIs</span>
-<span class="n">plot_ci</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_ci_3.png"></p>
-<p>With a sufficiently large <code>n_estimators</code>, interval width shouldn't be much different, with the added benefit of model stability and improved accuracy. Addittionaly, <code>XGBSEBootstrapEstimator</code> allows building confidence intervals for interval probabilities (which is not supported for Exponential Greenwood):</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># predicting</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">bootstrap_estimator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
-    <span class="n">X_valid</span><span class="p">,</span>
-    <span class="n">return_ci</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">return_interval_probs</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-
-<span class="c1"># plotting CIs</span>
-<span class="n">plot_ci</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_ci_6.png"></p>
-<p>The parameter <code>ci_width</code> controls the width of the confidence interval. For <code>XGBSEKaplanTree</code> it should be passed at <code>.fit()</code>, as KM curves are pre-calculated for each leaf at fit time to avoid storing training data.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># fitting xgbse model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEKaplanTree</span><span class="p">(</span><span class="n">PARAMS_TREE</span><span class="p">)</span>
-<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">,</span> <span class="n">ci_width</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># plotting CIs</span>
-<span class="n">plot_ci</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_ci_4.png"></p>
-<p>For other models (<code>XGBSEKaplanNeighbors</code> and <code>XGBSEBootstrapEstimator</code>) it should be passed at <code>.predict()</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># base model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">XGBSEKaplanNeighbors</span><span class="p">(</span><span class="n">PARAMS_XGB_AFT</span><span class="p">,</span> <span class="n">N_NEIGHBORS</span><span class="p">)</span>
-
-<span class="c1"># fitting the meta estimator</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
-    <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">),</span>
-    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span>
-<span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ci_width</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
-
-<span class="c1"># plotting CIs</span>
-<span class="n">plot_ci</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">upper_ci</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_ci_5.png"></p>
-<h3 id="early-stopping"><em>Early stopping</em><a class="headerlink" href="#early-stopping" title="Permanent link">&para;</a></h3>
-<p>A simple interface to <code>xgboost</code> early stopping is provided.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># splitting between train, and validation</span>
-<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span>
- <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span> <span class="o">=</span> \
-<span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># fitting with early stopping</span>
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBEmbedBCE</span><span class="p">()</span>
-<span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="p">,</span>
-    <span class="n">y_train</span><span class="p">,</span>
-    <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">),</span>
-    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">verbose_eval</span><span class="o">=</span><span class="mi">50</span>
-<span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="err">[0] validation-aft-nloglik:16.86713</span>
-<span class="err">Will train until validation-aft-nloglik hasn&#39;t improved in 10 rounds.</span>
-<span class="err">[50]    validation-aft-nloglik:3.64540</span>
-<span class="err">[100]   validation-aft-nloglik:3.53679</span>
-<span class="err">[150]   validation-aft-nloglik:3.53207</span>
-<span class="err">Stopping. Best iteration:</span>
-<span class="err">[174]   validation-aft-nloglik:3.53004</span>
-</code></pre></div>
-
-<h3 id="explainability-through-prototypes"><em>Explainability through prototypes</em><a class="headerlink" href="#explainability-through-prototypes" title="Permanent link">&para;</a></h3>
-<p><code>xgbse</code> also provides explainability through prototypes, searching the embedding for neighbors. The idea is to explain model predictions with real samples, providing solid ground to justify them (see [8]). The method <code>.get_neighbors()</code> searches for the <code>n_neighbors</code> nearest neighbors in <code>index_data</code> for each sample in <code>query_data</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">neighbors</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">get_neighbors</span><span class="p">(</span>
-    <span class="n">query_data</span><span class="o">=</span><span class="n">X_valid</span><span class="p">,</span>
-    <span class="n">index_data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span>
-    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span>
-<span class="p">)</span>
-<span class="n">neighbors</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
-
-<table>
-<thead>
-<tr>
-<th>index</th>
-<th>neighbor_1</th>
-<th>neighbor_2</th>
-<th>neighbor_3</th>
-<th>neighbor_4</th>
-<th>neighbor_5</th>
-<th>neighbor_6</th>
-<th>neighbor_7</th>
-<th>neighbor_8</th>
-<th>neighbor_9</th>
-<th>neighbor_10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1225</td>
-<td>1151</td>
-<td>1513</td>
-<td>1200</td>
-<td>146</td>
-<td>215</td>
-<td>452</td>
-<td>1284</td>
-<td>1127</td>
-<td>1895</td>
-<td>257</td>
-</tr>
-<tr>
-<td>111</td>
-<td>1897</td>
-<td>1090</td>
-<td>1743</td>
-<td>1224</td>
-<td>892</td>
-<td>1695</td>
-<td>1624</td>
-<td>1546</td>
-<td>1418</td>
-<td>4</td>
-</tr>
-<tr>
-<td>554</td>
-<td>9</td>
-<td>627</td>
-<td>1257</td>
-<td>1460</td>
-<td>1031</td>
-<td>1575</td>
-<td>1557</td>
-<td>440</td>
-<td>1236</td>
-<td>858</td>
-</tr>
-<tr>
-<td>526</td>
-<td>726</td>
-<td>1042</td>
-<td>177</td>
-<td>1640</td>
-<td>242</td>
-<td>1529</td>
-<td>234</td>
-<td>1800</td>
-<td>399</td>
-<td>1431</td>
-</tr>
-<tr>
-<td>1313</td>
-<td>205</td>
-<td>1738</td>
-<td>599</td>
-<td>954</td>
-<td>1694</td>
-<td>1715</td>
-<td>1651</td>
-<td>828</td>
-<td>541</td>
-<td>992</td>
-</tr>
-</tbody>
-</table>
-<p>This way, we can inspect neighbors of a given sample to try to explain predictions. For instance, we can choose a <code>reference</code> and check that its neighbors actually are very similar as a sanity check:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">reference</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<span class="n">reference</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;reference&#39;</span>
-<span class="n">train_neighs</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">neighbors</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
-
-<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">reference</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">train_neighs</span><span class="p">])</span>
-</code></pre></div>
-
-<table>
-<thead>
-<tr>
-<th>index</th>
-<th>x0</th>
-<th>x1</th>
-<th>x2</th>
-<th>x3</th>
-<th>x4</th>
-<th>x5</th>
-<th>x6</th>
-<th>x7</th>
-<th>x8</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>reference</td>
-<td>5.7</td>
-<td>5.7</td>
-<td>11</td>
-<td>5.6</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>86</td>
-</tr>
-<tr>
-<td>1151</td>
-<td>5.8</td>
-<td>5.9</td>
-<td>11</td>
-<td>5.5</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>82</td>
-</tr>
-<tr>
-<td>1513</td>
-<td>5.5</td>
-<td>5.5</td>
-<td>11</td>
-<td>5.6</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>79</td>
-</tr>
-<tr>
-<td>1200</td>
-<td>5.7</td>
-<td>6</td>
-<td>11</td>
-<td>5.6</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>76</td>
-</tr>
-<tr>
-<td>146</td>
-<td>5.9</td>
-<td>5.9</td>
-<td>11</td>
-<td>5.5</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>75</td>
-</tr>
-<tr>
-<td>215</td>
-<td>5.8</td>
-<td>5.5</td>
-<td>11</td>
-<td>5.4</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>78</td>
-</tr>
-<tr>
-<td>452</td>
-<td>5.7</td>
-<td>5.7</td>
-<td>12</td>
-<td>5.5</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>76</td>
-</tr>
-<tr>
-<td>1284</td>
-<td>5.6</td>
-<td>6.2</td>
-<td>11</td>
-<td>5.6</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>79</td>
-</tr>
-<tr>
-<td>1127</td>
-<td>5.5</td>
-<td>5.1</td>
-<td>11</td>
-<td>5.5</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>86</td>
-</tr>
-<tr>
-<td>1895</td>
-<td>5.5</td>
-<td>5.4</td>
-<td>10</td>
-<td>5.5</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>85</td>
-</tr>
-<tr>
-<td>257</td>
-<td>5.7</td>
-<td>6</td>
-<td>9.6</td>
-<td>5.6</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>76</td>
-</tr>
-</tbody>
-</table>
-<p>We also can compare the Kaplan-Meier curve estimated from the neighbors to the actual model prediction, checking that it is inside the confidence interval:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.non_parametric</span> <span class="kn">import</span> <span class="n">calculate_kaplan_vectorized</span>
-
-<span class="n">mean</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">low</span> <span class="o">=</span> <span class="n">calculate_kaplan_vectorized</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;c2&#39;</span><span class="p">][</span><span class="n">neighbors</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]]]),</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">][</span><span class="n">neighbors</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]]]),</span>
-    <span class="n">TIME_BINS</span>
-<span class="p">)</span>
-
-<span class="n">model_surv</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model_surv</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">model_surv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">mean</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">mean</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">low</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">high</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img src="img/usage_prototype_kaplan.png"></p>
-<p>Specifically, for <code>XBGSEKaplanNeighbors</code> prototype predictions and model predictions should match exactly if <code>n_neighbors</code> is the same and <code>query_data</code> is equal to the training data.</p>
-<h3 id="metrics"><strong>Metrics</strong><a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
-<p>We made our own metrics submodule to make the lib self-contained. <code>xgbse.metrics</code> implements C-index, Brier Score and D-Calibration from [9], including adaptations to deal with censoring:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># training model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEKaplanNeighbors</span><span class="p">(</span><span class="n">PARAMS_XGB_AFT</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-
-<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
-    <span class="n">validation_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">),</span>
-    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span>
-<span class="p">)</span>
-
-<span class="c1"># predicting</span>
-<span class="n">preds</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
-
-<span class="c1"># importing metrics</span>
-<span class="kn">from</span> <span class="nn">xgbse.metrics</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">concordance_index</span><span class="p">,</span>
-    <span class="n">approx_brier_score</span><span class="p">,</span>
-    <span class="n">dist_calibration_score</span>
-<span class="p">)</span>
-
-<span class="c1"># running metrics</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;C-index: </span><span class="si">{</span><span class="n">concordance_index</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Avg. Brier Score: </span><span class="si">{</span><span class="n">approx_brier_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;D-Calibration: </span><span class="si">{</span><span class="n">dist_calibration_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.05</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="c">C-index: 0.6495863029409356</span>
-<span class="err">Avg. Brier Score: 0.1704190044350422</span>
-<span class="c">D-Calibration: True</span>
-</code></pre></div>
-
-<p>As metrics follow the <code>score_func(y, y_pred, **kwargs)</code> pattern, we can use the sklearn model selection module easily:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
-
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEKaplanTree</span><span class="p">(</span><span class="n">PARAMS_TREE</span><span class="p">)</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">xgbse_model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">make_scorer</span><span class="p">(</span><span class="n">approx_brier_score</span><span class="p">))</span>
-<span class="n">results</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="err">array([0.17432953, 0.15907712, 0.13783666, 0.16770409, 0.16792016])</span>
-</code></pre></div>
-
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p>[1] <a href="https://research.fb.com/wp-content/uploads/2016/11/practical-lessons-from-predicting-clicks-on-ads-at-facebook.pdf">Practical Lessons from Predicting Clicks on Ads at Facebook</a>: paper that shows how stacking boosting models with logistic regression improves performance and calibration</p>
-<p>[2] <a href="https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html">Feature transformations with ensembles of trees</a>: scikit-learn post showing tree ensembles as feature transformers</p>
-<p>[3] <a href="https://gdmarmerola.github.io/probability-calibration/">Calibration of probabilities for tree-based models</a>: blog post showing a practical example of tree ensemble probability calibration with a logistic regression</p>
-<p>[4] <a href="https://gdmarmerola.github.io/umap-supervised-embeddings/">Supervised dimensionality reduction and clustering at scale with RFs with UMAP</a>: blog post showing how forests of decision trees act as noise filters, reducing intrinsic dimension of the dataset.</p>
-<p>[5] <a href="http://www.cs.cornell.edu/~cnyu/papers/nips11_survival.pdf">Learning Patient-Specific Cancer Survival Distributions as a Sequence of Dependent Regressors</a>: inspiration for the BCE method (multi-task logistic regression)</p>
-<p>[6] <a href="https://arxiv.org/pdf/1912.08581.pdf">The Brier Score under Administrative Censoring: Problems and Solutions</a>: reference to BCE (binary cross-entropy survival method).</p>
-<p>[7] <a href="https://www.math.wustl.edu/~sawyer/handouts/greenwood.pdf">The Greenwood and Exponential Greenwood Confidence Intervals in Survival Analysis</a>: reference we used for the Exponential Greenwood formula from KM confidence intervals</p>
-<p>[8] <a href="https://arxiv.org/abs/1611.07115">Tree Space Prototypes: Another Look at Making Tree Ensembles Interpretable</a>: paper showing a very similar method for extracting prototypes</p>
-<p>[9] <a href="https://arxiv.org/pdf/1811.11347.pdf">Effective Ways to Build and Evaluate Individual Survival Distributions</a>: paper showing how to validate survival analysis models with different metrics</p>
-<h2 id="citing-xgbse">Citing <code>xgbse</code><a class="headerlink" href="#citing-xgbse" title="Permanent link">&para;</a></h2>
-<p>To cite this repository:</p>
-<div class="codehilite"><pre><span></span><code>@software{xgbse2020github,
-  author = {Davi Vieira and Gabriel Gimenez and Guilherme Marmerola and Vitor Estima},
-  title = {XGBoost Survival Embeddings: improving statistical properties of XGBoost survival analysis implementation},
-  url = {http://github.com/loft-br/xgboost-survival-embeddings},
-  version = {0.1.0},
-  year = {2020},
-}
-</code></pre></div>
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="base.html" class="btn btn-neutral float-right" title="Base">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="basic-usage.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Basic Usage
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
-          <a href="https://github.com/loft-br/xgboost-survival-embeddings/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-      
-        <span style="margin-left: 15px"><a href="base.html" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme.js" defer></script>
-      <script src="search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>
