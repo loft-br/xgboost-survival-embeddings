@@ -1,5 +1,3 @@
-import pandas as pd
-
 from xgbse import XGBSEDebiasedBCE
 from xgbse.extrapolation import extrapolate_constant_risk
 from xgbse.non_parametric import get_time_bins, calculate_kaplan_vectorized
@@ -30,12 +28,7 @@ time_bins = get_time_bins(T_train, E_train, 100)
 mean, high, low = calculate_kaplan_vectorized(
     T_train.values.reshape(1, -1), E_train.values.reshape(1, -1), time_bins
 )
-
-km_survival = pd.concat([mean] * len(y_train))
-km_survival = km_survival.reset_index(drop=True)
-
 # generating xgbse predictions for all tests
-
 xgbse_model = XGBSEDebiasedBCE()
 
 xgbse_model.fit(
