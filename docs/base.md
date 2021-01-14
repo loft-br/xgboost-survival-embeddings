@@ -1,3 +1,4 @@
+# xgbse._base.XGBSEBaseEstimator
 ::: xgbse._base.XGBSEBaseEstimator
     handler: python
     rendering:

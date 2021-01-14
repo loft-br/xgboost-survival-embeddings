@@ -5,6 +5,7 @@ site_author: Loft Data Science Team
 use_directory_urls: false
 nav:
   - Home: index.md
+  - Basic Usage: basic-usage.md
   - Modules:
       - Base: base.md
       - BCE: bce.md
@@ -22,7 +23,7 @@ plugins:
         - xgbse
   - search
 copyright:
-theme: readthedocs
+theme: material
 markdown_extensions:
   - codehilite
   - pymdownx.inlinehilite
