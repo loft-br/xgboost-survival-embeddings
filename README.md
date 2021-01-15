@@ -375,7 +375,7 @@ results
 array([0.17432953, 0.15907712, 0.13783666, 0.16770409, 0.16792016])
 ```
 
-If you want to dive deeper, please check our [docs]() and [examples](https://github.com/loft-br/xgboost-survival-embeddings/tree/main/examples)!
+If you want to dive deeper, please check our [docs](loft-br.github.io/xgboost-survival-embeddings/) and [examples](https://loft-br.github.io/xgboost-survival-embeddings/examples/how_xgbse_works.html)!
 
 
 ## References
