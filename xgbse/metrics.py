@@ -39,22 +39,22 @@ def concordance_index(y_true, survival, risk_strategy="mean", which_window=None)
     # choosing risk calculation strategy
 
     if risk_strategy == "mean":
-        hazards = 1 - survival.mean(axis=1)
+        risks = 1 - survival.mean(axis=1)
 
     elif risk_strategy == "window":
         if which_window is None:
             raise ValueError(
                 "Need to set which window to use via the which_window parameter"
             )
-        hazards = 1 - survival[which_window]
+        risks = 1 - survival[which_window]
 
     elif risk_strategy == "midpoint":
         midpoint = int(survival.columns.shape[0] / 2)
         midpoint_col = survival.columns[midpoint]
-        hazards = 1 - survival[midpoint_col]
+        risks = 1 - survival[midpoint_col]
 
     elif risk_strategy == "precomputed":
-        hazards = survival
+        risks = survival
 
     else:
         raise ValueError(
@@ -65,12 +65,7 @@ def concordance_index(y_true, survival, risk_strategy="mean", which_window=None)
     events, times = convert_y(y_true)
     events = events.astype(bool)
 
-    time_order = times.argsort()
-    all_samples = len(hazards)
-
-    times = times[time_order]
-    hazards = hazards[time_order]
-    events = events[time_order]
+    cind_df = pd.DataFrame({"t": times, "e": events, "r": risks})
 
     count_pairs = 0
     concordant_pairs = 0
@@ -78,26 +73,18 @@ def concordance_index(y_true, survival, risk_strategy="mean", which_window=None)
 
     # running loop for each uncensored sample,
     # as by https://arxiv.org/pdf/1811.11347.pdf
-    for i in range(all_samples):
-        if events[i]:
-            # getting all censored and uncensored samples
-            # after current row
-            pairs, concord, tied = _concordant_pairs(hazards[i + 1 :], hazards[i])
+    for _, row in cind_df.query("e == True").iterrows():
 
-            count_pairs += pairs
-            concordant_pairs += concord
-            tied_pairs += tied
+        # getting all censored and uncensored samples
+        # after current row
+        samples_after_i = cind_df.query(f"""{row['t']} < t""")
+
+        # counting total, concordant and tied pairs
+        count_pairs += samples_after_i.shape[0]
+        concordant_pairs += (samples_after_i["r"] < row["r"]).sum()
+        tied_pairs += (samples_after_i["r"] == row["r"]).sum()
 
     return (concordant_pairs + tied_pairs / 2) / count_pairs
-
-
-def _concordant_pairs(hazards, current_hazard):
-    # counting total, concordant and tied pairs
-    all_pairs = len(hazards)
-    concordant = np.sum(hazards < current_hazard)
-    tied = np.sum(hazards == current_hazard)
-
-    return all_pairs, concordant, tied
 
 
 def _match_times_to_windows(times, windows):
