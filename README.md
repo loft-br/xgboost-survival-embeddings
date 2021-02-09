@@ -37,7 +37,7 @@ The package follows `scikit-learn` API, with a minor adaptation to work with tim
 from pycox.datasets import metabric
 
 # importing model and utils from xgbse
-from xgbse import XGBEmbedKaplanNeighbors
+from xgbse import XGBSEKaplanNeighbors
 from xgbse.converters import convert_to_structured
 
 # getting data
@@ -48,7 +48,7 @@ X = df.drop(['duration', 'event'], axis=1)
 y = convert_to_structured(df['duration'], df['event'])
 
 # fitting xgbse model
-xgbse_model = XGBEmbedKaplanNeighbors(n_neighbors=50)
+xgbse_model = XGBSEKaplanNeighbors(n_neighbors=50)
 xgbse_model.fit(X, y)
 
 # predicting
@@ -234,7 +234,7 @@ A simple interface to `xgboost` early stopping is provided.
 train_test_split(X, y, test_size=0.2, random_state=42)
 
 # fitting with early stopping
-xgb_model = XGBEmbedBCE()
+xgb_model = XGBSEDebiasedBCE()
 xgb_model.fit(
     X_train,
     y_train,
@@ -407,7 +407,7 @@ To cite this repository:
   author = {Davi Vieira and Gabriel Gimenez and Guilherme Marmerola and Vitor Estima},
   title = {XGBoost Survival Embeddings: improving statistical properties of XGBoost survival analysis implementation},
   url = {http://github.com/loft-br/xgboost-survival-embeddings},
-  version = {0.1.1},
+  version = {0.1.2},
   year = {2020},
 }
 ```

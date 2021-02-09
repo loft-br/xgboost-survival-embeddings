@@ -15,6 +15,9 @@ nav:
       - Converters: converters.md
       - Metrics: metrics.md
   - Examples:
+      - Basic Usage: examples/basic_usage.md
+      - Confidence intervals: examples/confidence_interval.md
+      - Extrapolation: examples/extrapolation_example.md
       - How XGBSE works: examples/how_xgbse_works.md
   - Benchmarks: benchmarks/benchmarks.md
 plugins:
