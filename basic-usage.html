@@ -462,6 +462,45 @@
 
 
   <li class="md-nav__item">
+    <a href="examples/basic_usage.html" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="examples/confidence_interval.html" class="md-nav__link">
+      Confidence intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="examples/extrapolation_example.html" class="md-nav__link">
+      Extrapolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
     <a href="examples/how_xgbse_works.html" class="md-nav__link">
       How XGBSE works
     </a>
@@ -596,7 +635,7 @@
 <span class="kn">from</span> <span class="nn">pycox.datasets</span> <span class="kn">import</span> <span class="n">metabric</span>
 
 <span class="c1"># importing model and utils from xgbse</span>
-<span class="kn">from</span> <span class="nn">xgbse</span> <span class="kn">import</span> <span class="n">XGBEmbedKaplanNeighbors</span>
+<span class="kn">from</span> <span class="nn">xgbse</span> <span class="kn">import</span> <span class="n">XGBSEKaplanNeighbors</span>
 <span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
 
 <span class="c1"># getting data</span>
@@ -607,7 +646,7 @@
 <span class="n">y</span> <span class="o">=</span> <span class="n">convert_to_structured</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">])</span>
 
 <span class="c1"># fitting xgbse model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBEmbedKaplanNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEKaplanNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 <span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># predicting</span>
@@ -1011,7 +1050,7 @@
 <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># fitting with early stopping</span>
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBEmbedBCE</span><span class="p">()</span>
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBSEDebiasedBCE</span><span class="p">()</span>
 <span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
     <span class="n">X_train</span><span class="p">,</span>
     <span class="n">y_train</span><span class="p">,</span>
@@ -1364,7 +1403,7 @@
   author = {Davi Vieira and Gabriel Gimenez and Guilherme Marmerola and Vitor Estima},
   title = {XGBoost Survival Embeddings: improving statistical properties of XGBoost survival analysis implementation},
   url = {http://github.com/loft-br/xgboost-survival-embeddings},
-  version = {0.1.1},
+  version = {0.1.2},
   year = {2020},
 }
 </code></pre></div>

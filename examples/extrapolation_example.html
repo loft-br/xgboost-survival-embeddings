@@ -1,0 +1,1203 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Better XGBoost survival analysis with embeddings and debiased estimators.">
+      
+      
+      
+        <meta name="author" content="Loft Data Science Team">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Extrapolation - XGBoost Survival Embeddings</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extrapolation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+  
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-header-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            XGBoost Survival Embeddings
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Extrapolation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    XGBoost Survival Embeddings
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../basic-usage.html" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Modules
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Modules" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Modules
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../base.html" class="md-nav__link">
+      Base
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../bce.html" class="md-nav__link">
+      BCE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../kaplan.html" class="md-nav__link">
+      Kaplan
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../meta.html" class="md-nav__link">
+      Meta
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../extrapolation.html" class="md-nav__link">
+      Extrapolation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../converters.html" class="md-nav__link">
+      Converters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../metrics.html" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="basic_usage.html" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="confidence_interval.html" class="md-nav__link">
+      Confidence intervals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Extrapolation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="extrapolation_example.html" class="md-nav__link md-nav__link--active">
+      Extrapolation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metrabic" class="md-nav__link">
+    Metrabic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#split-and-create-time-bins" class="md-nav__link">
+    Split and create Time Bins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fit-model-and-predict-survival-curves" class="md-nav__link">
+    Fit model and predict survival curves
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#survival-curves-visualization" class="md-nav__link">
+    Survival curves visualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extrapolation_1" class="md-nav__link">
+    Extrapolation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="how_xgbse_works.html" class="md-nav__link">
+      How XGBSE works
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../benchmarks/benchmarks.html" class="md-nav__link">
+      Benchmarks
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metrabic" class="md-nav__link">
+    Metrabic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#split-and-create-time-bins" class="md-nav__link">
+    Split and create Time Bins
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fit-model-and-predict-survival-curves" class="md-nav__link">
+    Fit model and predict survival curves
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#survival-curves-visualization" class="md-nav__link">
+    Survival curves visualization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extrapolation_1" class="md-nav__link">
+    Extrapolation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/examples/extrapolation_example.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="extrapolation">Extrapolation<a class="headerlink" href="#extrapolation" title="Permanent link">&para;</a></h1>
+<p>In this notebook you will find:
+- How to get a survival curve using xgbse
+- How to extrapolate your predicted survival curve using the <code>xgbse.extrapolation</code> module</p>
+<h2 id="metrabic">Metrabic<a class="headerlink" href="#metrabic" title="Permanent link">&para;</a></h2>
+<p>We will be using the Molecular Taxonomy of Breast Cancer International Consortium (METABRIC) dataset from <a href="https://github.com/havakv/pycox#datasets">pycox</a> as base for this example.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
+<span class="kn">from</span> <span class="nn">pycox.datasets</span> <span class="kn">import</span> <span class="n">metabric</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># getting data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">metabric</span><span class="o">.</span><span class="n">read_df</span><span class="p">()</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x0</th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>x4</th>
+      <th>x5</th>
+      <th>x6</th>
+      <th>x7</th>
+      <th>x8</th>
+      <th>duration</th>
+      <th>event</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.603834</td>
+      <td>7.811392</td>
+      <td>10.797988</td>
+      <td>5.967607</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>56.840000</td>
+      <td>99.333336</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.284882</td>
+      <td>9.581043</td>
+      <td>10.204620</td>
+      <td>5.664970</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>85.940002</td>
+      <td>95.733330</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.920251</td>
+      <td>6.776564</td>
+      <td>12.431715</td>
+      <td>5.873857</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>48.439999</td>
+      <td>140.233337</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6.654017</td>
+      <td>5.341846</td>
+      <td>8.646379</td>
+      <td>5.655888</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>66.910004</td>
+      <td>239.300003</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.456747</td>
+      <td>5.339741</td>
+      <td>10.555724</td>
+      <td>6.008429</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>67.849998</td>
+      <td>56.933334</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="split-and-create-time-bins">Split and create Time Bins<a class="headerlink" href="#split-and-create-time-bins" title="Permanent link">&para;</a></h2>
+<p>Split the data in train and test, using sklearn API. We also setup the TIME_BINS arange, which will be used to fit the survival curve</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># splitting to X, T, E format</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">convert_to_structured</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+
+<span class="c1"># splitting between train, and validation</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">TIME_BINS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">315</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">TIME_BINS</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="err">array([ 15,  30,  45,  60,  75,  90, 105, 120, 135, 150, 165, 180, 195,</span>
+<span class="err">       210, 225, 240, 255, 270, 285, 300])</span>
+</code></pre></div>
+
+<h2 id="fit-model-and-predict-survival-curves">Fit model and predict survival curves<a class="headerlink" href="#fit-model-and-predict-survival-curves" title="Permanent link">&para;</a></h2>
+<p>The package follows <code>scikit-learn</code> API, with a minor adaptation to work with time and event data. The model outputs the probability of survival, in a <code>pd.Dataframe</code> where columns represent different times.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse</span> <span class="kn">import</span> <span class="n">XGBSEDebiasedBCE</span>
+
+<span class="c1"># fitting xgbse model</span>
+<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEDebiasedBCE</span><span class="p">()</span>
+<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">)</span>
+
+<span class="c1"># predicting</span>
+<span class="n">survival</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">survival</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>15</th>
+      <th>30</th>
+      <th>45</th>
+      <th>60</th>
+      <th>75</th>
+      <th>90</th>
+      <th>105</th>
+      <th>120</th>
+      <th>135</th>
+      <th>150</th>
+      <th>165</th>
+      <th>180</th>
+      <th>195</th>
+      <th>210</th>
+      <th>225</th>
+      <th>240</th>
+      <th>255</th>
+      <th>270</th>
+      <th>285</th>
+      <th>300</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.983502</td>
+      <td>0.951852</td>
+      <td>0.923277</td>
+      <td>0.900028</td>
+      <td>0.862270</td>
+      <td>0.799324</td>
+      <td>0.715860</td>
+      <td>0.687257</td>
+      <td>0.651314</td>
+      <td>0.610916</td>
+      <td>0.568001</td>
+      <td>0.513172</td>
+      <td>0.493194</td>
+      <td>0.430701</td>
+      <td>0.377675</td>
+      <td>0.310496</td>
+      <td>0.272169</td>
+      <td>0.225599</td>
+      <td>0.184878</td>
+      <td>0.144089</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.973506</td>
+      <td>0.917739</td>
+      <td>0.839154</td>
+      <td>0.710431</td>
+      <td>0.663119</td>
+      <td>0.558886</td>
+      <td>0.495204</td>
+      <td>0.364995</td>
+      <td>0.311628</td>
+      <td>0.299939</td>
+      <td>0.226226</td>
+      <td>0.191373</td>
+      <td>0.171697</td>
+      <td>0.144864</td>
+      <td>0.112447</td>
+      <td>0.089558</td>
+      <td>0.081137</td>
+      <td>0.057679</td>
+      <td>0.048563</td>
+      <td>0.035985</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.986894</td>
+      <td>0.959209</td>
+      <td>0.919768</td>
+      <td>0.889910</td>
+      <td>0.853239</td>
+      <td>0.777208</td>
+      <td>0.725381</td>
+      <td>0.649177</td>
+      <td>0.582569</td>
+      <td>0.531787</td>
+      <td>0.485275</td>
+      <td>0.451667</td>
+      <td>0.428899</td>
+      <td>0.386413</td>
+      <td>0.344369</td>
+      <td>0.279685</td>
+      <td>0.242064</td>
+      <td>0.187967</td>
+      <td>0.158121</td>
+      <td>0.118562</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.986753</td>
+      <td>0.955210</td>
+      <td>0.910354</td>
+      <td>0.857684</td>
+      <td>0.824301</td>
+      <td>0.769262</td>
+      <td>0.665805</td>
+      <td>0.624934</td>
+      <td>0.583592</td>
+      <td>0.537261</td>
+      <td>0.493957</td>
+      <td>0.443193</td>
+      <td>0.416702</td>
+      <td>0.376552</td>
+      <td>0.308947</td>
+      <td>0.237033</td>
+      <td>0.177140</td>
+      <td>0.141838</td>
+      <td>0.117917</td>
+      <td>0.088937</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.977348</td>
+      <td>0.940368</td>
+      <td>0.873695</td>
+      <td>0.804796</td>
+      <td>0.742655</td>
+      <td>0.632426</td>
+      <td>0.556008</td>
+      <td>0.521490</td>
+      <td>0.493577</td>
+      <td>0.458477</td>
+      <td>0.416363</td>
+      <td>0.391099</td>
+      <td>0.364431</td>
+      <td>0.291472</td>
+      <td>0.223758</td>
+      <td>0.190398</td>
+      <td>0.165911</td>
+      <td>0.120061</td>
+      <td>0.095512</td>
+      <td>0.069566</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="survival-curves-visualization">Survival curves visualization<a class="headerlink" href="#survival-curves-visualization" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">survival</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="n">survival</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span>
+    <span class="s1">&#39;k--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survival&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sample of predicted survival curves - $P(T&gt;t)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="err">&lt;matplotlib.legend.Legend at 0x7fc38026cef0&gt;</span>
+</code></pre></div>
+
+<p><img alt="svg" src="img/output_8_1.svg" /></p>
+<p>Notice that this predicted survival curve does not end at zero (cure fraction due to censored data). In some cases it might be useful to extrapolate our survival curves using specific strategies. <code>xgbse.extrapolation</code> implements a constant risk extrapolation strategy.</p>
+<h2 id="extrapolation_1">Extrapolation<a class="headerlink" href="#extrapolation_1" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.extrapolation</span> <span class="kn">import</span> <span class="n">extrapolate_constant_risk</span>
+
+<span class="c1"># extrapolating predicted survival</span>
+<span class="n">survival_ext</span> <span class="o">=</span> <span class="n">extrapolate_constant_risk</span><span class="p">(</span><span class="n">survival</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">survival_ext</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>15.0</th>
+      <th>30.0</th>
+      <th>45.0</th>
+      <th>60.0</th>
+      <th>75.0</th>
+      <th>90.0</th>
+      <th>105.0</th>
+      <th>120.0</th>
+      <th>135.0</th>
+      <th>150.0</th>
+      <th>...</th>
+      <th>315.0</th>
+      <th>330.0</th>
+      <th>345.0</th>
+      <th>360.0</th>
+      <th>375.0</th>
+      <th>390.0</th>
+      <th>405.0</th>
+      <th>420.0</th>
+      <th>435.0</th>
+      <th>450.0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.983502</td>
+      <td>0.951852</td>
+      <td>0.923277</td>
+      <td>0.900028</td>
+      <td>0.862270</td>
+      <td>0.799324</td>
+      <td>0.715860</td>
+      <td>0.687257</td>
+      <td>0.651314</td>
+      <td>0.610916</td>
+      <td>...</td>
+      <td>0.112299</td>
+      <td>0.068213</td>
+      <td>0.032292</td>
+      <td>0.011915</td>
+      <td>0.003426</td>
+      <td>0.000768</td>
+      <td>0.000134</td>
+      <td>1.825794e-05</td>
+      <td>1.937124e-06</td>
+      <td>1.601799e-07</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.973506</td>
+      <td>0.917739</td>
+      <td>0.839154</td>
+      <td>0.710431</td>
+      <td>0.663119</td>
+      <td>0.558886</td>
+      <td>0.495204</td>
+      <td>0.364995</td>
+      <td>0.311628</td>
+      <td>0.299939</td>
+      <td>...</td>
+      <td>0.026665</td>
+      <td>0.014641</td>
+      <td>0.005957</td>
+      <td>0.001796</td>
+      <td>0.000401</td>
+      <td>0.000066</td>
+      <td>0.000008</td>
+      <td>7.404100e-07</td>
+      <td>4.986652e-08</td>
+      <td>2.488634e-09</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.986894</td>
+      <td>0.959209</td>
+      <td>0.919768</td>
+      <td>0.889910</td>
+      <td>0.853239</td>
+      <td>0.777208</td>
+      <td>0.725381</td>
+      <td>0.649177</td>
+      <td>0.582569</td>
+      <td>0.531787</td>
+      <td>...</td>
+      <td>0.088900</td>
+      <td>0.049982</td>
+      <td>0.021071</td>
+      <td>0.006660</td>
+      <td>0.001579</td>
+      <td>0.000281</td>
+      <td>0.000037</td>
+      <td>3.735612e-06</td>
+      <td>2.798762e-07</td>
+      <td>1.572266e-08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.986753</td>
+      <td>0.955210</td>
+      <td>0.910354</td>
+      <td>0.857684</td>
+      <td>0.824301</td>
+      <td>0.769262</td>
+      <td>0.665805</td>
+      <td>0.624934</td>
+      <td>0.583592</td>
+      <td>0.537261</td>
+      <td>...</td>
+      <td>0.067080</td>
+      <td>0.038160</td>
+      <td>0.016373</td>
+      <td>0.005299</td>
+      <td>0.001293</td>
+      <td>0.000238</td>
+      <td>0.000033</td>
+      <td>3.462388e-06</td>
+      <td>2.734946e-07</td>
+      <td>1.629408e-08</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.977348</td>
+      <td>0.940368</td>
+      <td>0.873695</td>
+      <td>0.804796</td>
+      <td>0.742655</td>
+      <td>0.632426</td>
+      <td>0.556008</td>
+      <td>0.521490</td>
+      <td>0.493577</td>
+      <td>0.458477</td>
+      <td>...</td>
+      <td>0.050668</td>
+      <td>0.026879</td>
+      <td>0.010385</td>
+      <td>0.002923</td>
+      <td>0.000599</td>
+      <td>0.000089</td>
+      <td>0.000010</td>
+      <td>7.701555e-07</td>
+      <td>4.442463e-08</td>
+      <td>1.866412e-09</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 31 columns</p>
+</div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># plotting extrapolation #</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">survival</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="n">survival</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span>
+    <span class="s1">&#39;k--&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survival&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">survival_ext</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="n">survival_ext</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span>
+    <span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Extrapolated Survival&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Extrapolation of survival curves&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="err">&lt;matplotlib.legend.Legend at 0x7fc3801842b0&gt;</span>
+</code></pre></div>
+
+<p><img alt="svg" src="img/output_12_1.svg" /></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="confidence_interval.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Confidence intervals
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="how_xgbse_works.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                How XGBSE works
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
