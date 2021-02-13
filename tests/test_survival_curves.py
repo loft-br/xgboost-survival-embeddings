@@ -7,6 +7,7 @@ from xgbse import (
     XGBSEDebiasedBCE,
     XGBSEKaplanNeighbors,
     XGBSEKaplanTree,
+    XGBSEStackedWeibull,
 )
 
 (
@@ -45,7 +46,9 @@ def assert_survival_curve(xgbse, test, preds, cindex):
     assert preds.shape[1] == xgbse.time_bins.shape[0]
 
 
-@pytest.mark.parametrize("model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors])
+@pytest.mark.parametrize(
+    "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEStackedWeibull]
+)
 def test_survival_curve(model):
     xgbse = model()
 

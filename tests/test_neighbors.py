@@ -1,7 +1,12 @@
 import pytest
 
 from tests.data import get_data
-from xgbse import XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEKaplanTree
+from xgbse import (
+    XGBSEDebiasedBCE,
+    XGBSEKaplanNeighbors,
+    XGBSEKaplanTree,
+    XGBSEStackedWeibull,
+)
 
 (
     X_train,
@@ -33,7 +38,9 @@ def assert_neighbors(df, comps, n_neighbors):
     assert df.varcof.mean() < 1
 
 
-@pytest.mark.parametrize("model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors])
+@pytest.mark.parametrize(
+    "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEStackedWeibull]
+)
 def test_model_neighbors_persist_false(model):
     n_neighbors = 30
     test_feature = "pnodes"
@@ -68,7 +75,8 @@ def test_model_neighbors_persist_false(model):
 
 
 @pytest.mark.parametrize(
-    "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEKaplanTree]
+    "model",
+    [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEKaplanTree, XGBSEStackedWeibull],
 )
 def test_model_neighbors_persist_true(model):
     n_neighbors = 30
