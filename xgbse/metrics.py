@@ -12,24 +12,34 @@ EPS = 1e-6
 def concordance_index(y_true, survival, risk_strategy="mean", which_window=None):
     """
     Compute the C-index for a structured array of ground truth times and events
-    and a predicted survival curve using different strategies for estimating risk from it
+    and a predicted survival curve using different strategies for estimating risk from it.
+
+    !!! Note
+        * Computation of the C-index is $\\mathcal{O}(n^2)$.
 
     Args:
-        y_true (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+        y_true (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
             and time of event or time of censoring as second field.
+
         survival ([pd.DataFrame, np.array]): A dataframe of survival probabilities
             for all times (columns), from a time_bins array, for all samples of X (rows).
             If risk_strategy is 'precomputed', is an array with representing risks for each sample.
-        risk_strategy (string): {'mean','window','midpoint','precomputed'}, default='mean'
-            Stratetegy to compute risks from the survival curve. For a given sample:
-            'mean' averages probabilities across all times
-            'window': lets user choose on of the time windows available (by which_window argument)
+
+        risk_strategy (string):
+            Strategy to compute risks from the survival curve. For a given sample:
+
+            * `mean` averages probabilities across all times
+
+            * `window`: lets user choose on of the time windows available (by which_window argument)
                 and uses probabilities of this specific window
-            'midpoint': selects the most central window of index int(survival.columns.shape[0]/2)
+
+            * `midpoint`: selects the most central window of index int(survival.columns.shape[0]/2)
                 and uses probabilities of this specific window
-            'precomputed': assumes user has already calculated risk.
+
+            * `precomputed`: assumes user has already calculated risk.
                 The survival argument is assumed to contain an array of risks instead
-        which_window (object): which window to use when risk_strategy is 'window'. Should be one
+
+        which_window (object): Which window to use when risk_strategy is 'window'. Should be one
             of the columns of the dataframe. Will raise ValueError if column is not present
 
     Returns:
@@ -91,7 +101,7 @@ def _match_times_to_windows(times, windows):
 
     """
     Match a list of event or censoring times to the corresponding
-    time window on the survival dataframe
+    time window on the survival dataframe.
     """
 
     matches = np.array([bisect_right(windows, e) for e in times])
@@ -105,14 +115,18 @@ def approx_brier_score(y_true, survival, aggregate="mean"):
     integrated brier score estimate.
 
     Args:
-        y_true (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+        y_true (structured array(numpy.bool_, numpy.number)): B inary event indicator as first field,
             and time of event or time of censoring as second field.
+
         survival ([pd.DataFrame, np.array]): A dataframe of survival probabilities
             for all times (columns), from a time_bins array, for all samples of X (rows).
             If risk_strategy is 'precomputed', is an array with representing risks for each sample.
-        aggregate ([string, None]): How to aggregate brier scores from different time windows
-            'mean' takes simple average
-            None returns full list of brier scores for each time window
+
+        aggregate ([string, None]): How to aggregate brier scores from different time windows:
+
+            * `mean` takes simple average
+
+            * `None` returns full list of brier scores for each time window
 
     Returns:
         [Float, np.array]:
@@ -181,26 +195,35 @@ def dist_calibration_score(y_true, survival, n_bins=10, returns="pval"):
     Estimate D-Calibration for the survival predictions.
 
     Args:
-        y_true (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+        y_true (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
             and time of event or time of censoring as second field.
+
         survival ([pd.DataFrame, np.array]): A dataframe of survival probabilities
             for all times (columns), from a time_bins array, for all samples of X (rows).
             If risk_strategy is 'precomputed', is an array with representing risks for each sample.
-        n_bins (Int): number of bins to equally divide the [0, 1] interval
+
+        n_bins (Int): Number of bins to equally divide the [0, 1] interval
+
         returns (string):
-            What information to return from the function
-            'statistic' returns the chi squared test statistic
-            'pval' returns the chi squared test p value
-            'max_deviation' returns the maximum percentage deviation from the expected value,
-            calculated as abs(expected_percentage - real_percentage)
-            'histogram' returns the full calibration histogram per bin
-            'all' returns all of the above in a dictionary
+            What information to return from the function:
+
+            * `statistic` returns the chi squared test statistic
+
+            * `pval` returns the chi squared test p value
+
+            * `max_deviation` returns the maximum percentage deviation from the expected value,
+            calculated as `abs(expected_percentage - real_percentage)`,
+            where `expected_percentage = 1.0/n_bins`
+
+            * `histogram` returns the full calibration histogram per bin
+
+            * `all` returns all of the above in a dictionary
 
     Returns:
         [Float, np.array, Dict]:
-            single value if returns is in ['statistic','pval','max_deviation']
-            np.array if returns is 'histogram'
-            dict if returns is 'all'
+        * Single value if returns is in `['statistic','pval','max_deviation']``
+        * np.array if returns is 'histogram'
+        * dict if returns is 'all'
     """
 
     # calculating bins

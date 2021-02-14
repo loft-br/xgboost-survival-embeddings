@@ -32,10 +32,12 @@ theme:
   name: material
   font:
     text: Helvetica
-  favicon: img/favicon.png
+  favicon: img/loft_icon.png
   features:
     - navigation.tabs
+  logo: img/loft_icon.png
 markdown_extensions:
+  - admonition
   - pymdownx.keys
   - pymdownx.superfences
   - pymdownx.snippets
@@ -46,12 +48,16 @@ markdown_extensions:
       permalink: true
   - pymdownx.highlight:
       use_pygments: false
+  - pymdownx.arithmatex:
+      generic: true
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
   - javascripts/config.js
   - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
   - javascripts/tables.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 extra_css:
   - stylesheets/extra.css
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css

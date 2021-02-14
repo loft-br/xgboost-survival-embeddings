@@ -8,8 +8,9 @@ class XGBSEBootstrapEstimator(BaseEstimator):
 
     """
     Bootstrap meta-estimator for XGBSE models:
-    -- allows for confidence interval estimation in BCE
-    -- provides variance stabilization for all models, mainly Kaplan Tree
+
+    *  allows for confidence interval estimation for `XGBSEDebiasedBCE` and `XGBSEStackedWeibull`
+    *  provides variance stabilization for all models, specially for `XGBSEKaplanTree`
 
     Performs simple bootstrap with sample size equal to training set size.
 
@@ -18,9 +19,9 @@ class XGBSEBootstrapEstimator(BaseEstimator):
     def __init__(self, base_estimator, n_estimators=10, random_state=42):
         """
         Args:
-            base_estimator (XGBSEBaseEstimator): base estimator for bootstrap procedure
-            n_estimators (Int): number of estimators to fit in bootstrap procedure
-            random_state (Int): random state for resampling function
+            base_estimator (XGBSEBaseEstimator): Base estimator for bootstrap procedure
+            n_estimators (int): Number of estimators to fit in bootstrap procedure
+            random_state (int): Random state for resampling function
         """
         self.base_estimator = base_estimator
         self.n_estimators = n_estimators
@@ -32,13 +33,13 @@ class XGBSEBootstrapEstimator(BaseEstimator):
         Fit several (base) estimators and store them.
 
         Args:
-            X ([pd.DataFrame, np.array]): features to be used while fitting
+            X ([pd.DataFrame, np.array]): Features to be used while fitting
                 XGBoost model
 
-            y (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+            y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
                 and time of event or time of censoring as second field.
 
-            **kwargs : keyword arguments to be passed to .fit() method of base_estimator
+            **kwargs : Keyword arguments to be passed to .fit() method of base_estimator
 
         Returns:
             XGBSEBootstrapEstimator: Trained instance of XGBSEBootstrapEstimator
@@ -79,10 +80,10 @@ class XGBSEBootstrapEstimator(BaseEstimator):
             (rows). If return_interval_probs is True, the interval probabilities are returned
             instead of the cumulative survival probabilities.
 
-            upper_ci: upper confidence interval for the survival
+            upper_ci: Upper confidence interval for the survival
                 probability values
 
-            lower_ci: lower confidence interval for the survival
+            lower_ci: Lower confidence interval for the survival
                 probability values
         """
 

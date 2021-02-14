@@ -69,7 +69,7 @@ So what predictions should we trust? Such sensitivity to hyperparameters (`0.003
 
 Although in need of an extension for statistical rigor, `xgboost` is still a powerhouse. C-index results show that the model can capture a great deal of signal, being competitive with the state of the art. We just need to adapt how we use it.
 
-Besides being leveraged for prediction tasks, Gradient Boosted Trees (GBTs) can also be used as ***feature transformers*** of the input data. Trees in the ensemble perform splits on features that discriminate the target, encoding the most relevant information for the task at hand in their structure. In particular, the terminal nodes (leaves) at each tree in the ensemble define a ***[sparse supervised feature transformation](http://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html) (embedding)*** of the input data.
+Besides being leveraged for prediction tasks, Gradient Boosted Trees (GBTs) can also be used as ***feature transformers*** of the input data. Trees in the ensemble perform splits on features that discriminate the target, encoding the most relevant information for the task at hand in their structure. In particular, the terminal nodes (leaves) at each tree in the ensemble define a ***[feature transformation](http://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html) (embedding)*** of the input data.
 
 This kind of *tree ensemble embedding* has very convenient properties:
 
@@ -92,6 +92,18 @@ The naive approach tends to give biased survival curves, due to the removal of c
 This way, we can get full survival curves from `xgboost`, and confidence intervals with minor adaptations (such as performing some rounds of bootstrap).
 
 Training and scoring of logistic regression models is efficient, being performed in parallel through `joblib`, so the model can scale to hundreds of thousands or millions of samples.
+
+### *`XGBSEStackedWeibull`: XGBoost as risk estimator, Weibull AFT for survival curve*
+
+In `XGBSEStackedWeibull`, we perform stacking of a XGBoost survival model with a Weibull AFT parametric model. The XGBoost fits the data and then predicts a value that is interpreted as a risk metric. This risk metric is fed to the Weibull regression which uses it as its only independent variable.
+
+Thus, we can get the benefit of XGBoost discrimination power alongside the Weibull AFT statistical rigor (e.g. calibrated survival curves).
+
+<img src="img/xgb_stacked_weibull_diagram.svg">
+
+As we're stacking XGBoost with a single, one-variable parametric model (as opposed to `XGBSEDebiasedBCE`), the model can be much faster (especially in training). We also have better extrapolation capabilities, due to stronger assumptions about the shape of the survival curve.
+
+However, these stronger assumptions may not fit some datasets as well as other methods.
 
 ### *`XGBSEKaplanNeighbors`: Kaplan-Meier on nearest neighbors*
 

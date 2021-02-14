@@ -6,7 +6,9 @@ from sklearn.neighbors import BallTree
 
 
 class XGBSEBaseEstimator(BaseEstimator):
-    """Base class for all estimators in xgbse"""
+    """
+    Base class for all estimators in xgbse. Implements explainability through prototypes.
+    """
 
     def __init__(self):
         self.persist_train = False
@@ -18,7 +20,7 @@ class XGBSEBaseEstimator(BaseEstimator):
         self, query_data, index_data=None, query_id=None, index_id=None, n_neighbors=30
     ):
         """
-        Get survival comparables (size: n_neighbors) for each unit in a
+        Search for portotypes (size: n_neighbors) for each unit in a
         dataframe X. If units array is specified, comparables will be returned using
         its identifiers. If not, a dataframe of comparables indexes for each sample
         in X is returned.
@@ -79,11 +81,12 @@ class XGBSEBaseEstimator(BaseEstimator):
 
 class DummyLogisticRegression(BaseEstimator):
     """
-    Dummy logistic regression to be able to run DebiasedBCE in timebuckets with only one class
+    Dummy logistic regression to be able to run XGBSEDebiasedBCE in timebuckets with only one class.
     """
 
     def fit(self, X, y):
-        """fits a dummy classifier to keep compatiblity with logistic regression
+        """
+        Fits a dummy classifier to keep compatiblity with logistic regression.
 
         Args:
             X ([pd.DataFrame, np.array]): [not used]

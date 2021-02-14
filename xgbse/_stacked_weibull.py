@@ -35,28 +35,63 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
     Perform stacking of a XGBoost survival model with a Weibull AFT parametric model.
     The XGBoost fits the data and then predicts a value that is interpreted as a risk metric.
     This risk metric is fed to the Weibull regression which uses it as its only independent variable.
+
     Thus, we can get the benefit of XGBoost discrimination power alongside the Weibull AFT
-    statistical rigor (calibrated survival curves, confidence intervals)
+    statistical rigor (e.g. calibrated survival curves).
+
+    !!! Note
+        * As we're stacking XGBoost with a single, one-variable parametric model
+        (as opposed to `XGBSEDebiasedBCE`), the model can be much faster (especially in training).
+        * We also have better extrapolation capabilities, as opposed to the cure fraction
+        problem in `XGBSEKaplanNeighbors` and `XGBSEKaplanTree`.
+        * However, we also have stronger assumptions about the shape of the survival curve.
+
+    Read more in [How XGBSE works](https://loft-br.github.io/xgboost-survival-embeddings/how_xgbse_works.html).
+
     """
 
     def __init__(
         self,
-        xgb_params=DEFAULT_PARAMS,
-        weibull_params=DEFAULT_PARAMS_WEIBULL,
+        xgb_params=None,
+        weibull_params=None,
         n_jobs=-1,
     ):
         """
-        Construct XGBSEStackedWeibull instance
-
         Args:
-            xgb_params (Dict): parameters for XGBoost model, see
-                https://xgboost.readthedocs.io/en/latest/parameter.html
+            xgb_params (Dict, None): Parameters for XGBoost model.
+                If not passed, the following default parameters will be used:
 
-            weibull_params (Dict): parameters for Weibull Regerssion model, see
-                https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html
+                ```
+                DEFAULT_PARAMS = {
+                    "objective": "survival:aft",
+                    "eval_metric": "aft-nloglik",
+                    "aft_loss_distribution": "normal",
+                    "aft_loss_distribution_scale": 1,
+                    "tree_method": "hist",
+                    "learning_rate": 5e-2,
+                    "max_depth": 8,
+                    "booster": "dart",
+                    "subsample": 0.5,
+                    "min_child_weight": 50,
+                    "colsample_bynode": 0.5,
+                }
+                ```
+
+                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for more options.
+
+            weibull_params (Dict): Parameters for Weibull Regerssion model.
+                If not passed, will use the default parameters as shown in the Lifelines documentation.
+
+                Check <https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html>
+                for more options.
 
 
         """
+        if xgb_params is None:
+            xgb_params = DEFAULT_PARAMS
+        if weibull_params is None:
+            xgb_params = DEFAULT_PARAMS_WEIBULL
+
         self.xgb_params = xgb_params
         self.weibull_params = weibull_params
         self.persist_train = False
@@ -78,9 +113,9 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         Fit Weibull Regression model using risk metric as only independent variable.
 
         Args:
-            X ([pd.DataFrame, np.array]): features to be used while fitting XGBoost model
+            X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
 
-            y (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+            y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
                 and time of event or time of censoring as second field.
 
             num_boost_round (Int): Number of boosting iterations.
@@ -93,16 +128,15 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
                 in every **early_stopping_rounds** round(s) to continue training.
                 See xgboost.train documentation.
 
-            verbose_eval ([Bool, Int]): level of verbosity. See xgboost.train documentation.
+            verbose_eval ([Bool, Int]): Level of verbosity. See xgboost.train documentation.
 
-            persist_train (Bool): whether or not to persist training data to use explainability
+            persist_train (Bool): Whether or not to persist training data to use explainability
                 through prototypes
 
-            index_id (pd.Index): user defined index if intended to use explainability
+            index_id (pd.Index): User defined index if intended to use explainability
                 through prototypes
 
-            time_bins (np.array): specified time windows to use when making survival predictions
-
+            time_bins (np.array): Specified time windows to use when making survival predictions
 
         Returns:
             XGBSEStackedWeibull: Trained XGBSEStackedWeibull instance
