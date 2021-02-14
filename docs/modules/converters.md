@@ -9,6 +9,7 @@ hide:
     rendering:
       show_root_heading: false
       show_source: false
+      heading_level: 3
 
 # xgbse.converters.convert_y
 ::: xgbse.converters.convert_y
@@ -16,3 +17,4 @@ hide:
     rendering:
       show_root_heading: false
       show_source: false
+      heading_level: 3
