@@ -1,12 +1,17 @@
-# xgbse._kaplan_neighbors.XGBSEKaplanNeighbors
-::: xgbse._kaplan_neighbors.XGBSEKaplanNeighbors
+---
+hide:
+  - toc
+---
+
+# xgbse.converters.convert_to_structured
+::: xgbse.converters.convert_to_structured
     handler: python
     rendering:
       show_root_heading: false
       show_source: false
 
-# xgbse._kaplan_neighbors.XGBSEKaplanTree
-::: xgbse._kaplan_neighbors.XGBSEKaplanTree
+# xgbse.converters.convert_y
+::: xgbse.converters.convert_y
     handler: python
     rendering:
       show_root_heading: false

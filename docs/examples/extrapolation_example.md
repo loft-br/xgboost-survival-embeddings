@@ -370,7 +370,7 @@ plt.legend()
 
 
 
-![svg](img/output_8_1.svg)
+![svg](../img/output_8_1.svg)
 
 
 
@@ -593,4 +593,4 @@ plt.legend()
 
 
 
-![svg](img/output_12_1.svg)
+![svg](../img/output_12_1.svg)

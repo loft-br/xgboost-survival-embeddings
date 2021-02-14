@@ -236,7 +236,7 @@ plot_ci(mean, upper_ci, lower_ci)
 
 
 
-![png](img/output_9_1.png)
+![png](../img/output_9_1.png)
 
 
 
@@ -276,7 +276,7 @@ plot_ci(mean, upper_ci, lower_ci)
 
 
 
-![png](img/output_11_1.png)
+![png](../img/output_11_1.png)
 
 
 

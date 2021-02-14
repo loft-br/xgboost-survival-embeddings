@@ -1,5 +1,10 @@
-# xgbse.metrics
-::: xgbse.metrics
+---
+hide:
+  - toc
+---
+
+# xgbse.extrapolation
+::: xgbse.extrapolation
     handler: python
     rendering:
       show_root_heading: false

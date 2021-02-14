@@ -5,20 +5,22 @@ site_author: Loft Data Science Team
 use_directory_urls: false
 nav:
   - Home: index.md
+  - Install: install.md
+  - How XGBSE works: how_xgbse_works.md
   - Basic Usage: basic-usage.md
   - Modules:
-      - Base: base.md
-      - BCE: bce.md
-      - Kaplan: kaplan.md
-      - Meta: meta.md
-      - Extrapolation: extrapolation.md
-      - Converters: converters.md
-      - Metrics: metrics.md
+      - XGBSEBaseEstimator: modules/base.md
+      - XGBSEDebiasedBCE: modules/bce.md
+      - XGBSEStackedWeibull: modules/stacked_weibull.md
+      - XGBSEKaplanNeighbors: modules/kaplan_neighs.md
+      - XGBSEKaplanTree: modules/kaplan_tree.md
+      - XGBSEBootstrapEstimator: modules/meta.md
+      - extrapolation: modules/extrapolation.md
+      - converters: modules/converters.md
+      - metrics: modules/metrics.md
   - Examples:
-      - Basic Usage: examples/basic_usage.md
       - Confidence intervals: examples/confidence_interval.md
       - Extrapolation: examples/extrapolation_example.md
-      - How XGBSE works: examples/how_xgbse_works.md
   - Benchmarks: benchmarks/benchmarks.md
 plugins:
   - mkdocstrings:
@@ -26,13 +28,30 @@ plugins:
         - xgbse
   - search
 copyright:
-theme: material
+theme:
+  name: material
+  font:
+    text: Helvetica
+  favicon: img/favicon.png
+  features:
+    - navigation.tabs
 markdown_extensions:
-  - codehilite
-  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.snippets
   - pymdownx.details
   - pymdownx.tabbed
-  - pymdownx.highlight:
-      use_pygments: true
+  - pymdownx.inlinehilite
   - toc:
       permalink: true
+  - pymdownx.highlight:
+      use_pygments: false
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
+  - javascripts/config.js
+  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+  - javascripts/tables.js
+extra_css:
+  - stylesheets/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css

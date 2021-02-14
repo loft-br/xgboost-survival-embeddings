@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # xgbse._meta.XGBSEBootstrapEstimator
 ::: xgbse._meta.XGBSEBootstrapEstimator
     handler: python

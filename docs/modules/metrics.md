@@ -1,5 +1,10 @@
-# xgbse._base.XGBSEBaseEstimator
-::: xgbse._base.XGBSEBaseEstimator
+---
+hide:
+  - toc
+---
+
+# xgbse.metrics
+::: xgbse.metrics
     handler: python
     rendering:
       show_root_heading: false

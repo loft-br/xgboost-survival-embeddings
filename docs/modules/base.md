@@ -1,5 +1,10 @@
-# xgbse.extrapolation
-::: xgbse.extrapolation
+---
+hide:
+  - toc
+---
+
+# xgbse._base.XGBSEBaseEstimator
+::: xgbse._base.XGBSEBaseEstimator
     handler: python
     rendering:
       show_root_heading: false

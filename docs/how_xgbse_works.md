@@ -1,4 +1,7 @@
-## How `xgbse` works
+---
+hide:
+  - navigation
+---
 
 In this section, we try to make a quick introduction to `xgbse`. Refer to this [this Notebook](https://github.com/loft-br/xgboost-survival-embeddings/blob/main/examples/how_xgbse_works.ipynb) for the full code and/or if you want a more practical introduction.
 
@@ -161,4 +164,3 @@ As measured by the average probability of survival in 30, 90 and 150 days the mo
 <img src="img/avg_preds_vs_kaplan_xgbse.png">
 
 No more point estimates and high variation! Although is too harsh to claim that the problem is solved, we believe that the package can be a good, more statistically robust alternative to survival analysis.
-
