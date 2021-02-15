@@ -45,6 +45,11 @@ class BenchmarkBase:
         self.X_train, self.y_train = dataframe_to_xy(
             self.train_dataset, event_column, time_column
         )
+
+        self.X_valid, self.y_valid = dataframe_to_xy(
+            self.valid_dataset, event_column, time_column
+        )
+
         self.X_test, self.y_test = dataframe_to_xy(
             self.test_dataset, event_column, time_column
         )
@@ -70,7 +75,7 @@ class BenchmarkBase:
             c_index = concordance_index(
                 self.y_test, self.hazard_predictions, risk_strategy="precomputed"
             )
-        except:
+        except Exception:
             c_index = np.nan
         try:
             ibs = approx_brier_score(self.y_test, self.survival_predictions)
@@ -78,7 +83,7 @@ class BenchmarkBase:
             dcal_max_dev = dist_calibration_score(
                 self.y_test, self.survival_predictions, returns="max_deviation"
             )
-        except:
+        except Exception:
             ibs = np.nan
             dcal_pval = np.nan
             dcal_max_dev = np.nan
@@ -163,6 +168,9 @@ class BenchmarkXGBoost(BenchmarkBase):
         self.dtest = convert_data_to_xgb_format(
             self.X_test, self.y_test, self.objective
         )
+        self.dval = convert_data_to_xgb_format(
+            self.X_valid, self.y_valid, self.objective
+        )
         self.dtrain = convert_data_to_xgb_format(
             self.X_train, self.y_train, self.objective
         )
@@ -171,7 +179,16 @@ class BenchmarkXGBoost(BenchmarkBase):
 
         start = time.time()
         params = {"objective": self.objective}
-        self.model = self.model.train(params, self.dtrain)
+
+        self.model = self.model.train(
+            params,
+            self.dtrain,
+            num_boost_round=1000,
+            early_stopping_rounds=10,
+            evals=[(self.dval, "val")],
+            verbose_eval=0,
+        )
+
         self.training_time = time.time() - start
         return self
 
@@ -215,7 +232,24 @@ class BenchmarkXGBSE(BenchmarkBase):
     def train(self):
 
         start = time.time()
-        self.model.fit(self.X_train, self.y_train, time_bins=self.time_bins)
+
+        if self.model.__class__.__name__ not in [
+            "XGBSEKaplanTree",
+            "XGBSEBootstrapEstimator",
+        ]:
+
+            self.model.fit(
+                self.X_train,
+                self.y_train,
+                validation_data=(self.X_valid, self.y_valid),
+                early_stopping_rounds=10,
+                time_bins=self.time_bins,
+            )
+
+        else:
+
+            self.model.fit(self.X_train, self.y_train, time_bins=self.time_bins)
+
         self.training_time = time.time() - start
         return self
 
@@ -267,8 +301,20 @@ class BenchmarkPysurvival(BenchmarkBase):
 
     def predict(self):
         start = time.time()
-        self.survival_predictions = np.empty((len(self.test_dataset,)))
-        self.hazard_predictions = np.empty((len(self.test_dataset,)))
+        self.survival_predictions = np.empty(
+            (
+                len(
+                    self.test_dataset,
+                )
+            )
+        )
+        self.hazard_predictions = np.empty(
+            (
+                len(
+                    self.test_dataset,
+                )
+            )
+        )
         self.survival_predictions = np.column_stack(
             [self.model.predict_survival(self.X_test, t=t) for t in self.time_bins]
         )

@@ -2,6 +2,7 @@
 
 from ._debiased_bce import XGBSEDebiasedBCE
 from ._kaplan_neighbors import XGBSEKaplanNeighbors, XGBSEKaplanTree
+from ._stacked_weibull import XGBSEStackedWeibull
 from ._meta import XGBSEBootstrapEstimator
 
 
@@ -11,5 +12,6 @@ __all__ = [
     "XGBSEDebiasedBCE",
     "XGBSEKaplanNeighbors",
     "XGBSEKaplanTree",
+    "XGBSEStackedWeibull",
     "XGBSEBootstrapEstimator",
 ]
