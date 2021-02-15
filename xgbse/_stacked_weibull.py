@@ -54,7 +54,6 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         self,
         xgb_params=None,
         weibull_params=None,
-        n_jobs=-1,
     ):
         """
         Args:
@@ -90,7 +89,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         if xgb_params is None:
             xgb_params = DEFAULT_PARAMS
         if weibull_params is None:
-            xgb_params = DEFAULT_PARAMS_WEIBULL
+            weibull_params = DEFAULT_PARAMS_WEIBULL
 
         self.xgb_params = xgb_params
         self.weibull_params = weibull_params
