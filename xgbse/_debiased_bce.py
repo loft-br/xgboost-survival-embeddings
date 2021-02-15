@@ -50,9 +50,9 @@ def _repeat_array(x, n):
 
 def _build_multi_task_targets(E, T, time_bins):
     """
-    Builds compatible multi task targets. This function creates a times array
-    from time 0 to T, where T is the event/censor last
-    observed time. If time_bins > T, times greater than the last observed
+    Builds targets for a multi task survival regression problem.
+    This function creates a times array from time 0 to T, where T is the
+    event/censor last observed time. If time_bins > T, times greater than the last observed
     time T are considered equal to -1.
 
     Args:
@@ -83,34 +83,68 @@ def _build_multi_task_targets(E, T, time_bins):
 # class to fit a BCE on the leaves of a XGB
 class XGBSEDebiasedBCE(XGBSEBaseEstimator):
     """
-    Class to train a set of logistic regressions on top of the embedding produced by xgboost models.
-    Each logistic regression predicts survival at different user-defined discrete time windows.
-    The classifiers remove individuals as they are censored, with targets that are indicators of
-    surviving at each window.
+    Train a set of logistic regressions on top of the leaf embedding produced by XGBoost,
+    each predicting survival at different user-defined discrete time windows.
+    The classifiers remove individuals as they are censored, with targets that are indicators
+    of surviving at each window.
 
-    Adapted from source:
-    http://quinonero.net/Publications/predicting-clicks-facebook.pdf
+    !!! Note
+        * Training and scoring of logistic regression models is efficient,
+        being performed in parallel through joblib, so the model can scale to
+        hundreds of thousands or millions of samples.
+        * However, if many windows are used and data is large, training of
+        logistic regression models may become a bottleneck, taking more time
+        than training of the underlying XGBoost model.
+
+    Read more in [How XGBSE works](https://loft-br.github.io/xgboost-survival-embeddings/how_xgbse_works.html).
+
     """
 
     def __init__(
         self,
-        xgb_params=DEFAULT_PARAMS,
-        lr_params=DEFAULT_PARAMS_LR,
+        xgb_params=None,
+        lr_params=None,
         n_jobs=-1,
     ):
         """
-        Construct XGBSEDebiasedBCE instance
-
         Args:
-            xgb_params (Dict): parameters for XGBoost model, see
-                https://xgboost.readthedocs.io/en/latest/parameter.html
+            xgb_params (Dict, None): Parameters for XGBoost model.
+                If not passed, the following default parameters will be used:
 
-            lr_params (Dict): parameters for Logistic Regression model, see
-                https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+                ```
+                DEFAULT_PARAMS = {
+                    "objective": "survival:aft",
+                    "eval_metric": "aft-nloglik",
+                    "aft_loss_distribution": "normal",
+                    "aft_loss_distribution_scale": 1,
+                    "tree_method": "hist",
+                    "learning_rate": 5e-2,
+                    "max_depth": 8,
+                    "booster": "dart",
+                    "subsample": 0.5,
+                    "min_child_weight": 50,
+                    "colsample_bynode": 0.5,
+                }
+                ```
+
+                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for more options.
+
+            lr_params (Dict, None): Parameters for Logistic Regression models.
+                If not passed, the following default parameters will be used:
+                ```
+                DEFAULT_PARAMS_LR = {"C": 1e-3, "max_iter": 500}
+                ```
+
+                Check <https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html> for more options.
 
             n_jobs (Int): Number of CPU cores used to fit logistic regressions via joblib.
 
         """
+        if xgb_params is None:
+            xgb_params = DEFAULT_PARAMS
+        if lr_params is None:
+            lr_params = DEFAULT_PARAMS_LR
+
         self.xgb_params = xgb_params
         self.lr_params = lr_params
         self.n_jobs = n_jobs
@@ -129,14 +163,14 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         time_bins=None,
     ):
         """
-        Transform feature space by fitting a XGBoost model and outputting its leaf indices.
+        Transform feature space by fitting a XGBoost model and returning its leaf indices.
         Leaves are transformed and considered as dummy variables to fit multiple logistic
         regression models to each evaluated time bin.
 
         Args:
-            X ([pd.DataFrame, np.array]): features to be used while fitting XGBoost model
+            X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
 
-            y (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+            y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
                 and time of event or time of censoring as second field.
 
             num_boost_round (Int): Number of boosting iterations.
@@ -149,15 +183,15 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
                 in every **early_stopping_rounds** round(s) to continue training.
                 See xgboost.train documentation.
 
-            verbose_eval ([Bool, Int]): level of verbosity. See xgboost.train documentation.
+            verbose_eval ([Bool, Int]): Level of verbosity. See xgboost.train documentation.
 
-            persist_train (Bool): whether or not to persist training data to use explainability
+            persist_train (Bool): Whether or not to persist training data to use explainability
                 through prototypes
 
-            index_id (pd.Index): user defined index if intended to use explainability
+            index_id (pd.Index): User defined index if intended to use explainability
                 through prototypes
 
-            time_bins (np.array): specified time windows to use when making survival predictions
+            time_bins (np.array): Specified time windows to use when making survival predictions
 
 
         Returns:

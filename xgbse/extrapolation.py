@@ -10,15 +10,18 @@ def extrapolate_constant_risk(survival, final_time, n_windows, lags=-1):
     Args:
         survival (pd.DataFrame): A dataframe of survival probabilities
             for all times (columns), from a time_bins array, for all samples of X (rows).
-        final_time (Float): final time for extrapolation
-        n_windows (Int): number of time windows to compute from last time window in survival to final_time
-        lags (Int): lags to compute constant risk.
+
+        final_time (Float): Final time for extrapolation
+
+        n_windows (Int): Number of time windows to compute from last time window in survival to final_time
+
+        lags (Int): Lags to compute constant risk.
             if negative, will use the last "lags" values
             if positive, will remove the first "lags" values
             if 0, will use all values
 
     Returns:
-        pd.DataFrame: survival dataset with appended extrapolated windows
+        pd.DataFrame: Survival dataset with appended extrapolated windows
     """
 
     # calculating conditionals and risk at each time window

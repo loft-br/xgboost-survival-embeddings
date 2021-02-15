@@ -3,15 +3,16 @@ import xgboost as xgb
 
 
 def convert_to_structured(T, E):
-    """Converts data in T, E format to structured numpy array
-       so we can use integrated_brier_score functions from sksurv
+    """
+    Converts data in time (T) and event (E) format to a structured numpy array.
+    Provides common interface to other libraries such as sksurv and sklearn.
 
     Args:
-        T (np.array): array of times
-        E (np.array): array of events
+        T (np.array): Array of times
+        E (np.array): Array of events
 
     Returns:
-        np.array: structured array containing the boolean event indicator
+        np.array: Structured array containing the boolean event indicator
             as first field, and time of event or time of censoring as second field
     """
     # dtypes for conversion
@@ -25,15 +26,17 @@ def convert_to_structured(T, E):
 
 
 def convert_y(y):
-    """convert structured array y into event indicator and time of event
+    """
+    Convert structured array y into an array of
+    event indicators (E) and time of events (T).
 
     Args:
-        y (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
+        y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
             and time of event or time of censoring as second field.
 
     Returns:
-        T ([np.array, pd.Series]): time of events
-        E ([np.array, pd.Series]): binary event indicator
+        T ([np.array, pd.Series]): Time of events
+        E ([np.array, pd.Series]): Binary event indicator
     """
     event_field, time_field = y.dtype.names
     return y[event_field], y[time_field]
