@@ -13,8 +13,8 @@
         <meta name="author" content="Loft Data Science Team">
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+      <link rel="shortcut icon" href="../img/loft_icon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -34,11 +34,15 @@
       
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Helvetica",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css">
     
     
       
@@ -79,8 +83,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../index.html" title="XGBoost Survival Embeddings" class="md-header-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../img/loft_icon.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -154,6 +157,109 @@
       
       
         
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../install.html" class="md-tabs__link">
+      Install
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../how_xgbse_works.html" class="md-tabs__link">
+      How XGBSE works
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../basic-usage.html" class="md-tabs__link">
+      Basic Usage
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../modules/base.html" class="md-tabs__link">
+        Modules
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="confidence_interval.html" class="md-tabs__link md-tabs__link--active">
+        Examples
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../benchmarks/benchmarks.html" class="md-tabs__link">
+      Benchmarks
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
@@ -169,13 +275,14 @@
 
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../img/loft_icon.png" alt="logo">
 
     </a>
     XGBoost Survival Embeddings
@@ -200,225 +307,263 @@
       
       
 
-
-
-  <li class="md-nav__item">
-    <a href="../index.html" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-
-  <li class="md-nav__item">
-    <a href="../basic-usage.html" class="md-nav__link">
-      Basic Usage
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
 
     
       
       
       
-
-
 
   
-  <li class="md-nav__item md-nav__item--nested">
+  
+  
+    <li class="md-nav__item">
+      <a href="../install.html" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how_xgbse_works.html" class="md-nav__link">
+        How XGBSE works
+      </a>
+    </li>
+  
+
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-usage.html" class="md-nav__link">
+        Basic Usage
+      </a>
+    </li>
+  
+
     
-    <label class="md-nav__link" for="nav-3">
-      Modules
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Modules" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        <span class="md-nav__icon md-icon"></span>
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
         Modules
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../base.html" class="md-nav__link">
-      Base
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../bce.html" class="md-nav__link">
-      BCE
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../kaplan.html" class="md-nav__link">
-      Kaplan
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../meta.html" class="md-nav__link">
-      Meta
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../extrapolation.html" class="md-nav__link">
-      Extrapolation
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../converters.html" class="md-nav__link">
-      Converters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../metrics.html" class="md-nav__link">
-      Metrics
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  
-
-
-  
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
-    
-    <label class="md-nav__link" for="nav-4">
-      Examples
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Examples" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
         <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Modules" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/base.html" class="md-nav__link">
+        XGBSEBaseEstimator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/bce.html" class="md-nav__link">
+        XGBSEDebiasedBCE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/stacked_weibull.html" class="md-nav__link">
+        XGBSEStackedWeibull
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/kaplan_neighs.html" class="md-nav__link">
+        XGBSEKaplanNeighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/kaplan_tree.html" class="md-nav__link">
+        XGBSEKaplanTree
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/meta.html" class="md-nav__link">
+        XGBSEBootstrapEstimator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/extrapolation.html" class="md-nav__link">
+        extrapolation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/converters.html" class="md-nav__link">
+        converters
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/metrics.html" class="md-nav__link">
+        metrics
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      
+      <label class="md-nav__link" for="nav-6">
         Examples
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="basic_usage.html" class="md-nav__link">
-      Basic Usage
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="confidence_interval.html" class="md-nav__link">
-      Confidence intervals
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Extrapolation
         <span class="md-nav__icon md-icon"></span>
       </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="confidence_interval.html" class="md-nav__link">
+        Confidence intervals
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
-    <a href="extrapolation_example.html" class="md-nav__link md-nav__link--active">
-      Extrapolation
-    </a>
-    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Extrapolation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="extrapolation_example.html" class="md-nav__link md-nav__link--active">
+        Extrapolation
+      </a>
+      
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -469,39 +614,30 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
-        
           
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="how_xgbse_works.html" class="md-nav__link">
-      How XGBSE works
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-
-  <li class="md-nav__item">
-    <a href="../benchmarks/benchmarks.html" class="md-nav__link">
-      Benchmarks
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmarks/benchmarks.html" class="md-nav__link">
+        Benchmarks
+      </a>
+    </li>
+  
 
     
   </ul>
@@ -586,16 +722,14 @@
 - How to extrapolate your predicted survival curve using the <code>xgbse.extrapolation</code> module</p>
 <h2 id="metrabic">Metrabic<a class="headerlink" href="#metrabic" title="Permanent link">&para;</a></h2>
 <p>We will be using the Molecular Taxonomy of Breast Cancer International Consortium (METABRIC) dataset from <a href="https://github.com/havakv/pycox#datasets">pycox</a> as base for this example.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
-<span class="kn">from</span> <span class="nn">pycox.datasets</span> <span class="kn">import</span> <span class="n">metabric</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<pre class="highlight"><code class="language-python">from xgbse.converters import convert_to_structured
+from pycox.datasets import metabric
+import numpy as np
 
-<span class="c1"># getting data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">metabric</span><span class="o">.</span><span class="n">read_df</span><span class="p">()</span>
+# getting data
+df = metabric.read_df()
 
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
+df.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -704,38 +838,35 @@
 
 <h2 id="split-and-create-time-bins">Split and create Time Bins<a class="headerlink" href="#split-and-create-time-bins" title="Permanent link">&para;</a></h2>
 <p>Split the data in train and test, using sklearn API. We also setup the TIME_BINS arange, which will be used to fit the survival curve</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<pre class="highlight"><code class="language-python">from xgbse.converters import convert_to_structured
+from sklearn.model_selection import train_test_split
 
-<span class="c1"># splitting to X, T, E format</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
-<span class="n">E</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">convert_to_structured</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+# splitting to X, T, E format
+X = df.drop(['duration', 'event'], axis=1)
+T = df['duration']
+E = df['event']
+y = convert_to_structured(T, E)
 
-<span class="c1"># splitting between train, and validation</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">TIME_BINS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">315</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-<span class="n">TIME_BINS</span>
-</code></pre></div>
+# splitting between train, and validation
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state = 0)
+TIME_BINS = np.arange(15, 315, 15)
+TIME_BINS</code></pre>
+<pre class="highlight"><code>array([ 15,  30,  45,  60,  75,  90, 105, 120, 135, 150, 165, 180, 195,
+       210, 225, 240, 255, 270, 285, 300])
 
-<div class="codehilite"><pre><span></span><code><span class="err">array([ 15,  30,  45,  60,  75,  90, 105, 120, 135, 150, 165, 180, 195,</span>
-<span class="err">       210, 225, 240, 255, 270, 285, 300])</span>
-</code></pre></div>
 
+</code></pre>
 <h2 id="fit-model-and-predict-survival-curves">Fit model and predict survival curves<a class="headerlink" href="#fit-model-and-predict-survival-curves" title="Permanent link">&para;</a></h2>
 <p>The package follows <code>scikit-learn</code> API, with a minor adaptation to work with time and event data. The model outputs the probability of survival, in a <code>pd.Dataframe</code> where columns represent different times.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse</span> <span class="kn">import</span> <span class="n">XGBSEDebiasedBCE</span>
+<pre class="highlight"><code class="language-python">from xgbse import XGBSEDebiasedBCE
 
-<span class="c1"># fitting xgbse model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEDebiasedBCE</span><span class="p">()</span>
-<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">)</span>
+# fitting xgbse model
+xgbse_model = XGBSEDebiasedBCE()
+xgbse_model.fit(X_train, y_train, time_bins=TIME_BINS)
 
-<span class="c1"># predicting</span>
-<span class="n">survival</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">survival</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
+# predicting
+survival = xgbse_model.predict(X_test)
+survival.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -897,34 +1028,33 @@
 </div>
 
 <h2 id="survival-curves-visualization">Survival curves visualization<a class="headerlink" href="#survival-curves-visualization" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<pre class="highlight"><code class="language-python">import matplotlib.pyplot as plt
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+plt.figure(figsize=(12,4), dpi=120)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">survival</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-    <span class="n">survival</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span>
-    <span class="s1">&#39;k--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survival&#39;</span>
-<span class="p">)</span>
+plt.plot(
+    survival.columns,
+    survival.iloc[42],
+    'k--',
+    label='Survival'
+)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sample of predicted survival curves - $P(T&gt;t)$&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</code></pre></div>
+plt.title('Sample of predicted survival curves - $P(T&gt;t)$')
+plt.legend()</code></pre>
+<pre class="highlight"><code>&lt;matplotlib.legend.Legend at 0x7fc38026cef0&gt;
 
-<div class="codehilite"><pre><span></span><code><span class="err">&lt;matplotlib.legend.Legend at 0x7fc38026cef0&gt;</span>
-</code></pre></div>
 
+
+
+</code></pre>
 <p><img alt="svg" src="img/output_8_1.svg" /></p>
 <p>Notice that this predicted survival curve does not end at zero (cure fraction due to censored data). In some cases it might be useful to extrapolate our survival curves using specific strategies. <code>xgbse.extrapolation</code> implements a constant risk extrapolation strategy.</p>
 <h2 id="extrapolation_1">Extrapolation<a class="headerlink" href="#extrapolation_1" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.extrapolation</span> <span class="kn">import</span> <span class="n">extrapolate_constant_risk</span>
+<pre class="highlight"><code class="language-python">from xgbse.extrapolation import extrapolate_constant_risk
 
-<span class="c1"># extrapolating predicted survival</span>
-<span class="n">survival_ext</span> <span class="o">=</span> <span class="n">extrapolate_constant_risk</span><span class="p">(</span><span class="n">survival</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">survival_ext</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
+# extrapolating predicted survival
+survival_ext = extrapolate_constant_risk(survival, 450, 11)
+survival_ext.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1092,32 +1222,33 @@
 <p>5 rows × 31 columns</p>
 </div>
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># plotting extrapolation #</span>
+<pre class="highlight"><code class="language-python"># plotting extrapolation #
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+plt.figure(figsize=(12,4), dpi=120)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">survival</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-    <span class="n">survival</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span>
-    <span class="s1">&#39;k--&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Survival&#39;</span>
-<span class="p">)</span>
+plt.plot(
+    survival.columns,
+    survival.iloc[42],
+    'k--',
+    label='Survival'
+)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">survival_ext</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-    <span class="n">survival_ext</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span>
-    <span class="s1">&#39;tomato&#39;</span><span class="p">,</span>
-    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Extrapolated Survival&#39;</span>
-<span class="p">)</span>
+plt.plot(
+    survival_ext.columns,
+    survival_ext.iloc[42],
+    'tomato',
+    alpha=0.5,
+    label='Extrapolated Survival'
+)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Extrapolation of survival curves&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</code></pre></div>
+plt.title('Extrapolation of survival curves')
+plt.legend()</code></pre>
+<pre class="highlight"><code>&lt;matplotlib.legend.Legend at 0x7fc3801842b0&gt;
 
-<div class="codehilite"><pre><span></span><code><span class="err">&lt;matplotlib.legend.Legend at 0x7fc3801842b0&gt;</span>
-</code></pre></div>
 
+
+
+</code></pre>
 <p><img alt="svg" src="img/output_12_1.svg" /></p>
                 
               
@@ -1152,13 +1283,13 @@
           </a>
         
         
-          <a href="how_xgbse_works.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../benchmarks/benchmarks.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                How XGBSE works
+                Benchmarks
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -1185,18 +1316,30 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
-      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "..",
-          features: [],
+          features: ['navigation.tabs'],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tables.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

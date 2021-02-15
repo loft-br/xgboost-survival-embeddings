@@ -13,19 +13,19 @@
         <meta name="author" content="Loft Data Science Team">
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+      <link rel="shortcut icon" href="../img/loft_icon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>Basic Usage - XGBoost Survival Embeddings</title>
+        <title>Basic Usage: - XGBoost Survival Embeddings</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
         
       
     
@@ -34,11 +34,15 @@
       
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica:300,400,400i,700%7C&display=fallback">
+        <style>body,input{font-family:"Helvetica",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css">
     
     
       
@@ -79,8 +83,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../index.html" title="XGBoost Survival Embeddings" class="md-header-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../img/loft_icon.png" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -96,7 +99,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Basic Usage
+              Basic Usage:
             
           </span>
         </div>
@@ -154,6 +157,107 @@
       
       
         
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../install.html" class="md-tabs__link">
+      Install
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../how_xgbse_works.html" class="md-tabs__link">
+      How XGBSE works
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../basic-usage.html" class="md-tabs__link">
+      Basic Usage
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../modules/base.html" class="md-tabs__link">
+        Modules
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="confidence_interval.html" class="md-tabs__link">
+        Examples
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../benchmarks/benchmarks.html" class="md-tabs__link">
+      Benchmarks
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
@@ -169,13 +273,14 @@
 
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <img src="../img/loft_icon.png" alt="logo">
 
     </a>
     XGBoost Survival Embeddings
@@ -200,315 +305,269 @@
       
       
 
-
-
-  <li class="md-nav__item">
-    <a href="../index.html" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-
-  <li class="md-nav__item">
-    <a href="../basic-usage.html" class="md-nav__link">
-      Basic Usage
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-
   
-  <li class="md-nav__item md-nav__item--nested">
-    
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
-    
-    <label class="md-nav__link" for="nav-3">
-      Modules
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Modules" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        <span class="md-nav__icon md-icon"></span>
-        Modules
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../base.html" class="md-nav__link">
-      Base
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../bce.html" class="md-nav__link">
-      BCE
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../kaplan.html" class="md-nav__link">
-      Kaplan
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../meta.html" class="md-nav__link">
-      Meta
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../extrapolation.html" class="md-nav__link">
-      Extrapolation
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../converters.html" class="md-nav__link">
-      Converters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="../metrics.html" class="md-nav__link">
-      Metrics
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
   
 
-
-  
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
-    
-    <label class="md-nav__link" for="nav-4">
-      Examples
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="Examples" data-md-level="1">
-      <label class="md-nav__title" for="nav-4">
-        <span class="md-nav__icon md-icon"></span>
-        Examples
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install.html" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how_xgbse_works.html" class="md-nav__link">
+        How XGBSE works
+      </a>
+    </li>
+  
+
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic-usage.html" class="md-nav__link">
         Basic Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        Modules
         <span class="md-nav__icon md-icon"></span>
       </label>
+      <nav class="md-nav" aria-label="Modules" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/base.html" class="md-nav__link">
+        XGBSEBaseEstimator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/bce.html" class="md-nav__link">
+        XGBSEDebiasedBCE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/stacked_weibull.html" class="md-nav__link">
+        XGBSEStackedWeibull
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/kaplan_neighs.html" class="md-nav__link">
+        XGBSEKaplanNeighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/kaplan_tree.html" class="md-nav__link">
+        XGBSEKaplanTree
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/meta.html" class="md-nav__link">
+        XGBSEBootstrapEstimator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/extrapolation.html" class="md-nav__link">
+        extrapolation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/converters.html" class="md-nav__link">
+        converters
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/metrics.html" class="md-nav__link">
+        metrics
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
     
-    <a href="basic_usage.html" class="md-nav__link md-nav__link--active">
-      Basic Usage
-    </a>
+      
+      
+      
+
+  
+  
+  
     
+    <li class="md-nav__item md-nav__item--nested">
       
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#metrabic" class="md-nav__link">
-    Metrabic
-  </a>
-  
-</li>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
       
-        <li class="md-nav__item">
-  <a href="#split-and-time-bins" class="md-nav__link">
-    Split and Time Bins
-  </a>
+      <label class="md-nav__link" for="nav-6">
+        Examples
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fit-and-predict" class="md-nav__link">
-    Fit and Predict
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#neighbors" class="md-nav__link">
-    Neighbors
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#score-metrics" class="md-nav__link">
-    Score metrics
-  </a>
+    <li class="md-nav__item">
+      <a href="confidence_interval.html" class="md-nav__link">
+        Confidence intervals
+      </a>
+    </li>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cross-validation" class="md-nav__link">
-    Cross Validation
-  </a>
+
+          
+            
   
-</li>
-      
-    </ul>
   
-</nav>
-    
-  </li>
+  
+    <li class="md-nav__item">
+      <a href="extrapolation_example.html" class="md-nav__link">
+        Extrapolation
+      </a>
+    </li>
+  
 
-        
           
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="confidence_interval.html" class="md-nav__link">
-      Confidence intervals
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="extrapolation_example.html" class="md-nav__link">
-      Extrapolation
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-
-  <li class="md-nav__item">
-    <a href="how_xgbse_works.html" class="md-nav__link">
-      How XGBSE works
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
+        </ul>
+      </nav>
+    </li>
+  
 
     
       
       
       
 
-
-
-  <li class="md-nav__item">
-    <a href="../benchmarks/benchmarks.html" class="md-nav__link">
-      Benchmarks
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmarks/benchmarks.html" class="md-nav__link">
+        Benchmarks
+      </a>
+    </li>
+  
 
     
   </ul>
@@ -600,16 +659,14 @@
 - How to validate your xgbse model using sklearn</p>
 <h2 id="metrabic">Metrabic<a class="headerlink" href="#metrabic" title="Permanent link">&para;</a></h2>
 <p>We will be using the Molecular Taxonomy of Breast Cancer International Consortium (METABRIC) dataset from <a href="https://github.com/havakv/pycox#datasets">pycox</a> as base for this example.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
-<span class="kn">from</span> <span class="nn">pycox.datasets</span> <span class="kn">import</span> <span class="n">metabric</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<pre class="highlight"><code class="language-python">from xgbse.converters import convert_to_structured
+from pycox.datasets import metabric
+import numpy as np
 
-<span class="c1"># getting data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">metabric</span><span class="o">.</span><span class="n">read_df</span><span class="p">()</span>
+# getting data
+df = metabric.read_df()
 
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
-
+df.head()</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -718,43 +775,44 @@
 
 <h2 id="split-and-time-bins">Split and Time Bins<a class="headerlink" href="#split-and-time-bins" title="Permanent link">&para;</a></h2>
 <p>Split the data in train and test, using sklearn API. We also setup the TIME_BINS array, which will be used to fit the survival curve</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse.converters</span> <span class="kn">import</span> <span class="n">convert_to_structured</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<pre class="highlight"><code class="language-python">from xgbse.converters import convert_to_structured
+from sklearn.model_selection import train_test_split
 
-<span class="c1"># splitting to X, T, E format</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span>
-<span class="n">E</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">convert_to_structured</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+# splitting to X, T, E format
+X = df.drop(['duration', 'event'], axis=1)
+T = df['duration']
+E = df['event']
+y = convert_to_structured(T, E)
 
-<span class="c1"># splitting between train, and validation</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">TIME_BINS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">315</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-<span class="n">TIME_BINS</span>
-</code></pre></div>
+# splitting between train, and validation
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state = 0)
+TIME_BINS = np.arange(15, 315, 15)
+TIME_BINS</code></pre>
+<pre class="highlight"><code>array([ 15,  30,  45,  60,  75,  90, 105, 120, 135, 150, 165, 180, 195,
+       210, 225, 240, 255, 270, 285, 300])
 
-<div class="codehilite"><pre><span></span><code><span class="err">array([ 15,  30,  45,  60,  75,  90, 105, 120, 135, 150, 165, 180, 195,</span>
-<span class="err">       210, 225, 240, 255, 270, 285, 300])</span>
-</code></pre></div>
 
+</code></pre>
 <h2 id="fit-and-predict">Fit and Predict<a class="headerlink" href="#fit-and-predict" title="Permanent link">&para;</a></h2>
 <p>We will be using the DebiasedBCE estimator to fit the model and predict a survival curve for each point in our test data</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">xgbse</span> <span class="kn">import</span> <span class="n">XGBSEDebiasedBCE</span>
+<pre class="highlight"><code class="language-python">from xgbse import XGBSEDebiasedBCE
 
-<span class="c1"># fitting xgbse model</span>
-<span class="n">xgbse_model</span> <span class="o">=</span> <span class="n">XGBSEDebiasedBCE</span><span class="p">()</span>
-<span class="n">xgbse_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">time_bins</span><span class="o">=</span><span class="n">TIME_BINS</span><span class="p">)</span>
+# fitting xgbse model
+xgbse_model = XGBSEDebiasedBCE()
+xgbse_model.fit(X_train, y_train, time_bins=TIME_BINS)
 
-<span class="c1"># predicting</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+# predicting
+y_pred = xgbse_model.predict(X_test)
 
-<span class="nb">print</span><span class="p">(</span><span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">y_pred</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div>
+print(y_pred.shape)
+y_pred.head()</code></pre>
+<pre class="highlight"><code>(635, 20)
 
-<div class="codehilite"><pre><span></span><code><span class="err">(635, 20)</span>
-</code></pre></div>
 
+
+
+
+</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -916,25 +974,25 @@
 </div>
 
 <p>mean predicted survival curve for test data</p>
-<div class="codehilite"><pre><span></span><code><span class="n">y_pred</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">();</span>
-</code></pre></div>
-
+<pre class="highlight"><code class="language-python">y_pred.mean().plot.line();</code></pre>
 <p><img alt="svg" src="img/output_8_0.svg" /></p>
 <h2 id="neighbors">Neighbors<a class="headerlink" href="#neighbors" title="Permanent link">&para;</a></h2>
 <p>We can also use our model for querying comparables based on survivability.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">neighbors</span> <span class="o">=</span> <span class="n">xgbse_model</span><span class="o">.</span><span class="n">get_neighbors</span><span class="p">(</span>
-    <span class="n">query_data</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">,</span>
-    <span class="n">index_data</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">,</span>
-    <span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="p">)</span>
+<pre class="highlight"><code class="language-python">neighbors = xgbse_model.get_neighbors(
+    query_data = X_test,
+    index_data = X_train,
+    n_neighbors = 5
+)
 
-<span class="nb">print</span><span class="p">(</span><span class="n">neighbors</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">neighbors</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
+print(neighbors.shape)
+neighbors.head(5)</code></pre>
+<pre class="highlight"><code>(635, 5)
 
-<div class="codehilite"><pre><span></span><code><span class="err">(635, 5)</span>
-</code></pre></div>
 
+
+
+
+</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1006,11 +1064,9 @@
 </div>
 
 <p><b>example</b>: selecting a data point from query data (X_test) and checking its features</p>
-<div class="codehilite"><pre><span></span><code><span class="n">desired</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<pre class="highlight"><code class="language-python">desired = neighbors.iloc[10]
 
-<span class="n">X_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">desired</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
-</code></pre></div>
-
+X_test.loc[X_test.index == desired.name]</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1058,9 +1114,7 @@
 </div>
 
 <p>... and finding its comparables from index data (X_train)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">desired</span><span class="o">.</span><span class="n">tolist</span><span class="p">())]</span>
-</code></pre></div>
-
+<pre class="highlight"><code class="language-python">X_train.loc[X_train.index.isin(desired.tolist())]</code></pre>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1157,29 +1211,26 @@
 
 <h2 id="score-metrics">Score metrics<a class="headerlink" href="#score-metrics" title="Permanent link">&para;</a></h2>
 <p>XGBSE implements concordance index and integrated brier score, both can be used to evaluate model performance</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># importing metrics</span>
-<span class="kn">from</span> <span class="nn">xgbse.metrics</span> <span class="kn">import</span> <span class="n">concordance_index</span><span class="p">,</span> <span class="n">approx_brier_score</span>
+<pre class="highlight"><code class="language-python"># importing metrics
+from xgbse.metrics import concordance_index, approx_brier_score
 
-<span class="c1"># running metrics</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;C-index: </span><span class="si">{</span><span class="n">concordance_index</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Avg. Brier Score: </span><span class="si">{</span><span class="n">approx_brier_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+# running metrics
+print(f"C-index: {concordance_index(y_test, y_pred)}")
+print(f"Avg. Brier Score: {approx_brier_score(y_test, y_pred)}")</code></pre>
+<pre class="highlight"><code>C-index: 0.6706453426714781
+Avg. Brier Score: 0.17221909077845754
 
-<div class="codehilite"><pre><span></span><code><span class="c">C-index: 0.6706453426714781</span>
-<span class="err">Avg. Brier Score: 0.17221909077845754</span>
-</code></pre></div>
-
+</code></pre>
 <h2 id="cross-validation">Cross Validation<a class="headerlink" href="#cross-validation" title="Permanent link">&para;</a></h2>
 <p>We can also use sklearn's cross_val_score and make_scorer to cross validate our model</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+<pre class="highlight"><code class="language-python">from sklearn.model_selection import cross_val_score
+from sklearn.metrics import make_scorer
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">xgbse_model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">make_scorer</span><span class="p">(</span><span class="n">approx_brier_score</span><span class="p">))</span>
-<span class="n">results</span>
-</code></pre></div>
+results = cross_val_score(xgbse_model, X, y, scoring=make_scorer(approx_brier_score))
+results</code></pre>
+<pre class="highlight"><code>array([0.16269636, 0.14880423, 0.12848939, 0.15335356, 0.15394174])
 
-<div class="codehilite"><pre><span></span><code><span class="err">array([0.16269636, 0.14880423, 0.12848939, 0.15335356, 0.15394174])</span>
-</code></pre></div>
+</code></pre>
                 
               
               
@@ -1194,41 +1245,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../metrics.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Metrics
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="confidence_interval.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Confidence intervals
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1246,18 +1262,30 @@
       
     </div>
     
-      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
-      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "..",
-          features: [],
+          features: ['navigation.tabs'],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tables.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

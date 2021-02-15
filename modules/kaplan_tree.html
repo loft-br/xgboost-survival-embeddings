@@ -18,7 +18,7 @@
     
     
       
-        <title>Confidence intervals - XGBoost Survival Embeddings</title>
+        <title>XGBSEKaplanTree - XGBoost Survival Embeddings</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#confidence-interval" class="md-skip">
+        <a href="#xgbse_kaplan_neighborsxgbsekaplantree" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Confidence intervals
+              XGBSEKaplanTree
             
           </span>
         </div>
@@ -213,13 +213,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../modules/base.html" class="md-tabs__link">
+      <a href="base.html" class="md-tabs__link md-tabs__link--active">
         Modules
       </a>
     </li>
@@ -229,15 +231,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="confidence_interval.html" class="md-tabs__link md-tabs__link--active">
+      <a href="../examples/confidence_interval.html" class="md-tabs__link">
         Examples
       </a>
     </li>
@@ -265,6 +265,8 @@
         <div class="md-main__inner md-grid">
           
             
+              
+                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -369,12 +371,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
       
       <label class="md-nav__link" for="nav-5">
         Modules
@@ -393,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/base.html" class="md-nav__link">
+      <a href="base.html" class="md-nav__link">
         XGBSEBaseEstimator
       </a>
     </li>
@@ -405,7 +409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/bce.html" class="md-nav__link">
+      <a href="bce.html" class="md-nav__link">
         XGBSEDebiasedBCE
       </a>
     </li>
@@ -417,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/stacked_weibull.html" class="md-nav__link">
+      <a href="stacked_weibull.html" class="md-nav__link">
         XGBSEStackedWeibull
       </a>
     </li>
@@ -429,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/kaplan_neighs.html" class="md-nav__link">
+      <a href="kaplan_neighs.html" class="md-nav__link">
         XGBSEKaplanNeighbors
       </a>
     </li>
@@ -439,11 +443,70 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../modules/kaplan_tree.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          XGBSEKaplanTree
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="kaplan_tree.html" class="md-nav__link md-nav__link--active">
         XGBSEKaplanTree
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree" class="md-nav__link">
+    xgbse._kaplan_neighbors.XGBSEKaplanTree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.fit" class="md-nav__link">
+    fit()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.predict" class="md-nav__link">
+    predict()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -453,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/meta.html" class="md-nav__link">
+      <a href="meta.html" class="md-nav__link">
         XGBSEBootstrapEstimator
       </a>
     </li>
@@ -465,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/extrapolation.html" class="md-nav__link">
+      <a href="extrapolation.html" class="md-nav__link">
         extrapolation
       </a>
     </li>
@@ -477,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/converters.html" class="md-nav__link">
+      <a href="converters.html" class="md-nav__link">
         converters
       </a>
     </li>
@@ -489,7 +552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/metrics.html" class="md-nav__link">
+      <a href="metrics.html" class="md-nav__link">
         metrics
       </a>
     </li>
@@ -508,14 +571,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
       
       <label class="md-nav__link" for="nav-6">
         Examples
@@ -532,83 +593,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Confidence intervals
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="confidence_interval.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../examples/confidence_interval.html" class="md-nav__link">
         Confidence intervals
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#metrabic" class="md-nav__link">
-    Metrabic
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#split-and-time-bins" class="md-nav__link">
-    Split and Time Bins
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#calculating-confidence-intervals" class="md-nav__link">
-    Calculating confidence intervals
-  </a>
-  
-    <nav class="md-nav" aria-label="Calculating confidence intervals">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#numerical-form" class="md-nav__link">
-    Numerical Form
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#non-parametric-form" class="md-nav__link">
-    Non-parametric Form
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -618,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="extrapolation_example.html" class="md-nav__link">
+      <a href="../examples/extrapolation_example.html" class="md-nav__link">
         Extrapolation
       </a>
     </li>
@@ -654,7 +643,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -671,43 +662,30 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#metrabic" class="md-nav__link">
-    Metrabic
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree" class="md-nav__link">
+    xgbse._kaplan_neighbors.XGBSEKaplanTree
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#split-and-time-bins" class="md-nav__link">
-    Split and Time Bins
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.__init__" class="md-nav__link">
+    __init__()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#calculating-confidence-intervals" class="md-nav__link">
-    Calculating confidence intervals
-  </a>
-  
-    <nav class="md-nav" aria-label="Calculating confidence intervals">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#numerical-form" class="md-nav__link">
-    Numerical Form
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.fit" class="md-nav__link">
+    fit()
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#non-parametric-form" class="md-nav__link">
-    Non-parametric Form
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.predict" class="md-nav__link">
+    predict()
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -723,246 +701,254 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/examples/confidence_interval.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/modules/kaplan_tree.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="confidence-interval">Confidence Interval:<a class="headerlink" href="#confidence-interval" title="Permanent link">&para;</a></h1>
-<p>In this notebook you will find:
-- Get confidence intervals for predicted survival curves using XGBSE estimators;
-- How to use XGBSEBootstrapEstimator, a meta estimator for bagging;
-- A nice function to help us plot survival curves.</p>
-<pre class="highlight"><code class="language-python">import matplotlib.pyplot as plt
-plt.style.use('bmh')
+                <h1 id="xgbse_kaplan_neighborsxgbsekaplantree">xgbse._kaplan_neighbors.XGBSEKaplanTree<a class="headerlink" href="#xgbse_kaplan_neighborsxgbsekaplantree" title="Permanent link">&para;</a></h1>
+<div class="doc doc-object doc-class">
+<h3 class="hidden-toc" id="xgbse._kaplan_neighbors.XGBSEKaplanTree" style="visibility: hidden; position: absolute;">
+        <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree" title="Permanent link">&para;</a></h3>
+<div class="doc doc-contents first">
+<p>Single tree implementation as a simplification to <code>XGBSEKaplanNeighbors</code>.
+Instead of doing nearest neighbor searches, fits a single tree via <code>xgboost</code>
+and calculates KM curves at each of its leaves.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>It is by far the most efficient implementation, able to scale to millions of examples easily.
+At fit time, the tree is built and all KM curves are pre-calculated,
+so that at scoring time a simple query will suffice to get the model's estimates.</li>
+</ul>
+</div>
+<p>Read more in <a href="https://loft-br.github.io/xgboost-survival-embeddings/how_xgbse_works.html">How XGBSE works</a>.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanTree.__init__">
 
-from IPython.display import set_matplotlib_formats
-set_matplotlib_formats('retina')
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xgb_params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
-# to easily plot confidence intervals
-def plot_ci(mean, upper_ci, lower_ci, i=42, title='Probability of survival $P(T \geq t)$'):
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
 
-    # plotting mean and confidence intervals
-    plt.figure(figsize=(12, 4), dpi=120)
-    plt.plot(mean.columns,mean.iloc[i])
-    plt.fill_between(mean.columns, lower_ci.iloc[i], upper_ci.iloc[i], alpha=0.2)
-
-    plt.title(title)
-    plt.xlabel('Time [days]')
-    plt.ylabel('Probability')
-    plt.tight_layout()
-</code></pre>
-<h2 id="metrabic">Metrabic<a class="headerlink" href="#metrabic" title="Permanent link">&para;</a></h2>
-<p>We will be using the Molecular Taxonomy of Breast Cancer International Consortium (METABRIC) dataset from <a href="https://github.com/havakv/pycox#datasets">pycox</a> as base for this example.</p>
-<pre class="highlight"><code class="language-python">from xgbse.converters import convert_to_structured
-from pycox.datasets import metabric
-import numpy as np
-
-# getting data
-df = metabric.read_df()
-
-df.head()</code></pre>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>x0</th>
-      <th>x1</th>
-      <th>x2</th>
-      <th>x3</th>
-      <th>x4</th>
-      <th>x5</th>
-      <th>x6</th>
-      <th>x7</th>
-      <th>x8</th>
-      <th>duration</th>
-      <th>event</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5.603834</td>
-      <td>7.811392</td>
-      <td>10.797988</td>
-      <td>5.967607</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>56.840000</td>
-      <td>99.333336</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>5.284882</td>
-      <td>9.581043</td>
-      <td>10.204620</td>
-      <td>5.664970</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>85.940002</td>
-      <td>95.733330</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>5.920251</td>
-      <td>6.776564</td>
-      <td>12.431715</td>
-      <td>5.873857</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>48.439999</td>
-      <td>140.233337</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>6.654017</td>
-      <td>5.341846</td>
-      <td>8.646379</td>
-      <td>5.655888</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>66.910004</td>
-      <td>239.300003</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5.456747</td>
-      <td>5.339741</td>
-      <td>10.555724</td>
-      <td>6.008429</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>67.849998</td>
-      <td>56.933334</td>
-      <td>1</td>
-    </tr>
-  </tbody>
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.__init__" title="Permanent link">&para;</a></h3>
+<div class="doc doc-contents ">
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>xgb_params</code></td>
+<td><code>Dict</code></td>
+<td>
+<p>Parameters for XGBoost model.
+If not passed, the following default parameters will be used:</p>
+<pre class="highlight"><code>DEFAULT_PARAMS_TREE = {
+    "objective": "survival:cox",
+    "eval_metric": "cox-nloglik",
+    "tree_method": "exact",
+    "max_depth": 100,
+    "booster": "dart",
+    "subsample": 1.0,
+    "min_child_weight": 30,
+    "colsample_bynode": 1.0,
+}</code></pre>
+<p>Check <a href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a> for more options.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
 </table>
 </div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanTree.fit">
 
-<h2 id="split-and-time-bins">Split and Time Bins<a class="headerlink" href="#split-and-time-bins" title="Permanent link">&para;</a></h2>
-<p>Split the data in train and test, using sklearn API. We also setup the TIME_BINS array, which will be used to fit the survival curve.</p>
-<pre class="highlight"><code class="language-python">from xgbse.converters import convert_to_structured
-from sklearn.model_selection import train_test_split
-
-# splitting to X, T, E format
-X = df.drop(['duration', 'event'], axis=1)
-T = df['duration']
-E = df['event']
-y = convert_to_structured(T, E)
-
-# splitting between train, and validation
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state = 0)
-TIME_BINS = np.arange(15, 315, 15)
-TIME_BINS</code></pre>
-<pre class="highlight"><code>array([ 15,  30,  45,  60,  75,  90, 105, 120, 135, 150, 165, 180, 195,
-       210, 225, 240, 255, 270, 285, 300])
+<code class="highlight language-python"><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">persist_train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ci_width</span><span class="o">=</span><span class="mf">0.683</span><span class="p">,</span> <span class="o">**</span><span class="n">xgb_kwargs</span><span class="p">)</span></code>
 
 
-</code></pre>
-<h2 id="calculating-confidence-intervals">Calculating confidence intervals<a class="headerlink" href="#calculating-confidence-intervals" title="Permanent link">&para;</a></h2>
-<p>We will be using the XGBSEKaplanTree estimator to fit the model and predict a survival curve for each point in our test data, and via <i>return_ci</i> parameter we will get upper and lower bounds for the confidence interval.</p>
-<pre class="highlight"><code class="language-python">from xgbse import XGBSEKaplanTree, XGBSEBootstrapEstimator
-from xgbse.metrics import concordance_index, approx_brier_score
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.fit" title="Permanent link">&para;</a></h3>
+<div class="doc doc-contents ">
+<p>Fit a single decision tree using xgboost. For each leaf in the tree,
+build a Kaplan-Meier estimator.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>Differently from <code>XGBSEKaplanNeighbors</code>, in <code>XGBSEKaplanTree</code>, the width of
+the confidence interval (<code>ci_width</code>) must be specified at fit time.</li>
+</ul>
+</div>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X</code></td>
+<td><code>[pd.DataFrame, np.array]</code></td>
+<td>
+<p>Design matrix to fit XGBoost model</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td><code>structured array(numpy.bool_, numpy.number</code></td>
+<td>
+<p>Binary event indicator as first field,
+and time of event or time of censoring as second field.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>persist_train</code></td>
+<td><code>Bool</code></td>
+<td>
+<p>Whether or not to persist training data to use explainability
+through prototypes</p>
+</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>index_id</code></td>
+<td><code>pd.Index</code></td>
+<td>
+<p>User defined index if intended to use explainability
+through prototypes</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>time_bins</code></td>
+<td><code>np.array</code></td>
+<td>
+<p>Specified time windows to use when making survival predictions</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>ci_width</code></td>
+<td><code>Float</code></td>
+<td>
+<p>Width of confidence interval</p>
+</td>
+<td><code>0.683</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>XGBSEKaplanTree</code></td>
+<td>
+<p>Trained instance of XGBSEKaplanTree</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="xgbse._kaplan_neighbors.XGBSEKaplanTree.predict">
 
-# xgboost parameters to fit our model
-PARAMS_TREE = {
-    'objective': 'survival:cox',
-    'eval_metric': 'cox-nloglik',
-    'tree_method': 'hist',
-    'max_depth': 10,
-    'booster':'dart',
-    'subsample': 1.0,
-    'min_child_weight': 50,
-    'colsample_bynode': 1.0
-}</code></pre>
-<h3 id="numerical-form">Numerical Form<a class="headerlink" href="#numerical-form" title="Permanent link">&para;</a></h3>
-<p>The KaplanTree and KaplanNeighbors models support estimation of confidence intervals via the Exponential Greenwood formula.</p>
-<pre class="highlight"><code class="language-python">%%time
-
-# fitting xgbse model
-xgbse_model = XGBSEKaplanTree(PARAMS_TREE)
-xgbse_model.fit(X_train, y_train, time_bins=TIME_BINS)
-
-# predicting
-mean, upper_ci, lower_ci = xgbse_model.predict(X_test, return_ci=True)
-
-# print metrics
-print(f"C-index: {concordance_index(y_test, mean)}")
-print(f"Avg. Brier Score: {approx_brier_score(y_test, mean)}")
-
-# plotting CIs
-plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<pre class="highlight"><code>C-index: 0.6358942056527093
-Avg. Brier Score: 0.182841148106733
-CPU times: user 1.88 s, sys: 9.37 ms, total: 1.88 s
-Wall time: 897 ms
+<code class="highlight language-python"><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_interval_probs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 
-
-</code></pre>
-<p><img alt="png" src="img/output_9_1.png" /></p>
-<h3 id="non-parametric-form">Non-parametric Form<a class="headerlink" href="#non-parametric-form" title="Permanent link">&para;</a></h3>
-<p>We can also use the XGBSEBootstrapEstimator to wrap any XGBSE model and get confidence intervals via bagging, which also slighty increase our performance at the cost of computation time.</p>
-<pre class="highlight"><code class="language-python">%%time
-
-# base model as XGBSEKaplanTree
-base_model = XGBSEKaplanTree(PARAMS_TREE)
-
-# bootstrap meta estimator
-bootstrap_estimator = XGBSEBootstrapEstimator(base_model, n_estimators=100)
-
-# fitting the meta estimator
-bootstrap_estimator.fit(X_train, y_train, time_bins=TIME_BINS)
-
-# predicting
-mean, upper_ci, lower_ci = bootstrap_estimator.predict(X_test, return_ci=True)
-
-# print metrics
-print(f"C-index: {concordance_index(y_test, mean)}")
-print(f"Avg. Brier Score: {approx_brier_score(y_test, mean)}")
-
-# plotting CIs
-plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<pre class="highlight"><code>C-index: 0.6580651819585904
-Avg. Brier Score: 0.17040560738276272
-CPU times: user 17.3 s, sys: 58.5 ms, total: 17.4 s
-Wall time: 4.18 s
-
-
-
-</code></pre>
-<p><img alt="png" src="img/output_11_1.png" /></p>
-<pre class="highlight"><code class="language-python"></code></pre>
-<pre class="highlight"><code class="language-python"></code></pre>
+      <a class="headerlink" href="#xgbse._kaplan_neighbors.XGBSEKaplanTree.predict" title="Permanent link">&para;</a></h3>
+<div class="doc doc-contents ">
+<p>Run samples through tree until terminal nodes. Predict the Kaplan-Meier
+estimator associated to the leaf node each sample ended into.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X</code></td>
+<td><code>pd.DataFrame</code></td>
+<td>
+<p>Data frame with samples to generate predictions</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>return_ci</code></td>
+<td><code>Bool</code></td>
+<td>
+<p>Whether to return confidence intervals via the Exponential Greenwood formula</p>
+</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>return_interval_probs</code></td>
+<td><code>Bool</code></td>
+<td>
+<p>Boolean indicating if interval probabilities are
+supposed to be returned. If False the cumulative survival is returned.</p>
+</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>preds_df (pd.DataFrame)</code></td>
+<td>
+<p>A dataframe of survival probabilities
+    for all times (columns), from a time_bins array, for all samples of X
+    (rows). If return_interval_probs is True, the interval probabilities are returned
+    instead of the cumulative survival probabilities.</p>
+<p>upper_ci (np.array): Upper confidence interval for the survival
+    probability values</p>
+<p>lower_ci (np.array): Lower confidence interval for the survival
+    probability values</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+                
+                  
                 
               
               
@@ -981,7 +967,7 @@ Wall time: 4.18 s
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../modules/metrics.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="kaplan_neighs.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -990,19 +976,19 @@ Wall time: 4.18 s
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                metrics
+                XGBSEKaplanNeighbors
               </div>
             </div>
           </a>
         
         
-          <a href="extrapolation_example.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="meta.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Extrapolation
+                XGBSEBootstrapEstimator
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
