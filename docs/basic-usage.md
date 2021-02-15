@@ -72,7 +72,7 @@ mean, upper_ci, lower_ci = xgbse_model.predict(X_valid, return_ci=True)
 plot_ci(mean, upper_ci, lower_ci)
 ```
 
-<img src="../img/usage_ci_1.png">
+<img src="./img/usage_ci_1.png">
 
 `XGBSEDebiasedBCE` does not support estimation of confidence intervals out-of-the-box, but we provide the `XGBSEBootstrapEstimator` to get non-parametric confidence intervals. As the stacked logistic regressions are trained with more samples (in comparison to neighbor-sets in `XGBSEKaplanNeighbors`), confidence intervals are more concentrated:
 
@@ -99,7 +99,7 @@ mean, upper_ci, lower_ci = bootstrap_estimator.predict(X_valid, return_ci=True)
 plot_ci(mean, upper_ci, lower_ci)
 ```
 
-<img src="../img/usage_ci_2.png">
+<img src="./img/usage_ci_2.png">
 
 The bootstrap abstraction can be used for `XBGSEKaplanTree` and `XBGSEKaplanNeighbors` as well, however, the confidence interval will be estimated via bootstrap only (not Exponential Greenwood formula):
 
@@ -124,7 +124,7 @@ mean, upper_ci, lower_ci = bootstrap_estimator.predict(X_valid, return_ci=True)
 plot_ci(mean, upper_ci, lower_ci)
 ```
 
-<img src="../img/usage_ci_3.png">
+<img src="./img/usage_ci_3.png">
 
 With a sufficiently large `n_estimators`, interval width shouldn't be much different, with the added benefit of model stability and improved accuracy. Addittionaly, `XGBSEBootstrapEstimator` allows building confidence intervals for interval probabilities (which is not supported for Exponential Greenwood):
 
@@ -140,7 +140,7 @@ mean, upper_ci, lower_ci = bootstrap_estimator.predict(
 plot_ci(mean, upper_ci, lower_ci)
 ```
 
-<img src="../img/usage_ci_6.png">
+<img src="./img/usage_ci_6.png">
 
 The parameter `ci_width` controls the width of the confidence interval. For `XGBSEKaplanTree` it should be passed at `.fit()`, as KM curves are pre-calculated for each leaf at fit time to avoid storing training data.
 
@@ -156,7 +156,7 @@ mean, upper_ci, lower_ci = xgbse_model.predict(X_valid, return_ci=True)
 plot_ci(mean, upper_ci, lower_ci)
 ```
 
-<img src="../img/usage_ci_4.png">
+<img src="./img/usage_ci_4.png">
 
 For other models (`XGBSEKaplanNeighbors` and `XGBSEBootstrapEstimator`) it should be passed at `.predict()`.
 
@@ -179,7 +179,7 @@ mean, upper_ci, lower_ci = model.predict(X_valid, return_ci=True, ci_width=0.99)
 plot_ci(mean, upper_ci, lower_ci)
 ```
 
-<img src="../img/usage_ci_5.png">
+<img src="./img/usage_ci_5.png">
 
 ### *Early stopping*
 
@@ -278,7 +278,7 @@ plt.plot(mean.columns, mean.iloc[0])
 plt.fill_between(mean.columns, low.iloc[0], high.iloc[0], alpha=0.1, color='red')
 ```
 
-<img src="../img/usage_prototype_kaplan.png">
+<img src="./img/usage_prototype_kaplan.png">
 
 Specifically, for `XBGSEKaplanNeighbors` prototype predictions and model predictions should match exactly if `n_neighbors` is the same and `query_data` is equal to the training data.
 
