@@ -1056,7 +1056,7 @@ mean, upper_ci, lower_ci = xgbse_model.predict(X_valid, return_ci=True)
 
 # plotting CIs
 plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<p><img src="../img/usage_ci_1.png"></p>
+<p><img src="./img/usage_ci_1.png"></p>
 <p><code>XGBSEDebiasedBCE</code> does not support estimation of confidence intervals out-of-the-box, but we provide the <code>XGBSEBootstrapEstimator</code> to get non-parametric confidence intervals. As the stacked logistic regressions are trained with more samples (in comparison to neighbor-sets in <code>XGBSEKaplanNeighbors</code>), confidence intervals are more concentrated:</p>
 <pre class="highlight"><code class="language-python"># base model as BCE
 base_model = XGBSEDebiasedBCE(PARAMS_XGB_AFT, PARAMS_LR)
@@ -1078,7 +1078,7 @@ mean, upper_ci, lower_ci = bootstrap_estimator.predict(X_valid, return_ci=True)
 
 # plotting CIs
 plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<p><img src="../img/usage_ci_2.png"></p>
+<p><img src="./img/usage_ci_2.png"></p>
 <p>The bootstrap abstraction can be used for <code>XBGSEKaplanTree</code> and <code>XBGSEKaplanNeighbors</code> as well, however, the confidence interval will be estimated via bootstrap only (not Exponential Greenwood formula):</p>
 <pre class="highlight"><code class="language-python"># base model
 base_model = XGBSEKaplanTree(PARAMS_TREE)
@@ -1098,7 +1098,7 @@ mean, upper_ci, lower_ci = bootstrap_estimator.predict(X_valid, return_ci=True)
 
 # plotting CIs
 plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<p><img src="../img/usage_ci_3.png"></p>
+<p><img src="./img/usage_ci_3.png"></p>
 <p>With a sufficiently large <code>n_estimators</code>, interval width shouldn't be much different, with the added benefit of model stability and improved accuracy. Addittionaly, <code>XGBSEBootstrapEstimator</code> allows building confidence intervals for interval probabilities (which is not supported for Exponential Greenwood):</p>
 <pre class="highlight"><code class="language-python"># predicting
 mean, upper_ci, lower_ci = bootstrap_estimator.predict(
@@ -1109,7 +1109,7 @@ mean, upper_ci, lower_ci = bootstrap_estimator.predict(
 
 # plotting CIs
 plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<p><img src="../img/usage_ci_6.png"></p>
+<p><img src="./img/usage_ci_6.png"></p>
 <p>The parameter <code>ci_width</code> controls the width of the confidence interval. For <code>XGBSEKaplanTree</code> it should be passed at <code>.fit()</code>, as KM curves are pre-calculated for each leaf at fit time to avoid storing training data.</p>
 <pre class="highlight"><code class="language-python"># fitting xgbse model
 xgbse_model = XGBSEKaplanTree(PARAMS_TREE)
@@ -1120,7 +1120,7 @@ mean, upper_ci, lower_ci = xgbse_model.predict(X_valid, return_ci=True)
 
 # plotting CIs
 plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<p><img src="../img/usage_ci_4.png"></p>
+<p><img src="./img/usage_ci_4.png"></p>
 <p>For other models (<code>XGBSEKaplanNeighbors</code> and <code>XGBSEBootstrapEstimator</code>) it should be passed at <code>.predict()</code>.</p>
 <pre class="highlight"><code class="language-python"># base model
 model = XGBSEKaplanNeighbors(PARAMS_XGB_AFT, N_NEIGHBORS)
@@ -1138,7 +1138,7 @@ mean, upper_ci, lower_ci = model.predict(X_valid, return_ci=True, ci_width=0.99)
 
 # plotting CIs
 plot_ci(mean, upper_ci, lower_ci)</code></pre>
-<p><img src="../img/usage_ci_5.png"></p>
+<p><img src="./img/usage_ci_5.png"></p>
 <h3 id="early-stopping"><em>Early stopping</em><a class="headerlink" href="#early-stopping" title="Permanent link">&para;</a></h3>
 <p>A simple interface to <code>xgboost</code> early stopping is provided.</p>
 <pre class="highlight"><code class="language-python"># splitting between train, and validation
@@ -1427,7 +1427,7 @@ plt.figure(figsize=(12,4), dpi=120)
 plt.plot(model_surv.columns, model_surv.iloc[i])
 plt.plot(mean.columns, mean.iloc[0])
 plt.fill_between(mean.columns, low.iloc[0], high.iloc[0], alpha=0.1, color='red')</code></pre>
-<p><img src="../img/usage_prototype_kaplan.png"></p>
+<p><img src="./img/usage_prototype_kaplan.png"></p>
 <p>Specifically, for <code>XBGSEKaplanNeighbors</code> prototype predictions and model predictions should match exactly if <code>n_neighbors</code> is the same and <code>query_data</code> is equal to the training data.</p>
 <h3 id="metrics"><strong>Metrics</strong><a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h3>
 <p>We made our own metrics submodule to make the lib self-contained. <code>xgbse.metrics</code> implements C-index, Brier Score and D-Calibration from [9], including adaptations to deal with censoring:</p>
