@@ -149,6 +149,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         self.lr_params = lr_params
         self.n_jobs = n_jobs
         self.persist_train = False
+        self.feature_importance_ = None
 
     def fit(
         self,
@@ -224,7 +225,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             evals=evals,
             verbose_eval=verbose_eval,
         )
-
+        self.feature_importance_ = self.bst.get_score()
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
         leaves = self.bst.predict(dtrain, pred_leaf=True)
