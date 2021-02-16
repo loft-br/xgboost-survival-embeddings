@@ -20,5 +20,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Testing Dependencies
       run: make install-dev
-    - name: Automated checks
-      run: mkdocs gh-deploy
+    - name: Deploy Docs
+      run: |
+        git pull
+        mkdocs gh-deploy
