@@ -94,6 +94,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         self.xgb_params = xgb_params
         self.weibull_params = weibull_params
         self.persist_train = False
+        self.feature_importances_ = None
 
     def fit(
         self,
@@ -167,6 +168,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
             evals=evals,
             verbose_eval=verbose_eval,
         )
+        self.feature_importances_ = self.bst.get_score()
 
         # predicting risk from XGBoost
         train_risk = self.bst.predict(dtrain)

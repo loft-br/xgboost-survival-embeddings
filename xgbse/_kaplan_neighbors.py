@@ -98,6 +98,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
         self.persist_train = False
         self.index_id = None
         self.radius = None
+        self.feature_importances_ = None
 
     def fit(
         self,
@@ -171,6 +172,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             evals=evals,
             verbose_eval=verbose_eval,
         )
+        self.feature_importances_ = self.bst.get_score()
 
         # creating nearest neighbor index
         leaves = self.bst.predict(dtrain, pred_leaf=True)
@@ -338,6 +340,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         self.xgb_params = xgb_params
         self.persist_train = False
         self.index_id = None
+        self.feature_importances_ = None
 
     def fit(
         self,
@@ -388,6 +391,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
 
         # training XGB
         self.bst = xgb.train(self.xgb_params, dtrain, num_boost_round=1, **xgb_kwargs)
+        self.feature_importances_ = self.bst.get_score()
 
         # getting leaves
         leaves = self.bst.predict(dtrain, pred_leaf=True)
