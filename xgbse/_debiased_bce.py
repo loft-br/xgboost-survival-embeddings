@@ -228,7 +228,9 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         self.feature_importances_ = self.bst.get_score()
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
-        leaves = self.bst.predict(dtrain, pred_leaf=True)
+        leaves = self.bst.predict(
+            dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+        )
         leaves_encoded = self.encoder.fit_transform(leaves)
 
         # convert targets for using with logistic regression
@@ -244,7 +246,9 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             if index_id is None:
                 index_id = X.index.copy()
 
-            index_leaves = self.bst.predict(dtrain, pred_leaf=True)
+            index_leaves = self.bst.predict(
+                dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            )
             self.tree = BallTree(index_leaves, metric="hamming")
 
         self.index_id = index_id
@@ -369,7 +373,9 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         d_matrix = xgb.DMatrix(X)
 
         # getting leaves and extracting neighbors
-        leaves = self.bst.predict(d_matrix, pred_leaf=True)
+        leaves = self.bst.predict(
+            d_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+        )
         leaves_encoded = self.encoder.transform(leaves)
 
         # predicting from logistic regression artifacts

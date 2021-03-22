@@ -58,14 +58,18 @@ class XGBSEBaseEstimator(BaseEstimator):
             index = self.tree
         else:
             index_matrix = xgb.DMatrix(index_data)
-            index_leaves = self.bst.predict(index_matrix, pred_leaf=True)
+            index_leaves = self.bst.predict(
+                index_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            )
 
             if len(index_leaves.shape) == 1:
                 index_leaves = index_leaves.reshape(-1, 1)
             index = BallTree(index_leaves, metric="hamming")
 
         query_matrix = xgb.DMatrix(query_data)
-        query_leaves = self.bst.predict(query_matrix, pred_leaf=True)
+        query_leaves = self.bst.predict(
+            query_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+        )
 
         if len(query_leaves.shape) == 1:
             query_leaves = query_leaves.reshape(-1, 1)
