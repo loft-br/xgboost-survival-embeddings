@@ -407,7 +407,7 @@ To cite this repository:
   author = {Davi Vieira and Gabriel Gimenez and Guilherme Marmerola and Vitor Estima},
   title = {XGBoost Survival Embeddings: improving statistical properties of XGBoost survival analysis implementation},
   url = {http://github.com/loft-br/xgboost-survival-embeddings},
-  version = {0.2.0},
-  year = {2020},
+  version = {0.2.1},
+  year = {2021},
 }
 ```
