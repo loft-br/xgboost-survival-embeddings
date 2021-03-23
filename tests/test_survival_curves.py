@@ -67,6 +67,23 @@ def test_survival_curve(model):
     assert_survival_curve(xgbse, X_test, preds, cindex)
 
 
+@pytest.mark.parametrize(
+    "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEStackedWeibull]
+)
+def test_survival_curve_without_early_stopping(model):
+    xgbse = model()
+
+    xgbse.fit(
+        X_train,
+        y_train,
+    )
+
+    preds = xgbse.predict(X_test)
+    cindex = concordance_index(y_test, preds)
+
+    assert_survival_curve(xgbse, X_test, preds, cindex)
+
+
 def test_survival_curve_tree():
     xgbse = XGBSEKaplanTree()
 
