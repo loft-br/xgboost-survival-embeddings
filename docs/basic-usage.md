@@ -283,7 +283,7 @@ plt.fill_between(mean.columns, low.iloc[0], high.iloc[0], alpha=0.1, color='red'
 Specifically, for `XBGSEKaplanNeighbors` prototype predictions and model predictions should match exactly if `n_neighbors` is the same and `query_data` is equal to the training data.
 
 
-### **Metrics**
+### *Metrics*
 
 We made our own metrics submodule to make the lib self-contained. `xgbse.metrics` implements C-index, Brier Score and D-Calibration from [9], including adaptations to deal with censoring:
 
@@ -333,28 +333,7 @@ results
 array([0.17432953, 0.15907712, 0.13783666, 0.16770409, 0.16792016])
 ```
 
-
-## References
-
-[1] [Practical Lessons from Predicting Clicks on Ads at Facebook](https://research.fb.com/wp-content/uploads/2016/11/practical-lessons-from-predicting-clicks-on-ads-at-facebook.pdf): paper that shows how stacking boosting models with logistic regression improves performance and calibration
-
-[2] [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html): scikit-learn post showing tree ensembles as feature transformers
-
-[3] [Calibration of probabilities for tree-based models](https://gdmarmerola.github.io/probability-calibration/): blog post showing a practical example of tree ensemble probability calibration with a logistic regression
-
-[4] [Supervised dimensionality reduction and clustering at scale with RFs with UMAP](https://gdmarmerola.github.io/umap-supervised-embeddings/): blog post showing how forests of decision trees act as noise filters, reducing intrinsic dimension of the dataset.
-
-[5] [Learning Patient-Specific Cancer Survival Distributions as a Sequence of Dependent Regressors](http://www.cs.cornell.edu/~cnyu/papers/nips11_survival.pdf): inspiration for the BCE method (multi-task logistic regression)
-
-[6] [The Brier Score under Administrative Censoring: Problems and Solutions](https://arxiv.org/pdf/1912.08581.pdf): reference to BCE (binary cross-entropy survival method).
-
-[7] [The Greenwood and Exponential Greenwood Confidence Intervals in Survival Analysis](https://www.math.wustl.edu/~sawyer/handouts/greenwood.pdf): reference we used for the Exponential Greenwood formula from KM confidence intervals
-
-[8] [Tree Space Prototypes: Another Look at Making Tree Ensembles Interpretable](https://arxiv.org/abs/1611.07115): paper showing a very similar method for extracting prototypes
-
-[9] [Effective Ways to Build and Evaluate Individual Survival Distributions](https://arxiv.org/pdf/1811.11347.pdf): paper showing how to validate survival analysis models with different metrics
-
-## Citing `xgbse`
+### *Citing `xgbse`*
 
 To cite this repository:
 
@@ -363,7 +342,28 @@ To cite this repository:
   author = {Davi Vieira and Gabriel Gimenez and Guilherme Marmerola and Vitor Estima},
   title = {XGBoost Survival Embeddings: improving statistical properties of XGBoost survival analysis implementation},
   url = {http://github.com/loft-br/xgboost-survival-embeddings},
-  version = {0.2.1},
-  year = {2021},
+  version = {0.2.0},
+  year = {2020},
 }
 ```
+
+
+### *References*
+
+[1] X. He, J. Pan, O. Jin, T. Xu, B. Liu, T. Xu, Y. Shi, A. Atallah, R. Herbrich, S. Bowers, and J. Q. Candela. [Practical Lessons from Predicting Clicks on Ads at Facebook](https://research.fb.com/wp-content/uploads/2016/11/practical-lessons-from-predicting-clicks-on-ads-at-facebook.pdf) (2014). In Proceedings of the Eighth International Workshop on Data Mining for Online Advertising (ADKDD’14).
+
+[2] [Feature transformations with ensembles of trees](https://scikit-learn.org/stable/auto_examples/ensemble/plot_feature_transformation.html). Scikit-learn documentation at <https://scikit-learn.org/>.
+
+[3] G. Marmerola. [Calibration of probabilities for tree-based models](https://gdmarmerola.github.io/probability-calibration/). Personal Blog at <https://gdmarmerola.github.io/>.
+
+[4] G. Marmerola. [Supervised dimensionality reduction and clustering at scale with RFs with UMAP](https://gdmarmerola.github.io/umap-supervised-embeddings/). Personal Blog at <https://gdmarmerola.github.io/>.
+
+[5] C. Yu, R. Greiner, H. Lin, V. Baracos. [Learning Patient-Specific Cancer Survival Distributions as a Sequence of Dependent Regressors](http://www.cs.cornell.edu/~cnyu/papers/nips11_survival.pdf). Advances in Neural Information Processing Systems 24 (NIPS 2011).
+
+[6] H. Kvamme, Ø. Borgan. [The Brier Score under Administrative Censoring: Problems and Solutions](https://arxiv.org/pdf/1912.08581.pdf). arXiv preprint arXiv:1912.08581.
+
+[7] S. Sawyer. [The Greenwood and Exponential Greenwood Confidence Intervals in Survival Analysis](https://www.math.wustl.edu/~sawyer/handouts/greenwood.pdf). Handout on Washington University in St. Louis website.
+
+[8] H. Kvamme, Ø. Borgan, and I. Scheel. [Time-to-event prediction with neural networks and Cox regression](https://jmlr.org/papers/v20/18-424.html). Journal of Machine Learning Research, 20(129):1–30, 2019.
+
+[9] H. Haider, B. Hoehn, S. Davis, R. Greiner. [Effective Ways to Build and Evaluate Individual Survival Distributions](https://arxiv.org/pdf/1811.11347.pdf). Journal of Machine Learning Research 21 (2020) 1–63.
