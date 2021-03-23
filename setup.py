@@ -34,7 +34,7 @@ with open("docs/index.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="xgbse",
-    version="0.2.0",
+    version="0.2.1",
     author="Loft Data Science Team",
     author_email="bandits@loft.com.br",
     description="Improving XGBoost survival analysis with embeddings and debiased estimators",
