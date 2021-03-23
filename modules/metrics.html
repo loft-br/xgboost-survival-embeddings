@@ -13,8 +13,8 @@
         <meta name="author" content="Loft Data Science Team">
       
       
-      <link rel="shortcut icon" href="../img/loft_icon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.1">
+      <link rel="icon" href="../img/loft_icon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2c0c5eaf.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -39,6 +39,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
@@ -75,13 +77,9 @@
       
     </div>
     
-      
-
-  
-
-<header class="md-header" data-md-component="header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-header__button md-logo" aria-label="XGBoost Survival Embeddings">
+    <a href=".." title="XGBoost Survival Embeddings" class="md-header__button md-logo" aria-label="XGBoost Survival Embeddings" data-md-component="logo">
       
   <img src="../img/loft_icon.png" alt="logo">
 
@@ -279,13 +277,9 @@
   
 
 
-
-  
-
-
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+    <a href=".." title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings" data-md-component="logo">
       
   <img src="../img/loft_icon.png" alt="logo">
 
@@ -393,7 +387,6 @@
           Modules
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -592,7 +585,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
   
   
@@ -710,56 +702,71 @@
                 
                 
                 <h1 id="xgbsemetrics">xgbse.metrics<a class="headerlink" href="#xgbsemetrics" title="Permanent link">&para;</a></h1>
-<div class="doc doc-object doc-module">
-<h3 class="hidden-toc" id="xgbse.metrics" style="visibility: hidden; position: absolute;">
-        <a class="headerlink" href="#xgbse.metrics" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents first">
-<div class="doc doc-children">
-<div class="doc doc-object doc-function">
+
+
+  <div class="doc doc-object doc-module">
+
+<a id="xgbse.metrics"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h3 class="doc doc-heading" id="xgbse.metrics.approx_brier_score">
+<code class="highlight language-python">approx_brier_score(y_true, survival, aggregate='mean')</code>
 
-<code class="highlight language-python"><span class="n">approx_brier_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">survival</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="s1">'mean'</span><span class="p">)</span></code>
 
+<a class="headerlink" href="#xgbse.metrics.approx_brier_score" title="Permanent link">&para;</a></h3>
 
-      <a class="headerlink" href="#xgbse.metrics.approx_brier_score" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
-<p>Estimate brier score for all survival time windows. Aggregate scores for an approximate
+    <div class="doc doc-contents ">
+
+      <p>Estimate brier score for all survival time windows. Aggregate scores for an approximate
 integrated brier score estimate.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>y_true</code></td>
-<td><code>structured array(numpy.bool_, numpy.number</code></td>
-<td>
-<p>B inary event indicator as first field,
-and time of event or time of censoring as second field.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>survival</code></td>
-<td><code>[pd.DataFrame, np.array]</code></td>
-<td>
-<p>A dataframe of survival probabilities
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>y_true</code></td>
+        <td><code>structured array(numpy.bool_, numpy.number</code></td>
+        <td><p>B inary event indicator as first field,
+and time of event or time of censoring as second field.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>survival</code></td>
+        <td><code>[pd.DataFrame, np.array]</code></td>
+        <td><p>A dataframe of survival probabilities
 for all times (columns), from a time_bins array, for all samples of X (rows).
-If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>aggregate</code></td>
-<td><code>[string, None]</code></td>
-<td>
-<p>How to aggregate brier scores from different time windows:</p>
+If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>aggregate</code></td>
+        <td><code>[string, None]</code></td>
+        <td><p>How to aggregate brier scores from different time windows:</p>
 <ul>
 <li>
 <p><code>mean</code> takes simple average</p>
@@ -767,41 +774,46 @@ If risk_strategy is 'precomputed', is an array with representing risks for each 
 <li>
 <p><code>None</code> returns full list of brier scores for each time window</p>
 </li>
-</ul>
-</td>
-<td><code>'mean'</code></td>
-</tr>
-</tbody>
+</ul></td>
+        <td><code>&#39;mean&#39;</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[Float, np.array]</code></td>
-<td>
-<p>single value if aggregate is 'mean'
-    np.array if aggregate is None</p>
-</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>[Float, np.array]</code></td>
+      <td><p>single value if aggregate is 'mean'
+    np.array if aggregate is None</p></td>
+    </tr>
+  </tbody>
 </table>
-</div>
-</div>
-<div class="doc doc-object doc-function">
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h3 class="doc doc-heading" id="xgbse.metrics.concordance_index">
+<code class="highlight language-python">concordance_index(y_true, survival, risk_strategy='mean', which_window=None)</code>
 
-<code class="highlight language-python"><span class="n">concordance_index</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">survival</span><span class="p">,</span> <span class="n">risk_strategy</span><span class="o">=</span><span class="s1">'mean'</span><span class="p">,</span> <span class="n">which_window</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
+<a class="headerlink" href="#xgbse.metrics.concordance_index" title="Permanent link">&para;</a></h3>
 
-      <a class="headerlink" href="#xgbse.metrics.concordance_index" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
-<p>Compute the C-index for a structured array of ground truth times and events
+    <div class="doc doc-contents ">
+
+      <p>Compute the C-index for a structured array of ground truth times and events
 and a predicted survival curve using different strategies for estimating risk from it.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -809,41 +821,37 @@ and a predicted survival curve using different strategies for estimating risk fr
 <li>Computation of the C-index is <span class="arithmatex">\(\mathcal{O}(n^2)\)</span>.</li>
 </ul>
 </div>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>y_true</code></td>
-<td><code>structured array(numpy.bool_, numpy.number</code></td>
-<td>
-<p>Binary event indicator as first field,
-and time of event or time of censoring as second field.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>survival</code></td>
-<td><code>[pd.DataFrame, np.array]</code></td>
-<td>
-<p>A dataframe of survival probabilities
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>y_true</code></td>
+        <td><code>structured array(numpy.bool_, numpy.number</code></td>
+        <td><p>Binary event indicator as first field,
+and time of event or time of censoring as second field.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>survival</code></td>
+        <td><code>[pd.DataFrame, np.array]</code></td>
+        <td><p>A dataframe of survival probabilities
 for all times (columns), from a time_bins array, for all samples of X (rows).
-If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>risk_strategy</code></td>
-<td><code>string</code></td>
-<td>
-<p>Strategy to compute risks from the survival curve. For a given sample:</p>
+If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>risk_strategy</code></td>
+        <td><code>string</code></td>
+        <td><p>Strategy to compute risks from the survival curve. For a given sample:</p>
 <ul>
 <li>
 <p><code>mean</code> averages probabilities across all times</p>
@@ -860,92 +868,89 @@ If risk_strategy is 'precomputed', is an array with representing risks for each 
 <p><code>precomputed</code>: assumes user has already calculated risk.
     The survival argument is assumed to contain an array of risks instead</p>
 </li>
-</ul>
-</td>
-<td><code>'mean'</code></td>
-</tr>
-<tr>
-<td><code>which_window</code></td>
-<td><code>object</code></td>
-<td>
-<p>Which window to use when risk_strategy is 'window'. Should be one
-of the columns of the dataframe. Will raise ValueError if column is not present</p>
-</td>
-<td><code>None</code></td>
-</tr>
-</tbody>
+</ul></td>
+        <td><code>&#39;mean&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>which_window</code></td>
+        <td><code>object</code></td>
+        <td><p>Which window to use when risk_strategy is 'window'. Should be one
+of the columns of the dataframe. Will raise ValueError if column is not present</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Float</code></td>
-<td>
-<p>Concordance index for y_true and survival</p>
-</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Float</code></td>
+      <td><p>Concordance index for y_true and survival</p></td>
+    </tr>
+  </tbody>
 </table>
-</div>
-</div>
-<div class="doc doc-object doc-function">
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h3 class="doc doc-heading" id="xgbse.metrics.dist_calibration_score">
+<code class="highlight language-python">dist_calibration_score(y_true, survival, n_bins=10, returns='pval')</code>
 
-<code class="highlight language-python"><span class="n">dist_calibration_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">survival</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">returns</span><span class="o">=</span><span class="s1">'pval'</span><span class="p">)</span></code>
 
+<a class="headerlink" href="#xgbse.metrics.dist_calibration_score" title="Permanent link">&para;</a></h3>
 
-      <a class="headerlink" href="#xgbse.metrics.dist_calibration_score" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
-<p>Estimate D-Calibration for the survival predictions.</p>
+    <div class="doc doc-contents ">
+
+      <p>Estimate D-Calibration for the survival predictions.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>y_true</code></td>
-<td><code>structured array(numpy.bool_, numpy.number</code></td>
-<td>
-<p>Binary event indicator as first field,
-and time of event or time of censoring as second field.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>survival</code></td>
-<td><code>[pd.DataFrame, np.array]</code></td>
-<td>
-<p>A dataframe of survival probabilities
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>y_true</code></td>
+        <td><code>structured array(numpy.bool_, numpy.number</code></td>
+        <td><p>Binary event indicator as first field,
+and time of event or time of censoring as second field.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>survival</code></td>
+        <td><code>[pd.DataFrame, np.array]</code></td>
+        <td><p>A dataframe of survival probabilities
 for all times (columns), from a time_bins array, for all samples of X (rows).
-If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>n_bins</code></td>
-<td><code>Int</code></td>
-<td>
-<p>Number of bins to equally divide the [0, 1] interval</p>
-</td>
-<td><code>10</code></td>
-</tr>
-<tr>
-<td><code>returns</code></td>
-<td><code>string</code></td>
-<td>
-<p>What information to return from the function:</p>
+If risk_strategy is 'precomputed', is an array with representing risks for each sample.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>n_bins</code></td>
+        <td><code>Int</code></td>
+        <td><p>Number of bins to equally divide the [0, 1] interval</p></td>
+        <td><code>10</code></td>
+      </tr>
+      <tr>
+        <td><code>returns</code></td>
+        <td><code>string</code></td>
+        <td><p>What information to return from the function:</p>
 <ul>
 <li>
 <p><code>statistic</code> returns the chi squared test statistic</p>
@@ -964,38 +969,44 @@ where <code>expected_percentage = 1.0/n_bins</code></p>
 <li>
 <p><code>all</code> returns all of the above in a dictionary</p>
 </li>
-</ul>
-</td>
-<td><code>'pval'</code></td>
-</tr>
-</tbody>
+</ul></td>
+        <td><code>&#39;pval&#39;</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>[Float, np.array, Dict]</code></td>
-<td>
-<ul>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>[Float, np.array, Dict]</code></td>
+      <td><ul>
 <li>Single value if returns is in `['statistic','pval','max_deviation']``</li>
 <li>np.array if returns is 'histogram'</li>
 <li>dict if returns is 'all'</li>
-</ul>
-</td>
-</tr>
-</tbody>
+</ul></td>
+    </tr>
+  </tbody>
 </table>
-</div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
                   
                 
@@ -1054,6 +1065,7 @@ where <code>expected_percentage = 1.0/n_bins</code></p>
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -1064,10 +1076,10 @@ where <code>expected_percentage = 1.0/n_bins</code></p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.f5903571.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4e3fea51.min.js"></script>
+      <script src="../assets/javascripts/bundle.a1c7c35e.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
       

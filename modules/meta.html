@@ -13,8 +13,8 @@
         <meta name="author" content="Loft Data Science Team">
       
       
-      <link rel="shortcut icon" href="../img/loft_icon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.1">
+      <link rel="icon" href="../img/loft_icon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2c0c5eaf.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -39,6 +39,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
@@ -75,13 +77,9 @@
       
     </div>
     
-      
-
-  
-
-<header class="md-header" data-md-component="header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-header__button md-logo" aria-label="XGBoost Survival Embeddings">
+    <a href=".." title="XGBoost Survival Embeddings" class="md-header__button md-logo" aria-label="XGBoost Survival Embeddings" data-md-component="logo">
       
   <img src="../img/loft_icon.png" alt="logo">
 
@@ -279,13 +277,9 @@
   
 
 
-
-  
-
-
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+    <a href=".." title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings" data-md-component="logo">
       
   <img src="../img/loft_icon.png" alt="logo">
 
@@ -393,7 +387,6 @@
           Modules
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -592,7 +585,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
   
   
@@ -710,210 +702,235 @@
                 
                 
                 <h1 id="xgbse_metaxgbsebootstrapestimator">xgbse._meta.XGBSEBootstrapEstimator<a class="headerlink" href="#xgbse_metaxgbsebootstrapestimator" title="Permanent link">&para;</a></h1>
-<div class="doc doc-object doc-class">
-<h3 class="hidden-toc" id="xgbse._meta.XGBSEBootstrapEstimator" style="visibility: hidden; position: absolute;">
-        <a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents first">
-<p>Bootstrap meta-estimator for XGBSE models:</p>
+
+
+  <div class="doc doc-object doc-class">
+
+<a id="xgbse._meta.XGBSEBootstrapEstimator"></a>
+    <div class="doc doc-contents first">
+
+      <p>Bootstrap meta-estimator for XGBSE models:</p>
 <ul>
 <li>allows for confidence interval estimation for <code>XGBSEDebiasedBCE</code> and <code>XGBSEStackedWeibull</code></li>
 <li>provides variance stabilization for all models, specially for <code>XGBSEKaplanTree</code></li>
 </ul>
 <p>Performs simple bootstrap with sample size equal to training set size.</p>
-<div class="doc doc-children">
-<div class="doc doc-object doc-method">
-<h3 class="doc doc-heading" id="xgbse._meta.XGBSEBootstrapEstimator.__init__">
 
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_estimator</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span></code>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 class="doc doc-heading" id="xgbse._meta.XGBSEBootstrapEstimator.__init__">
+<code class="highlight language-python">__init__(self, base_estimator, n_estimators=10, random_state=42)</code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
   </span>
 
-      <a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator.__init__" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
+<a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator.__init__" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>base_estimator</code></td>
-<td><code>XGBSEBaseEstimator</code></td>
-<td>
-<p>Base estimator for bootstrap procedure</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>n_estimators</code></td>
-<td><code>int</code></td>
-<td>
-<p>Number of estimators to fit in bootstrap procedure</p>
-</td>
-<td><code>10</code></td>
-</tr>
-<tr>
-<td><code>random_state</code></td>
-<td><code>int</code></td>
-<td>
-<p>Random state for resampling function</p>
-</td>
-<td><code>42</code></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>base_estimator</code></td>
+        <td><code>XGBSEBaseEstimator</code></td>
+        <td><p>Base estimator for bootstrap procedure</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>n_estimators</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of estimators to fit in bootstrap procedure</p></td>
+        <td><code>10</code></td>
+      </tr>
+      <tr>
+        <td><code>random_state</code></td>
+        <td><code>int</code></td>
+        <td><p>Random state for resampling function</p></td>
+        <td><code>42</code></td>
+      </tr>
+  </tbody>
 </table>
-</div>
-</div>
-<div class="doc doc-object doc-method">
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 class="doc doc-heading" id="xgbse._meta.XGBSEBootstrapEstimator.fit">
+<code class="highlight language-python">fit(self, X, y, **kwargs)</code>
 
-<code class="highlight language-python"><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
+<a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator.fit" title="Permanent link">&para;</a></h3>
 
-      <a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator.fit" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
-<p>Fit several (base) estimators and store them.</p>
+    <div class="doc doc-contents ">
+
+      <p>Fit several (base) estimators and store them.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>X</code></td>
-<td><code>[pd.DataFrame, np.array]</code></td>
-<td>
-<p>Features to be used while fitting
-XGBoost model</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>y</code></td>
-<td><code>structured array(numpy.bool_, numpy.number</code></td>
-<td>
-<p>Binary event indicator as first field,
-and time of event or time of censoring as second field.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>**kwargs</code></td>
-<td><code></code></td>
-<td>
-<p>Keyword arguments to be passed to .fit() method of base_estimator</p>
-</td>
-<td><code>{}</code></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>X</code></td>
+        <td><code>[pd.DataFrame, np.array]</code></td>
+        <td><p>Features to be used while fitting
+XGBoost model</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>y</code></td>
+        <td><code>structured array(numpy.bool_, numpy.number</code></td>
+        <td><p>Binary event indicator as first field,
+and time of event or time of censoring as second field.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td><code></code></td>
+        <td><p>Keyword arguments to be passed to .fit() method of base_estimator</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>XGBSEBootstrapEstimator</code></td>
-<td>
-<p>Trained instance of XGBSEBootstrapEstimator</p>
-</td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>XGBSEBootstrapEstimator</code></td>
+      <td><p>Trained instance of XGBSEBootstrapEstimator</p></td>
+    </tr>
+  </tbody>
 </table>
-</div>
-</div>
-<div class="doc doc-object doc-method">
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 class="doc doc-heading" id="xgbse._meta.XGBSEBootstrapEstimator.predict">
+<code class="highlight language-python">predict(self, X, return_ci=False, ci_width=0.683, return_interval_probs=False)</code>
 
-<code class="highlight language-python"><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">return_ci</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ci_width</span><span class="o">=</span><span class="mf">0.683</span><span class="p">,</span> <span class="n">return_interval_probs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
+<a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator.predict" title="Permanent link">&para;</a></h3>
 
-      <a class="headerlink" href="#xgbse._meta.XGBSEBootstrapEstimator.predict" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
-<p>Predicts survival as given by the base estimator. A survival function, its upper and lower
+    <div class="doc doc-contents ">
+
+      <p>Predicts survival as given by the base estimator. A survival function, its upper and lower
 confidence intervals can be returned for each sample of the dataframe X.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>X</code></td>
-<td><code>pd.DataFrame</code></td>
-<td>
-<p>data frame with samples to generate predictions</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>return_ci</code></td>
-<td><code>Bool</code></td>
-<td>
-<p>whether to include confidence intervals</p>
-</td>
-<td><code>False</code></td>
-</tr>
-<tr>
-<td><code>ci_width</code></td>
-<td><code>Float</code></td>
-<td>
-<p>width of confidence interval</p>
-</td>
-<td><code>0.683</code></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>X</code></td>
+        <td><code>pd.DataFrame</code></td>
+        <td><p>data frame with samples to generate predictions</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>return_ci</code></td>
+        <td><code>Bool</code></td>
+        <td><p>whether to include confidence intervals</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>ci_width</code></td>
+        <td><code>Float</code></td>
+        <td><p>width of confidence interval</p></td>
+        <td><code>0.683</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>([(pd.DataFrame, np.array, np.array), pd.DataFrame])</code></td>
-<td>
-<p>preds_df: A dataframe of survival probabilities
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>([(pd.DataFrame, np.array, np.array), pd.DataFrame])</code></td>
+      <td><p>preds_df: A dataframe of survival probabilities
 for all times (columns), from a time_bins array, for all samples of X
 (rows). If return_interval_probs is True, the interval probabilities are returned
 instead of the cumulative survival probabilities.</p>
 <p>upper_ci: Upper confidence interval for the survival
     probability values</p>
 <p>lower_ci: Lower confidence interval for the survival
-    probability values</p>
-</td>
-</tr>
-</tbody>
+    probability values</p></td>
+    </tr>
+  </tbody>
 </table>
-</div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
                   
                 
@@ -972,6 +989,7 @@ instead of the cumulative survival probabilities.</p>
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -982,10 +1000,10 @@ instead of the cumulative survival probabilities.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.f5903571.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4e3fea51.min.js"></script>
+      <script src="../assets/javascripts/bundle.a1c7c35e.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
       

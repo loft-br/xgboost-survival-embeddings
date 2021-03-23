@@ -13,8 +13,8 @@
         <meta name="author" content="Loft Data Science Team">
       
       
-      <link rel="shortcut icon" href="../img/loft_icon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.1">
+      <link rel="icon" href="../img/loft_icon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.6">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.1655a90d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2c0c5eaf.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
@@ -39,6 +39,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
@@ -75,13 +77,9 @@
       
     </div>
     
-      
-
-  
-
-<header class="md-header" data-md-component="header">
+      <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-header__button md-logo" aria-label="XGBoost Survival Embeddings">
+    <a href=".." title="XGBoost Survival Embeddings" class="md-header__button md-logo" aria-label="XGBoost Survival Embeddings" data-md-component="logo">
       
   <img src="../img/loft_icon.png" alt="logo">
 
@@ -279,13 +277,9 @@
   
 
 
-
-  
-
-
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings">
+    <a href=".." title="XGBoost Survival Embeddings" class="md-nav__button md-logo" aria-label="XGBoost Survival Embeddings" data-md-component="logo">
       
   <img src="../img/loft_icon.png" alt="logo">
 
@@ -393,7 +387,6 @@
           Modules
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
           
             
   
@@ -578,7 +571,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-          
             
   
   
@@ -682,97 +674,117 @@
                 
                 
                 <h1 id="xgbse_basexgbsebaseestimator">xgbse._base.XGBSEBaseEstimator<a class="headerlink" href="#xgbse_basexgbsebaseestimator" title="Permanent link">&para;</a></h1>
-<div class="doc doc-object doc-class">
-<h3 class="hidden-toc" id="xgbse._base.XGBSEBaseEstimator" style="visibility: hidden; position: absolute;">
-        <a class="headerlink" href="#xgbse._base.XGBSEBaseEstimator" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents first">
-<p>Base class for all estimators in xgbse. Implements explainability through prototypes.</p>
-<div class="doc doc-children">
-<div class="doc doc-object doc-method">
+
+
+  <div class="doc doc-object doc-class">
+
+<a id="xgbse._base.XGBSEBaseEstimator"></a>
+    <div class="doc doc-contents first">
+
+      <p>Base class for all estimators in xgbse. Implements explainability through prototypes.</p>
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 class="doc doc-heading" id="xgbse._base.XGBSEBaseEstimator.get_neighbors">
+<code class="highlight language-python">get_neighbors(self, query_data, index_data=None, query_id=None, index_id=None, n_neighbors=30)</code>
 
-<code class="highlight language-python"><span class="n">get_neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_data</span><span class="p">,</span> <span class="n">index_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span></code>
 
+<a class="headerlink" href="#xgbse._base.XGBSEBaseEstimator.get_neighbors" title="Permanent link">&para;</a></h3>
 
-      <a class="headerlink" href="#xgbse._base.XGBSEBaseEstimator.get_neighbors" title="Permanent link">&para;</a></h3>
-<div class="doc doc-contents ">
-<p>Search for portotypes (size: n_neighbors) for each unit in a
+    <div class="doc doc-contents ">
+
+      <p>Search for portotypes (size: n_neighbors) for each unit in a
 dataframe X. If units array is specified, comparables will be returned using
 its identifiers. If not, a dataframe of comparables indexes for each sample
 in X is returned.</p>
+
 <p><strong>Parameters:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>query_data</code></td>
-<td><code>pd.DataFrame</code></td>
-<td>
-<p>Dataframe of features to be used as input</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>query_id</code></td>
-<td><code>[pd.Series, np.array]</code></td>
-<td>
-<p>Series or array of identification for each sample of query_data.
-Will be used in set_index if specified.</p>
-</td>
-<td><code>None</code></td>
-</tr>
-<tr>
-<td><code>index_id</code></td>
-<td><code>[pd.Series, np.array]</code></td>
-<td>
-<p>Series or array of identification for each sample of index_id.
-If specified, comparables will be returned using this identifier.</p>
-</td>
-<td><code>None</code></td>
-</tr>
-<tr>
-<td><code>n_neighbors</code></td>
-<td><code>int</code></td>
-<td>
-<p>Number of neighbors/comparables to be considered.</p>
-</td>
-<td><code>30</code></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>query_data</code></td>
+        <td><code>pd.DataFrame</code></td>
+        <td><p>Dataframe of features to be used as input</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>query_id</code></td>
+        <td><code>[pd.Series, np.array]</code></td>
+        <td><p>Series or array of identification for each sample of query_data.
+Will be used in set_index if specified.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>index_id</code></td>
+        <td><code>[pd.Series, np.array]</code></td>
+        <td><p>Series or array of identification for each sample of index_id.
+If specified, comparables will be returned using this identifier.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>n_neighbors</code></td>
+        <td><code>int</code></td>
+        <td><p>Number of neighbors/comparables to be considered.</p></td>
+        <td><code>30</code></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Returns:</strong></p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>comps_df (pd.DataFrame)</code></td>
-<td>
-<p>A dataframe of comparables/neighbors for each
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>comps_df (pd.DataFrame)</code></td>
+      <td><p>A dataframe of comparables/neighbors for each
 evaluated sample. If units identifier is specified, the output dataframe
 is converted to use units the proper identifier for each sample. The
 reference sample is considered to be the index of the dataframe and
-its comparables are its specific row values.</p>
-</td>
-</tr>
-</tbody>
+its comparables are its specific row values.</p></td>
+    </tr>
+  </tbody>
 </table>
-</div>
-</div>
-</div>
-</div>
-</div>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
                 
                   
                 
@@ -831,6 +843,7 @@ its comparables are its specific row values.</p>
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
           Material for MkDocs
         </a>
+        
       </div>
       
     </div>
@@ -841,10 +854,10 @@ its comparables are its specific row values.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.f5903571.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4e3fea51.min.js"></script>
+      <script src="../assets/javascripts/bundle.a1c7c35e.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
       
