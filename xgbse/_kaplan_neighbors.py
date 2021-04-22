@@ -400,7 +400,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         # getting leaves
         leaves = self.bst.predict(
             dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
-        )
+        ).reshape(-1)
 
         # organizing elements per leaf
         leaf_neighs = (
@@ -470,7 +470,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         # getting leaves and extracting neighbors
         leaves = self.bst.predict(
             d_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
-        )
+        ).reshape(-1)
 
         # searching for kaplan meier curves in leaves
         preds_df = self._train_survival.loc[leaves].reset_index(drop=True)
