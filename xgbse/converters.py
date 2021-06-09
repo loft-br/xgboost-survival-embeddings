@@ -112,3 +112,16 @@ def build_xgb_cox_dmatrix(X, T, E):
     target = np.where(E, T, -T)
 
     return xgb.DMatrix(X, label=target)
+
+
+def to_survival(interval):
+    """Convert hazards (interval probabilities of event) into survival curve
+
+    Args:
+        interval ([pd.DataFrame, np.array]): hazards (interval probabilities of event)
+        usually result of predict or  result from _get_point_probs_from_survival
+
+    Returns:
+        [pd.DataFrame, np.array]: survival curve
+    """
+    return (1 - interval).cumprod(axis=1)

@@ -42,9 +42,11 @@ xgbse_model.fit(
 )
 
 preds = xgbse_model.predict(X_test)
+interval = 10
+final_time = max(time_bins) + 1000
 n_windows = 100
-final_time = max(T_train) + 1000
-preds_ext = extrapolate_constant_risk(preds, final_time=final_time, n_windows=n_windows)
+
+preds_ext = extrapolate_constant_risk(preds, final_time=final_time, intervals=interval)
 
 
 def extrapolation_shape():

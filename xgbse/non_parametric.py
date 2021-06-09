@@ -126,10 +126,7 @@ def calculate_survival_func(E_sorted):
     # product argument for surivial
     survival_prod_arg = 1 - (E_sorted / at_risk)
 
-    # cumulative product of argument is the survival function
-    survival_func = np.cumprod(survival_prod_arg, axis=1)
-
-    return survival_func
+    return np.cumprod(survival_prod_arg, axis=1)
 
 
 def calculate_confidence_intervals(E_sorted, survival_func, z):

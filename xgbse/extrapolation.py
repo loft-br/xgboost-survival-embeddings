@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 from xgbse.non_parametric import _get_conditional_probs_from_survival
+from xgbse.converters import to_survival
 
 
-def extrapolate_constant_risk(survival, final_time, n_windows, lags=-1):
+def extrapolate_constant_risk(survival, final_time, intervals, lags=-1):
     """
     Extrapolate a survival curve assuming constant risk.
 
@@ -13,7 +14,7 @@ def extrapolate_constant_risk(survival, final_time, n_windows, lags=-1):
 
         final_time (Float): Final time for extrapolation
 
-        n_windows (Int): Number of time windows to compute from last time window in survival to final_time
+        intervals (Int): Time in each interval between last time in survival dataframe and final time
 
         lags (Int): Lags to compute constant risk.
             if negative, will use the last "lags" values
@@ -24,28 +25,23 @@ def extrapolate_constant_risk(survival, final_time, n_windows, lags=-1):
         pd.DataFrame: Survival dataset with appended extrapolated windows
     """
 
-    # calculating conditionals and risk at each time window
-    conditionals = _get_conditional_probs_from_survival(survival)
-    window_risk = 1 - conditionals
-
-    # calculating window sizes
-    time_bins = window_risk.columns.to_series()
-    window_sizes = time_bins - time_bins.shift(1).fillna(0)
-
-    # using window sizes to calculate risk per unit time and average risk
-    risk_per_unit_time = np.power(window_risk, 1 / window_sizes)
-    average_risk = risk_per_unit_time.iloc[:, lags:].mean(axis=1)
-
-    # creating windows for extrapolation
     last_time = survival.columns[-1]
-    extrap_windows = np.linspace(last_time, final_time, n_windows) - last_time
+    # creating windows for extrapolation
+    # here we sum intervals in times to exclude the last time, that already is in surv dataframe and
+    #  to include final time in resulting dataframe
+    extrap_windows = np.arange(last_time + intervals, final_time + intervals, intervals)
 
-    # loop for extrapolated windows
-    for delta_t in extrap_windows:
+    # calculating conditionals and hazard at each time window
+    hazards = _get_conditional_probs_from_survival(survival)
 
-        # running constant risk extrapolation
-        extrap_survival = np.power(average_risk, delta_t) * survival.iloc[:, -1]
-        extrap_survival = pd.Series(extrap_survival, name=last_time + delta_t)
-        survival = pd.concat([survival, extrap_survival], axis=1)
+    # calculating avg hazard for desired lags
+    constant_haz = hazards.values[:, lags:].mean(axis=1).reshape(-1, 1)
 
-    return survival
+    # repeat hazard for n_windows required
+    constant_haz = np.tile(constant_haz, len(extrap_windows))
+
+    constant_haz = pd.DataFrame(constant_haz, columns=extrap_windows)
+
+    hazards = pd.concat([hazards, constant_haz], axis=1)
+
+    return to_survival(hazards)
