@@ -114,7 +114,7 @@ def build_xgb_cox_dmatrix(X, T, E):
     return xgb.DMatrix(X, label=target)
 
 
-def to_survival(interval):
+def hazard_to_survival(interval):
     """Convert hazards (interval probabilities of event) into survival curve
 
     Args:

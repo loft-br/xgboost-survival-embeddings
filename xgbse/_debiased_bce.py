@@ -9,7 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 # lib utils
 from xgbse._base import XGBSEBaseEstimator, DummyLogisticRegression
-from xgbse.converters import convert_data_to_xgb_format, convert_y, to_survival
+from xgbse.converters import convert_data_to_xgb_format, convert_y, hazard_to_survival
 
 # at which percentiles will the KM predict
 from xgbse.non_parametric import get_time_bins, calculate_interval_failures
@@ -346,7 +346,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
         # converting these interval predictions
         # to cumulative survival curve
-        return to_survival(preds)
+        return hazard_to_survival(preds)
 
     def predict(self, X, return_interval_probs=False):
         """

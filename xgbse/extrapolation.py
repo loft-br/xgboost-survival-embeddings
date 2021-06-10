@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 from xgbse.non_parametric import _get_conditional_probs_from_survival
-from xgbse.converters import to_survival
+from xgbse.converters import hazard_to_survival
 
 
 def extrapolate_constant_risk(survival, final_time, intervals, lags=-1):
@@ -44,4 +44,4 @@ def extrapolate_constant_risk(survival, final_time, intervals, lags=-1):
 
     hazards = pd.concat([hazards, constant_haz], axis=1)
 
-    return to_survival(hazards)
+    return hazard_to_survival(hazards)

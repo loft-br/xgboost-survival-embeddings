@@ -217,7 +217,7 @@ from xgbse.extrapolation import extrapolate_constant_risk
 survival = bootstrap_estimator.predict(X_valid)
 
 # extrapolating
-survival_ext = extrapolate_constant_risk(survival, 450, 11)
+survival_ext = extrapolate_constant_risk(survival, 450, 15)
 ```
 
 <img src="img/extrapolation.png">
