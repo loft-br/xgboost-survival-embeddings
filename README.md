@@ -217,7 +217,7 @@ from xgbse.extrapolation import extrapolate_constant_risk
 survival = bootstrap_estimator.predict(X_valid)
 
 # extrapolating
-survival_ext = extrapolate_constant_risk(survival, 450, 11)
+survival_ext = extrapolate_constant_risk(survival, 450, 15)
 ```
 
 <img src="img/extrapolation.png">
@@ -407,7 +407,7 @@ To cite this repository:
   author = {Davi Vieira and Gabriel Gimenez and Guilherme Marmerola and Vitor Estima},
   title = {XGBoost Survival Embeddings: improving statistical properties of XGBoost survival analysis implementation},
   url = {http://github.com/loft-br/xgboost-survival-embeddings},
-  version = {0.2.1},
+  version = {0.2.2},
   year = {2021},
 }
 ```

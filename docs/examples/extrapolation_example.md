@@ -383,7 +383,7 @@ Notice that this predicted survival curve does not end at zero (cure fraction du
 from xgbse.extrapolation import extrapolate_constant_risk
 
 # extrapolating predicted survival
-survival_ext = extrapolate_constant_risk(survival, 450, 11)
+survival_ext = extrapolate_constant_risk(survival, 450, 15)
 survival_ext.head()
 ```
 
