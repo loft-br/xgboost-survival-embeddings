@@ -176,7 +176,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
 
         # creating nearest neighbor index
         leaves = self.bst.predict(
-            dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
         )
 
         self.tree = BallTree(leaves, metric="hamming", leaf_size=40)
@@ -232,7 +232,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
 
         # getting leaves and extracting neighbors
         leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
         )
 
         if self.radius:
@@ -399,7 +399,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
 
         # getting leaves
         leaves = self.bst.predict(
-            dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
         )
 
         # organizing elements per leaf
@@ -469,7 +469,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
 
         # getting leaves and extracting neighbors
         leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
         )
 
         # searching for kaplan meier curves in leaves
