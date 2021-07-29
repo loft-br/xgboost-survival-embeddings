@@ -6,7 +6,7 @@ from ._stacked_weibull import XGBSEStackedWeibull
 from ._meta import XGBSEBootstrapEstimator
 
 
-__version__ = "0.2.2"
+__version__ = "0.2.3"
 
 __all__ = [
     "XGBSEDebiasedBCE",

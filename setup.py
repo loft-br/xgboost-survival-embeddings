@@ -1,7 +1,7 @@
 import setuptools
 
 install_requires = [
-    "xgboost>=1.2.0",
+    "xgboost>=1.4.0",
     "numpy>=1.18.4",
     "scikit-learn>=0.22.2",
     "pandas>=1.0.*",
@@ -34,7 +34,7 @@ with open("docs/index.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="xgbse",
-    version="0.2.2",
+    version="0.2.3",
     author="Loft Data Science Team",
     author_email="bandits@loft.com.br",
     description="Improving XGBoost survival analysis with embeddings and debiased estimators",
