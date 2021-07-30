@@ -229,7 +229,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
         leaves = self.bst.predict(
-            dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
         )
         leaves_encoded = self.encoder.fit_transform(leaves)
 
@@ -247,7 +247,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
                 index_id = X.index.copy()
 
             index_leaves = self.bst.predict(
-                dtrain, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+                dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
             )
             self.tree = BallTree(index_leaves, metric="hamming")
 
@@ -372,7 +372,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
         # getting leaves and extracting neighbors
         leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, ntree_limit=self.bst.best_ntree_limit
+            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
         )
         leaves_encoded = self.encoder.transform(leaves)
 
