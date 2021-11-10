@@ -172,7 +172,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
 
         # predicting risk from XGBoost
         train_risk = self.bst.predict(
-            dtrain, iteration_range=(0, self.bst.best_iteration)
+            dtrain, iteration_range=(0, self.bst.best_iteration + 1)
         )
 
         # replacing 0 by minimum positive value in df
@@ -195,7 +195,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
                 index_id = X.index.copy()
 
             index_leaves = self.bst.predict(
-                dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
+                dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
             )
             self.tree = BallTree(index_leaves, metric="hamming")
 
@@ -226,7 +226,9 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         d_matrix = xgb.DMatrix(X)
 
         # getting leaves and extracting neighbors
-        risk = self.bst.predict(d_matrix, iteration_range=(0, self.bst.best_iteration))
+        risk = self.bst.predict(
+            d_matrix, iteration_range=(0, self.bst.best_iteration + 1)
+        )
         weibull_score_df = pd.DataFrame({"risk": risk})
 
         # predicting from logistic regression artifacts
