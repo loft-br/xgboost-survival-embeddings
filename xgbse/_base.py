@@ -61,7 +61,7 @@ class XGBSEBaseEstimator(BaseEstimator):
             index_leaves = self.bst.predict(
                 index_matrix,
                 pred_leaf=True,
-                iteration_range=(0, self.bst.best_iteration),
+                iteration_range=(0, self.bst.best_iteration + 1),
             )
 
             if len(index_leaves.shape) == 1:
@@ -70,7 +70,9 @@ class XGBSEBaseEstimator(BaseEstimator):
 
         query_matrix = xgb.DMatrix(query_data)
         query_leaves = self.bst.predict(
-            query_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration)
+            query_matrix,
+            pred_leaf=True,
+            iteration_range=(0, self.bst.best_iteration + 1),
         )
 
         if len(query_leaves.shape) == 1:
