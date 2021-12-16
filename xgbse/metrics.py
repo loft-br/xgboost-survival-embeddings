@@ -297,7 +297,7 @@ def dist_calibration_score(y_true, survival, n_bins=10, returns="pval"):
 
     elif returns == "all":
         result = chisquare(final_bin_counts)
-        proportions = final_bin_counts / final_bin_counts.mean()
+        proportions = final_bin_counts / final_bin_counts.sum()
         max_deviation = np.abs(proportions - 1/n_bins).max()
         return {
             "statistic": result.statistic,
