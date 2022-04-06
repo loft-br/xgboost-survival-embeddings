@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: xgboost-survival-embeddings
+  description: A description about this project
+spec:
+  type: unknown
+  owner: group:squad-datax
+  lifecycle: production
