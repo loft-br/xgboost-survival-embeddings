@@ -80,6 +80,54 @@ def _build_multi_task_targets(E, T, time_bins):
     return shifted_array, time_bins
 
 
+def _assert_xgb_pre_fitted_model(pre_fitted_xgb_model, X_train):
+    """
+    Asserts a pre-trained XGBoost model (using objective survival:aft or survival:cox) 
+    is passed to XGBDebiasedBCE in pre_trained_xgb argument.
+    Two tests are performed: assert model XGBoost Booster type and pre-trained model
+    predict capability.
+
+    Args:
+        pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with 
+        [pre-trained XGBoost model, dict of pre-trained model parameters 'survival:aft' or 'survival:cox']
+        X_train ([pd.DataFrame, np.ndarray]): training data use to fit BCE posterior model
+    
+    Returns:
+        pre_fitted_xgb_model (xgb.core.Booster): verified pre-trained model
+    """
+    
+    assert isinstance(pre_fitted_xgb_model[0], xgb.core.Booster), """
+    Pre-trained model must be an XGBoost trained using either
+    survival:aft or survival:cox objective parameters
+    """
+    assert pre_fitted_xgb_model[1]['objective'] in ['survival:aft', 'survival:cox'], """
+    Pre-trained model must be an XGBoost trained using either
+    survival:aft or survival:cox objective parameters
+    """
+
+    pre_fitted_xgb_model[0].set_param({"objective": pre_fitted_xgb_model[1]['objective']})
+    
+    if isinstance(X_train, pd.DataFrame):
+        sample = xgb.DMatrix(X_train.sample(1))
+    elif isinstance(X_train, np.ndarray):
+        sample = xgb.DMatrix(
+            X_train[np.random.randint(X_train.shape[0], size=1), :],
+            feature_names=pre_fitted_xgb_model[0].feature_names
+        )
+    else:
+        raise ValueError("X_train must be either a pd.DataFrame or a np.ndarray")
+    try: 
+        pred = pre_fitted_xgb_model[0].predict(sample)
+        assert isinstance(pred, np.ndarray)
+    except: 
+        raise ValueError("""
+    Pre-trained model must be an XGBoost trained using
+    survival:aft or survival:cox parameters
+    """)  
+
+    return pre_fitted_xgb_model  
+
+
 # class to fit a BCE on the leaves of a XGB
 class XGBSEDebiasedBCE(XGBSEBaseEstimator):
     """
@@ -150,6 +198,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         self.n_jobs = n_jobs
         self.persist_train = False
         self.feature_importances_ = None
+        self.used_pre_trained_xgb_model = False
 
     def fit(
         self,
@@ -162,6 +211,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         persist_train=False,
         index_id=None,
         time_bins=None,
+        pre_fitted_xgb_model=[None, None]
     ):
         """
         Transform feature space by fitting a XGBoost model and returning its leaf indices.
@@ -194,6 +244,8 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
             time_bins (np.array): Specified time windows to use when making survival predictions
 
+            pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with 
+        [pre-trained XGBoost model, dict of pre-trained model parameters 'survival:aft' or 'survival:cox']
 
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
@@ -203,6 +255,17 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         if time_bins is None:
             time_bins = get_time_bins(T_train, E_train)
         self.time_bins = time_bins
+
+        # If pre-trained model is passed, substitute models
+        if pre_fitted_xgb_model != [None, None]:
+            pre_fitted_xgb_model = _assert_xgb_pre_fitted_model(
+                pre_fitted_xgb_model, 
+                X
+            )
+            
+            self.used_pre_trained_xgb_model = True
+            self.xgb_params = pre_fitted_xgb_model[1]
+            self.bst = pre_fitted_xgb_model[0]
 
         # converting data to xgb format
         dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
@@ -215,16 +278,18 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
                 X_val, y_val, self.xgb_params["objective"]
             )
             evals = [(dvalid, "validation")]
+        
+        if not self.used_pre_trained_xgb_model:
+            # training XGB
+            self.bst = xgb.train(
+                self.xgb_params,
+                dtrain,
+                num_boost_round=num_boost_round,
+                early_stopping_rounds=early_stopping_rounds,
+                evals=evals,
+                verbose_eval=verbose_eval,
+            )
 
-        # training XGB
-        self.bst = xgb.train(
-            self.xgb_params,
-            dtrain,
-            num_boost_round=num_boost_round,
-            early_stopping_rounds=early_stopping_rounds,
-            evals=evals,
-            verbose_eval=verbose_eval,
-        )
         self.feature_importances_ = self.bst.get_score()
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
