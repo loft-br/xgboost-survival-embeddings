@@ -198,7 +198,8 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             time_bins (np.array): Specified time windows to use when making survival predictions
 
             pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with 
-        [pre-trained XGBoost model, dict of pre-trained model parameters 'survival:aft' or 'survival:cox']
+                [pre-trained XGBoost model, dict of pre-trained model parameters with 
+                'survival:aft' or 'survival:cox' as objective parameter]
 
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance

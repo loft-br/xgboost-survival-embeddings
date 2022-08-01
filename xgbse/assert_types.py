@@ -12,11 +12,14 @@ def _assert_xgb_pre_fitted_model(pre_fitted_xgb_model, X_train):
 
     Args:
         pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with 
-        [pre-trained XGBoost model, dict of pre-trained model parameters 'survival:aft' or 'survival:cox']
+                [pre-trained XGBoost model, dict of pre-trained model parameters with 
+                'survival:aft' or 'survival:cox' as objective parameter]
         X_train ([pd.DataFrame, np.ndarray]): training data use to fit BCE posterior model
     
     Returns:
-        pre_fitted_xgb_model (xgb.core.Booster): verified pre-trained model
+        pre_fitted_xgb_model (xgb.core.Booster): a list with 
+                [verified pre-trained XGBoost model, dict of pre-trained model parameters with 
+                'survival:aft' or 'survival:cox' as objective parameter]
     """
     
     assert isinstance(pre_fitted_xgb_model[0], xgb.core.Booster), """
