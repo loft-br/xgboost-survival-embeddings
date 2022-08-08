@@ -10,6 +10,7 @@ from sklearn.preprocessing import OneHotEncoder
 # lib utils
 from xgbse._base import XGBSEBaseEstimator, DummyLogisticRegression
 from xgbse.converters import convert_data_to_xgb_format, convert_y, hazard_to_survival
+from xgbse.assert_types import _assert_xgb_pre_fitted_model
 
 # at which percentiles will the KM predict
 from xgbse.non_parametric import get_time_bins, calculate_interval_failures
@@ -150,6 +151,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         self.n_jobs = n_jobs
         self.persist_train = False
         self.feature_importances_ = None
+        self.used_pre_trained_xgb_model = False
 
     def fit(
         self,
@@ -162,6 +164,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         persist_train=False,
         index_id=None,
         time_bins=None,
+        pre_fitted_xgb_model=[None, None],
     ):
         """
         Transform feature space by fitting a XGBoost model and returning its leaf indices.
@@ -194,6 +197,9 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
             time_bins (np.array): Specified time windows to use when making survival predictions
 
+            pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with
+                [pre-trained XGBoost model, dict of pre-trained model parameters with
+                'survival:aft' or 'survival:cox' as objective parameter]
 
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
@@ -203,6 +209,14 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         if time_bins is None:
             time_bins = get_time_bins(T_train, E_train)
         self.time_bins = time_bins
+
+        # If pre-trained model is passed, substitute models
+        if pre_fitted_xgb_model != [None, None]:
+            pre_fitted_xgb_model = _assert_xgb_pre_fitted_model(pre_fitted_xgb_model, X)
+
+            self.used_pre_trained_xgb_model = True
+            self.xgb_params = pre_fitted_xgb_model[1]
+            self.bst = pre_fitted_xgb_model[0]
 
         # converting data to xgb format
         dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
@@ -216,15 +230,17 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             )
             evals = [(dvalid, "validation")]
 
-        # training XGB
-        self.bst = xgb.train(
-            self.xgb_params,
-            dtrain,
-            num_boost_round=num_boost_round,
-            early_stopping_rounds=early_stopping_rounds,
-            evals=evals,
-            verbose_eval=verbose_eval,
-        )
+        if not self.used_pre_trained_xgb_model:
+            # training XGB
+            self.bst = xgb.train(
+                self.xgb_params,
+                dtrain,
+                num_boost_round=num_boost_round,
+                early_stopping_rounds=early_stopping_rounds,
+                evals=evals,
+                verbose_eval=verbose_eval,
+            )
+
         self.feature_importances_ = self.bst.get_score()
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
