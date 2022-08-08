@@ -164,7 +164,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         persist_train=False,
         index_id=None,
         time_bins=None,
-        pre_fitted_xgb_model=[None, None]
+        pre_fitted_xgb_model=[None, None],
     ):
         """
         Transform feature space by fitting a XGBoost model and returning its leaf indices.
@@ -197,8 +197,8 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
             time_bins (np.array): Specified time windows to use when making survival predictions
 
-            pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with 
-                [pre-trained XGBoost model, dict of pre-trained model parameters with 
+            pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with
+                [pre-trained XGBoost model, dict of pre-trained model parameters with
                 'survival:aft' or 'survival:cox' as objective parameter]
 
         Returns:
@@ -212,11 +212,8 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
         # If pre-trained model is passed, substitute models
         if pre_fitted_xgb_model != [None, None]:
-            pre_fitted_xgb_model = _assert_xgb_pre_fitted_model(
-                pre_fitted_xgb_model, 
-                X
-            )
-            
+            pre_fitted_xgb_model = _assert_xgb_pre_fitted_model(pre_fitted_xgb_model, X)
+
             self.used_pre_trained_xgb_model = True
             self.xgb_params = pre_fitted_xgb_model[1]
             self.bst = pre_fitted_xgb_model[0]
@@ -232,7 +229,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
                 X_val, y_val, self.xgb_params["objective"]
             )
             evals = [(dvalid, "validation")]
-        
+
         if not self.used_pre_trained_xgb_model:
             # training XGB
             self.bst = xgb.train(
