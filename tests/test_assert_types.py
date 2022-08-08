@@ -58,10 +58,10 @@ OTHER_XGB_PARAMS = {
     "objective": "mse",
 }
 
-num_boost_round=200
-validation_data=None
-early_stopping_rounds=None
-verbose_eval=0
+num_boost_round = 200
+validation_data = None
+early_stopping_rounds = None
+verbose_eval = 0
 time_bins = None
 
 
@@ -81,44 +81,49 @@ def pre_train_xgb(params):
 
     return bst
 
+
 xgb_cox = pre_train_xgb(XGB_COX_DEFAULT_PARAMS)
 xgb_aft = pre_train_xgb(XGB_AFT_DEFAULT_PARAMS)
 
 
-def assert_different_fitted_models(preds_with_pre_fitted_model, preds_without_pre_fitted_model):
+def assert_different_fitted_models(
+    preds_with_pre_fitted_model, preds_without_pre_fitted_model
+):
     assert ((preds_with_pre_fitted_model != preds_without_pre_fitted_model).all()).all()
 
 
 @pytest.mark.parametrize(
-    "pre_trained_xgb_model,params,data", 
+    "pre_trained_xgb_model,params,data",
     [
-        (xgb_cox,XGB_COX_DEFAULT_PARAMS,X_train), 
-        (xgb_aft,XGB_AFT_DEFAULT_PARAMS,X_train),
+        (xgb_cox, XGB_COX_DEFAULT_PARAMS, X_train),
+        (xgb_aft, XGB_AFT_DEFAULT_PARAMS, X_train),
         pytest.param(xgb_cox, OTHER_XGB_PARAMS, X_train, marks=pytest.mark.xfail),
-        pytest.param(xgb_cox, XGB_COX_DEFAULT_PARAMS, some_data, marks=pytest.mark.xfail)
-    ]
+        pytest.param(
+            xgb_cox, XGB_COX_DEFAULT_PARAMS, some_data, marks=pytest.mark.xfail
+        ),
+    ],
 )
-def test_assert_valid_xgb_pre_fitted_model(pre_trained_xgb_model,params, data):
+def test_assert_valid_xgb_pre_fitted_model(pre_trained_xgb_model, params, data):
     """
     Test if the pre-trained model is a valid xgb cox or aft model and if the data is a pandas dataframe or numpy array
     """
-    assert _assert_xgb_pre_fitted_model([pre_trained_xgb_model, params], data) == [pre_trained_xgb_model, params]
+    assert _assert_xgb_pre_fitted_model([pre_trained_xgb_model, params], data) == [
+        pre_trained_xgb_model,
+        params,
+    ]
 
 
-
+@pytest.mark.parametrize("model", [XGBSEDebiasedBCE, XGBSEStackedWeibull])
 @pytest.mark.parametrize(
-    "model", [XGBSEDebiasedBCE, XGBSEStackedWeibull]
+    "pre_trained_xgb_model,params",
+    [(xgb_cox, XGB_COX_DEFAULT_PARAMS), (xgb_aft, XGB_AFT_DEFAULT_PARAMS)],
 )
-@pytest.mark.parametrize(
-    "pre_trained_xgb_model,params", 
-    [(xgb_cox,XGB_COX_DEFAULT_PARAMS), (xgb_aft,XGB_AFT_DEFAULT_PARAMS)]
-)
-def test_xgb_pre_fitted_model(model, pre_trained_xgb_model,params):
-    """"
+def test_xgb_pre_fitted_model(model, pre_trained_xgb_model, params):
+    """ "
     Test if the xgbse model using a pre-trained model is working as expected.
     Also test if the output is different from the model without a pre-trained model.
     """
-    
+
     xgbse_pre_fitted = model()
 
     xgbse_pre_fitted.fit(
@@ -128,11 +133,11 @@ def test_xgb_pre_fitted_model(model, pre_trained_xgb_model,params):
         validation_data=(X_valid, y_valid),
         early_stopping_rounds=10,
         verbose_eval=0,
-        pre_fitted_xgb_model=[pre_trained_xgb_model, params]
+        pre_fitted_xgb_model=[pre_trained_xgb_model, params],
     )
 
     xgbse_without_pre_fitted = model()
-    
+
     xgbse_without_pre_fitted.fit(
         X_train,
         y_train,
@@ -141,8 +146,8 @@ def test_xgb_pre_fitted_model(model, pre_trained_xgb_model,params):
         early_stopping_rounds=10,
         verbose_eval=0,
     )
-    
+
     preds_pre_fitted = xgbse_pre_fitted.predict(X_test)
     preds_without_pre_fitted = xgbse_without_pre_fitted.predict(X_test)
-    
+
     assert_different_fitted_models(preds_pre_fitted, preds_without_pre_fitted)
