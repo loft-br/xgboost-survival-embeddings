@@ -7,7 +7,6 @@ from tests.data import get_data
 from xgbse import XGBSEDebiasedBCE, XGBSEStackedWeibull
 from xgbse.assert_types import _assert_xgb_pre_fitted_model
 from xgbse.converters import convert_data_to_xgb_format
-from xgbse.metrics import concordance_index
 
 
 (
