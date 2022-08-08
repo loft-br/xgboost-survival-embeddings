@@ -52,7 +52,7 @@ def _assert_xgb_pre_fitted_model(pre_fitted_xgb_model, X_train):
     try:
         pred = pre_fitted_xgb_model[0].predict(sample)
         assert isinstance(pred, np.ndarray)
-    except:
+    except Exception:
         raise ValueError(
             """
     Pre-trained model must be an XGBoost trained using
