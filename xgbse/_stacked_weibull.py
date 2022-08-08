@@ -109,7 +109,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         persist_train=False,
         index_id=None,
         time_bins=None,
-        pre_fitted_xgb_model=[None, None]
+        pre_fitted_xgb_model=[None, None],
     ):
         """
         Fit XGBoost model to predict a value that is interpreted as a risk metric.
@@ -141,8 +141,8 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
 
             time_bins (np.array): Specified time windows to use when making survival predictions
 
-            pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with 
-                [pre-trained XGBoost model, dict of pre-trained model parameters with 
+            pre_fitted_xgb_model (list containing [xgb.core.Booster, dict]): a list with
+                [pre-trained XGBoost model, dict of pre-trained model parameters with
                 'survival:aft' or 'survival:cox' as objective parameter]
 
         Returns:
@@ -156,11 +156,8 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
 
         # If pre-trained model is passed, substitute models
         if pre_fitted_xgb_model != [None, None]:
-            pre_fitted_xgb_model = _assert_xgb_pre_fitted_model(
-                pre_fitted_xgb_model, 
-                X
-            )
-            
+            pre_fitted_xgb_model = _assert_xgb_pre_fitted_model(pre_fitted_xgb_model, X)
+
             self.used_pre_trained_xgb_model = True
             self.xgb_params = pre_fitted_xgb_model[1]
             self.bst = pre_fitted_xgb_model[0]
