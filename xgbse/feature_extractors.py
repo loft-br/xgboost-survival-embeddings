@@ -10,7 +10,6 @@ class FeatureExtractor:
     def __init__(
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
-        lr_params: Optional[Dict[str, Any]] = None,
         n_jobs: int = 1,
     ):
         """
@@ -28,7 +27,6 @@ class FeatureExtractor:
         xgb_params = check_xgboost_parameters(xgb_params)
 
         self.xgb_params = xgb_params
-        self.lr_params = lr_params
         self.n_jobs = n_jobs
         self.persist_train = False
         self.feature_importances_ = None
@@ -154,3 +152,4 @@ def check_xgboost_parameters(xgb_params: Dict[str, Any]) -> Dict[str, Any]:
         )
 
     return xgb_params
+

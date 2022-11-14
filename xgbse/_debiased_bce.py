@@ -7,30 +7,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import BallTree
 from sklearn.preprocessing import OneHotEncoder
 
-# lib utils
 from xgbse._base import XGBSEBaseEstimator, DummyLogisticRegression
+from xgbse.feature_extractor import FeatureExtractor
 from xgbse.converters import convert_data_to_xgb_format, convert_y, hazard_to_survival
-
-# at which percentiles will the KM predict
 from xgbse.non_parametric import get_time_bins, calculate_interval_failures
 
 KM_PERCENTILES = np.linspace(0, 1, 11)
-
-DEFAULT_PARAMS = {
-    "objective": "survival:aft",
-    "eval_metric": "aft-nloglik",
-    "aft_loss_distribution": "normal",
-    "aft_loss_distribution_scale": 1,
-    "tree_method": "hist",
-    "learning_rate": 5e-2,
-    "max_depth": 8,
-    "booster": "dart",
-    "subsample": 0.5,
-    "min_child_weight": 50,
-    "colsample_bynode": 0.5,
-}
-
-DEFAULT_PARAMS_LR = {"C": 1e-3, "max_iter": 500}
 
 
 def _repeat_array(x, n):
@@ -102,63 +84,22 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
     def __init__(
         self,
-        xgb_params=None,
-        lr_params=None,
-        n_jobs=-1,
+        xgb_params: Optional[Dict[str, Any]] = None,
+        lr_params: Optional[Dict[str, Any]] = None,
+        n_jobs: int = 1,
     ):
         """
         Args:
-            xgb_params (Dict, None): Parameters for XGBoost model.
-                If not passed, the following default parameters will be used:
-
-                ```
-                DEFAULT_PARAMS = {
-                    "objective": "survival:aft",
-                    "eval_metric": "aft-nloglik",
-                    "aft_loss_distribution": "normal",
-                    "aft_loss_distribution_scale": 1,
-                    "tree_method": "hist",
-                    "learning_rate": 5e-2,
-                    "max_depth": 8,
-                    "booster": "dart",
-                    "subsample": 0.5,
-                    "min_child_weight": 50,
-                    "colsample_bynode": 0.5,
-                }
-                ```
-
-                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for more options.
-
-            lr_params (Dict, None): Parameters for Logistic Regression models.
-                If not passed, the following default parameters will be used:
-                ```
-                DEFAULT_PARAMS_LR = {"C": 1e-3, "max_iter": 500}
-                ```
-
-                Check <https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html> for more options.
-
-            n_jobs (Int): Number of CPU cores used to fit logistic regressions via joblib.
-
         """
-        if xgb_params is None:
-            xgb_params = DEFAULT_PARAMS
-        if lr_params is None:
-            lr_params = DEFAULT_PARAMS_LR
 
-        self.xgb_params = xgb_params
-        self.lr_params = lr_params
-        self.n_jobs = n_jobs
-        self.persist_train = False
-        self.feature_importances_ = None
+        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params, n_jobs=n_jobs)
+        self.lr_params = lr_params  
 
-    def fit(
+
+def fit(
         self,
         X,
         y,
-        num_boost_round=1000,
-        validation_data=None,
-        early_stopping_rounds=None,
-        verbose_eval=0,
         persist_train=False,
         index_id=None,
         time_bins=None,
@@ -199,32 +140,12 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
         """
 
-        E_train, T_train = convert_y(y)
         if time_bins is None:
             time_bins = get_time_bins(T_train, E_train)
         self.time_bins = time_bins
 
-        # converting data to xgb format
-        dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
-
-        # converting validation data to xgb format
-        evals = ()
-        if validation_data:
-            X_val, y_val = validation_data
-            dvalid = convert_data_to_xgb_format(
-                X_val, y_val, self.xgb_params["objective"]
-            )
-            evals = [(dvalid, "validation")]
-
         # training XGB
-        self.bst = xgb.train(
-            self.xgb_params,
-            dtrain,
-            num_boost_round=num_boost_round,
-            early_stopping_rounds=early_stopping_rounds,
-            evals=evals,
-            verbose_eval=verbose_eval,
-        )
+        self.feature_extractor.fit()
         self.feature_importances_ = self.bst.get_score()
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
