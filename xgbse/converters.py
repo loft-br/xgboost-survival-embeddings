@@ -42,7 +42,7 @@ def convert_y(y):
     return y[event_field], y[time_field]
 
 
-def convert_data_to_xgb_format(X, y, objective):
+def convert_data_to_xgb_format(X, y, objective, enable_categorical: bool):
     """Convert (X, y) data format to xgb.DMatrix format, either using cox or aft models.
 
     Args:
@@ -60,10 +60,10 @@ def convert_data_to_xgb_format(X, y, objective):
 
     # converting data to xgb format
     if objective == "survival:aft":
-        d_matrix = build_xgb_aft_dmatrix(X, T, E)
+        d_matrix = build_xgb_aft_dmatrix(X, T, E, enable_categorical)
 
     elif objective == "survival:cox":
-        d_matrix = build_xgb_cox_dmatrix(X, T, E)
+        d_matrix = build_xgb_cox_dmatrix(X, T, E, enable_categorical)
 
     else:
         raise ValueError("Objective not supported. Use survival:cox or survival:aft")
@@ -72,7 +72,7 @@ def convert_data_to_xgb_format(X, y, objective):
 
 
 # Building XGB Design matrices - AFT and Cox Model
-def build_xgb_aft_dmatrix(X, T, E):
+def build_xgb_aft_dmatrix(X, T, E, enable_categorical: bool):
     """Builds a XGB DMatrix using specified Data Frame of features (X)
      arrays of times (T) and censors/events (E).
 
@@ -86,7 +86,7 @@ def build_xgb_aft_dmatrix(X, T, E):
         xgb.DMatrix: A XGB DMatrix is returned including features and target.
     """
 
-    d_matrix = xgb.DMatrix(X)
+    d_matrix = xgb.DMatrix(X, enable_categorical=enable_categorical)
 
     y_lower_bound = T
     y_upper_bound = np.where(E, T, np.inf)
@@ -96,7 +96,7 @@ def build_xgb_aft_dmatrix(X, T, E):
     return d_matrix
 
 
-def build_xgb_cox_dmatrix(X, T, E):
+def build_xgb_cox_dmatrix(X, T, E, enable_categorical: bool):
     """Builds a XGB DMatrix using specified Data Frame of features (X)
         arrays of times (T) and censors/events (E).
 
@@ -111,7 +111,7 @@ def build_xgb_cox_dmatrix(X, T, E):
 
     target = np.where(E, T, -T)
 
-    return xgb.DMatrix(X, label=target)
+    return xgb.DMatrix(X, label=target, enable_categorical=enable_categorical)
 
 
 def hazard_to_survival(interval):

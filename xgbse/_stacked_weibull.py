@@ -37,6 +37,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
         weibull_params: Optional[Dict[str, Any]] = {},
+        enable_categorical: bool = False,
     ):
         """
         Args:
@@ -69,7 +70,9 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
 
 
         """
-        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
+        self.feature_extractor = FeatureExtractor(
+            xgb_params=xgb_params, enable_categorical=enable_categorical
+        )
         self.xgb_params = self.feature_extractor.xgb_params
         self.weibull_params = weibull_params
 

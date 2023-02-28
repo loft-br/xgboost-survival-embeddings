@@ -16,8 +16,11 @@ class XGBSEBaseEstimator(BaseEstimator):
     def __init__(
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
+        enable_categorical: bool = False,
     ):
-        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
+        self.feature_extractor = FeatureExtractor(
+            xgb_params=xgb_params, enable_categorical=enable_categorical
+        )
         self.xgb_params = self.feature_extractor.xgb_params
 
         self.feature_importances_ = None

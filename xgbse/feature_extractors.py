@@ -11,6 +11,7 @@ class FeatureExtractor:
     def __init__(
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
+        enable_categorical: bool = False,
     ):
         """
         Args:
@@ -26,6 +27,7 @@ class FeatureExtractor:
         self.xgb_params = xgb_params
         self.persist_train = False
         self.feature_importances_ = None
+        self.enable_categorical = enable_categorical
 
     def fit(
         self,
@@ -79,14 +81,16 @@ class FeatureExtractor:
         self.time_bins = time_bins
 
         # converting data to xgb format
-        dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
+        dtrain = convert_data_to_xgb_format(
+            X, y, self.xgb_params["objective"], self.enable_categorical
+        )
 
         # converting validation data to xgb format
         evals = ()
         if validation_data:
             X_val, y_val = validation_data
             dvalid = convert_data_to_xgb_format(
-                X_val, y_val, self.xgb_params["objective"]
+                X_val, y_val, self.xgb_params["objective"], self.enable_categorical
             )
             evals = [(dvalid, "validation")]
 
@@ -114,7 +118,7 @@ class FeatureExtractor:
         if not hasattr(self, "bst"):
             raise ValueError("XGBoost model not fitted yet.")
 
-        dmatrix = xgb.DMatrix(X)
+        dmatrix = xgb.DMatrix(X, enable_categorical=self.enable_categorical)
         return self.bst.predict(
             dmatrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
         )
@@ -124,7 +128,8 @@ class FeatureExtractor:
             raise ValueError("XGBoost model not fitted yet.")
 
         return self.bst.predict(
-            xgb.DMatrix(X), iteration_range=(0, self.bst.best_iteration + 1)
+            xgb.DMatrix(X, enable_categorical=self.enable_categorical),
+            iteration_range=(0, self.bst.best_iteration + 1),
         )
 
 

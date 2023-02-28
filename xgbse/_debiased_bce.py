@@ -92,11 +92,12 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         xgb_params: Optional[Dict[str, Any]] = None,
         lr_params: Dict[str, Any] = {},
         n_jobs: int = 1,
+        enable_categorical: bool = False,
     ):
         """
         Args:
         """
-        super().__init__(xgb_params=xgb_params)
+        super().__init__(xgb_params=xgb_params, enable_categorical=enable_categorical)
         self.lr_params = lr_params
         self.n_jobs = n_jobs
 

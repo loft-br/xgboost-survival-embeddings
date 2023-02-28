@@ -53,6 +53,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
         xgb_params: Optional[Dict[str, Any]] = None,
         n_neighbors: int = 30,
         radius: Optional[float] = None,
+        enable_categorical: bool = False,
     ):
         """
         Args:
@@ -82,7 +83,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             radius (Float): If set, uses a radius around the point for neighbors search
         """
 
-        super().__init__(xgb_params=xgb_params)
+        super().__init__(xgb_params=xgb_params, enable_categorical=enable_categorical)
         self.n_neighbors = n_neighbors
         self.radius = radius
         self.index_id = None
@@ -280,6 +281,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
     def __init__(
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
+        enable_categorical: bool = False,
     ):
         """
         Args:
@@ -304,7 +306,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         if xgb_params is None:
             xgb_params = DEFAULT_PARAMS_TREE
 
-        super().__init__(xgb_params=xgb_params)
+        super().__init__(xgb_params=xgb_params, enable_categorical=enable_categorical)
         self.index_id = None
 
     def fit(
