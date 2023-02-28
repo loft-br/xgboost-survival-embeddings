@@ -1,5 +1,6 @@
-from typing import Any, Dict, Optional, Sequence, Tuple
+from typing import Any, Dict, Optional, Tuple
 
+import numpy.typing as npt
 import xgboost as xgb
 
 from xgbse.converters import convert_data_to_xgb_format, convert_y
@@ -10,7 +11,6 @@ class FeatureExtractor:
     def __init__(
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
-        n_jobs: int = 1,
     ):
         """
         Args:
@@ -18,16 +18,12 @@ class FeatureExtractor:
                 If not passed, will use XGBoost default parameters and set objective as `survival:aft`.
                 Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
 
-            lr_params (Dict, None): Parameters for Logistic Regression models, if not passed will use LogisticRegression defaults.
-                Check <https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html> for options.
-            n_jobs (Int): Number of CPU cores used to fit logistic regressions via joblib, if -1 will use all available cores. Defaults to 1.
         """
         if not xgb_params:
             xgb_params = {}
         xgb_params = check_xgboost_parameters(xgb_params)
 
         self.xgb_params = xgb_params
-        self.n_jobs = n_jobs
         self.persist_train = False
         self.feature_importances_ = None
 
@@ -35,50 +31,50 @@ class FeatureExtractor:
         self,
         X,
         y,
-        time_bins: Optional[Sequence] = None,
+        time_bins: Optional[npt.ArrayLike] = None,
         validation_data: Optional[Tuple[Any, Any]] = None,
         num_boost_round: int = 10,
         early_stopping_rounds: Optional[int] = None,
         verbose_eval: int = 0,
     ):
         """
-        Transform feature space by fitting a XGBoost model and returning its leaf indices.
-        Leaves are transformed and considered as dummy variables to fit multiple logistic
-        regression models to each evaluated time bin.
+                Transform feature space by fitting a XGBoost model and returning its leaf indices.
+                Leaves are transformed and considered as dummy variables to fit multiple logistic
+                regression models to each evaluated time bin.
+        //
+                Args:
+                    X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
 
-        Args:
-            X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
+                    y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
+                        and time of event or time of censoring as second field.
 
-            y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
-                and time of event or time of censoring as second field.
+                    time_bins (np.array): Specified time windows to use when making survival predictions
 
-            time_bins (np.array): Specified time windows to use when making survival predictions
+                    validation_data (Tuple): Validation data in the format of a list of tuples [(X, y)]
+                        if user desires to use early stopping
 
-            validation_data (Tuple): Validation data in the format of a list of tuples [(X, y)]
-                if user desires to use early stopping
+                    num_boost_round (Int): Number of boosting iterations, defaults to 10
 
-            num_boost_round (Int): Number of boosting iterations, defaults to 10
+                    early_stopping_rounds (Int): Activates early stopping.
+                        Validation metric needs to improve at least once
+                        in every **early_stopping_rounds** round(s) to continue training.
+                        See xgboost.train documentation.
 
-            early_stopping_rounds (Int): Activates early stopping.
-                Validation metric needs to improve at least once
-                in every **early_stopping_rounds** round(s) to continue training.
-                See xgboost.train documentation.
+                    persist_train (Bool): Whether or not to persist training data to use explainability
+                        through prototypes
 
-            persist_train (Bool): Whether or not to persist training data to use explainability
-                through prototypes
-
-            index_id (pd.Index): User defined index if intended to use explainability
-                through prototypes
+                    index_id (pd.Index): User defined index if intended to use explainability
+                        through prototypes
 
 
-            verbose_eval ([Bool, Int]): Level of verbosity. See xgboost.train documentation.
+                    verbose_eval ([Bool, Int]): Level of verbosity. See xgboost.train documentation.
 
-        Returns:
-            XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
+                Returns:
+                    XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
         """
 
         E_train, T_train = convert_y(y)
-        if not time_bins:
+        if time_bins is None:
             time_bins = get_time_bins(T_train, E_train)
         self.time_bins = time_bins
 
@@ -152,4 +148,3 @@ def check_xgboost_parameters(xgb_params: Dict[str, Any]) -> Dict[str, Any]:
         )
 
     return xgb_params
-

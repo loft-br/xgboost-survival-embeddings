@@ -1,23 +1,27 @@
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 from sklearn.base import BaseEstimator
 from sklearn.neighbors import BallTree
 
 
 class XGBSEBaseEstimator(BaseEstimator):
     """
-    Base class for all estimators in xgbse. Implements explainability through prototypes.
+    Base class for all estimators in xgbse. Implements explainability through prototypes
     """
 
     def __init__(self):
         self.persist_train = False
         self.index_id = None
         self.tree = None
-        self.bst = None
+        self.feature_extractor = None
 
     def get_neighbors(
-        self, query_data, index_data=None, query_id=None, index_id=None, n_neighbors=30
+        self,
+        query_data,
+        index_data=None,
+        query_id=None,
+        index_id=None,
+        n_neighbors: int = 30,
     ):
         """
         Search for portotypes (size: n_neighbors) for each unit in a
@@ -28,10 +32,11 @@ class XGBSEBaseEstimator(BaseEstimator):
         Args:
             query_data (pd.DataFrame): Dataframe of features to be used as input
 
-            query_id ([pd.Series, np.array]): Series or array of identification for each sample of query_data.
-                Will be used in set_index if specified.
+            query_id ([pd.Series, np.array]): Series or array of identification for
+                each sample of query_data. Will be used in set_index if specified.
 
-            index_id ([pd.Series, np.array]): Series or array of identification for each sample of index_id.
+            index_id ([pd.Series, np.array]): Series or array of identification for
+                each sample of index_id.
                 If specified, comparables will be returned using this identifier.
 
             n_neighbors (int): Number of neighbors/comparables to be considered.
@@ -57,23 +62,13 @@ class XGBSEBaseEstimator(BaseEstimator):
             index_id = self.index_id
             index = self.tree
         else:
-            index_matrix = xgb.DMatrix(index_data)
-            index_leaves = self.bst.predict(
-                index_matrix,
-                pred_leaf=True,
-                iteration_range=(0, self.bst.best_iteration + 1),
-            )
+            index_leaves = self.feature_extractor.predict_leaves(index_data)
 
             if len(index_leaves.shape) == 1:
                 index_leaves = index_leaves.reshape(-1, 1)
             index = BallTree(index_leaves, metric="hamming")
 
-        query_matrix = xgb.DMatrix(query_data)
-        query_leaves = self.bst.predict(
-            query_matrix,
-            pred_leaf=True,
-            iteration_range=(0, self.bst.best_iteration + 1),
-        )
+        query_leaves = self.feature_extractor.predict_leaves(query_data)
 
         if len(query_leaves.shape) == 1:
             query_leaves = query_leaves.reshape(-1, 1)

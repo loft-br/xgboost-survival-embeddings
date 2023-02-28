@@ -1,34 +1,21 @@
 import warnings
+from typing import Any, Dict, Optional, Sequence
 
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 import scipy.stats as st
 from sklearn.neighbors import BallTree
 
 from xgbse._base import XGBSEBaseEstimator
-from xgbse.converters import convert_data_to_xgb_format, convert_y
+from xgbse.converters import convert_y
+from xgbse.feature_extractors import FeatureExtractor
 from xgbse.non_parametric import (
-    calculate_kaplan_vectorized,
-    get_time_bins,
     calculate_interval_failures,
+    calculate_kaplan_vectorized,
 )
 
 # at which percentiles will the KM predict
 KM_PERCENTILES = np.linspace(0, 1, 11)
-DEFAULT_PARAMS = {
-    "objective": "survival:aft",
-    "eval_metric": "aft-nloglik",
-    "aft_loss_distribution": "normal",
-    "aft_loss_distribution_scale": 1,
-    "tree_method": "hist",
-    "learning_rate": 5e-2,
-    "max_depth": 8,
-    "booster": "dart",
-    "subsample": 0.5,
-    "min_child_weight": 50,
-    "colsample_bynode": 0.5,
-}
 
 DEFAULT_PARAMS_TREE = {
     "objective": "survival:cox",
@@ -61,7 +48,12 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
 
     """
 
-    def __init__(self, xgb_params=None, n_neighbors=30, radius=None):
+    def __init__(
+        self,
+        xgb_params: Optional[Dict[str, Any]] = None,
+        n_neighbors: int = 30,
+        radius: Optional[float] = None,
+    ):
         """
         Args:
             xgb_params (Dict): Parameters for XGBoost model.
@@ -89,28 +81,26 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
 
             radius (Float): If set, uses a radius around the point for neighbors search
         """
-        if xgb_params is None:
-            xgb_params = DEFAULT_PARAMS
 
-        self.xgb_params = xgb_params
+        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
+        self.xgb_params = self.feature_extractor.xgb_params
         self.n_neighbors = n_neighbors
         self.radius = radius
         self.persist_train = False
         self.index_id = None
-        self.radius = None
         self.feature_importances_ = None
 
     def fit(
         self,
         X,
         y,
-        num_boost_round=1000,
-        validation_data=None,
-        early_stopping_rounds=None,
-        verbose_eval=0,
-        persist_train=True,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[tuple] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+        persist_train: bool = False,
         index_id=None,
-        time_bins=None,
     ):
         """
         Transform feature space by fitting a XGBoost model and outputting its leaf indices.
@@ -146,38 +136,23 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             XGBSEKaplanNeighbors: Fitted instance of XGBSEKaplanNeighbors
         """
 
-        self.E_train, self.T_train = convert_y(y)
-        if time_bins is None:
-            time_bins = get_time_bins(self.T_train, self.E_train)
-        self.time_bins = time_bins
-
-        # converting data to xgb format
-        dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
-
-        # converting validation data to xgb format
-        evals = ()
-        if validation_data:
-            X_val, y_val = validation_data
-            dvalid = convert_data_to_xgb_format(
-                X_val, y_val, self.xgb_params["objective"]
-            )
-            evals = [(dvalid, "validation")]
-
-        # training XGB
-        self.bst = xgb.train(
-            self.xgb_params,
-            dtrain,
+        self.feature_extractor.fit(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
             num_boost_round=num_boost_round,
             early_stopping_rounds=early_stopping_rounds,
-            evals=evals,
             verbose_eval=verbose_eval,
         )
-        self.feature_importances_ = self.bst.get_score()
+        self.feature_importances_ = self.feature_extractor.feature_importances_
+
+        self.E_train, self.T_train = convert_y(y)
+
+        self.time_bins = self.feature_extractor.time_bins
 
         # creating nearest neighbor index
-        leaves = self.bst.predict(
-            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
 
         self.tree = BallTree(leaves, metric="hamming", leaf_size=40)
 
@@ -227,16 +202,10 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             probability values
         """
 
-        # converting to xgb format
-        d_matrix = xgb.DMatrix(X)
-
-        # getting leaves and extracting neighbors
-        leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
 
         if self.radius:
-            assert self.radius > 0, "Radius must be positive"
+            assert self.radius >= 0, "Radius must be greater than 0"
 
             neighs, _ = self.tree.query_radius(
                 leaves, r=self.radius, return_distance=True
@@ -316,7 +285,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
 
     def __init__(
         self,
-        xgb_params=None,
+        xgb_params: Optional[Dict[str, Any]] = None,
     ):
         """
         Args:
@@ -341,7 +310,8 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         if xgb_params is None:
             xgb_params = DEFAULT_PARAMS_TREE
 
-        self.xgb_params = xgb_params
+        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
+        self.xgb_params = self.feature_extractor.xgb_params
         self.persist_train = False
         self.index_id = None
         self.feature_importances_ = None
@@ -361,8 +331,9 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         build a Kaplan-Meier estimator.
 
         !!! Note
-            * Differently from `XGBSEKaplanNeighbors`, in `XGBSEKaplanTree`, the width of
-            the confidence interval (`ci_width`) must be specified at fit time.
+            * Differently from `XGBSEKaplanNeighbors`, in `XGBSEKaplanTree`,
+            the width of the confidence interval (`ci_width`)
+            must be specified at fit time.
 
         Args:
 
@@ -385,22 +356,19 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
             XGBSEKaplanTree: Trained instance of XGBSEKaplanTree
         """
 
-        E_train, T_train = convert_y(y)
-        if time_bins is None:
-            time_bins = get_time_bins(T_train, E_train)
-        self.time_bins = time_bins
-
-        # converting data to xgb format
-        dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
-
-        # training XGB
-        self.bst = xgb.train(self.xgb_params, dtrain, num_boost_round=1, **xgb_kwargs)
-        self.feature_importances_ = self.bst.get_score()
-
-        # getting leaves
-        leaves = self.bst.predict(
-            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
+        self.feature_extractor.fit(
+            X,
+            y,
+            time_bins=time_bins,
+            num_boost_round=1,
         )
+        self.feature_importances_ = self.feature_extractor.feature_importances_
+
+        E_train, T_train = convert_y(y)
+
+        self.time_bins = self.feature_extractor.time_bins
+        # getting leaves
+        leaves = self.feature_extractor.predict_leaves(X)
 
         # organizing elements per leaf
         leaf_neighs = (
@@ -421,7 +389,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
             self._train_survival,
             self._train_upper_ci,
             self._train_lower_ci,
-        ) = calculate_kaplan_vectorized(T_leaves, E_leaves, time_bins, z)
+        ) = calculate_kaplan_vectorized(T_leaves, E_leaves, self.time_bins, z)
 
         # adding leaf indexes
         self._train_survival = self._train_survival.set_index(leaf_neighs.index)
@@ -463,14 +431,8 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
             lower_ci (np.array): Lower confidence interval for the survival
                 probability values
         """
-
-        # converting to xgb format
-        d_matrix = xgb.DMatrix(X)
-
         # getting leaves and extracting neighbors
-        leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
 
         # searching for kaplan meier curves in leaves
         preds_df = self._train_survival.loc[leaves].reset_index(drop=True)

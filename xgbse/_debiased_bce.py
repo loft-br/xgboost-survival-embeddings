@@ -1,16 +1,18 @@
 import warnings
+from typing import Any, Dict, Optional, Sequence
+
 import numpy as np
+import numpy.typing as npt
 import pandas as pd
-import xgboost as xgb
 from joblib import Parallel, delayed
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import BallTree
 from sklearn.preprocessing import OneHotEncoder
 
-from xgbse._base import XGBSEBaseEstimator, DummyLogisticRegression
-from xgbse.feature_extractor import FeatureExtractor
-from xgbse.converters import convert_data_to_xgb_format, convert_y, hazard_to_survival
-from xgbse.non_parametric import get_time_bins, calculate_interval_failures
+from xgbse._base import DummyLogisticRegression, XGBSEBaseEstimator
+from xgbse.converters import convert_y, hazard_to_survival
+from xgbse.feature_extractors import FeatureExtractor
+from xgbse.non_parametric import calculate_interval_failures
 
 KM_PERCENTILES = np.linspace(0, 1, 11)
 
@@ -30,7 +32,9 @@ def _repeat_array(x, n):
     return np.array([x] * n).T
 
 
-def _build_multi_task_targets(E, T, time_bins):
+def _build_multi_task_targets(
+    E: npt.NDArray[np.bool_], T: npt.NDArray[np.int64], time_bins: npt.NDArray[np.int64]
+):
     """
     Builds targets for a multi task survival regression problem.
     This function creates a times array from time 0 to T, where T is the
@@ -44,7 +48,8 @@ def _build_multi_task_targets(E, T, time_bins):
         time_bins ([np.array]): Specified time bins to split targets.
 
     Returns:
-        targets (pd.Series): A Series with multi task targets (for data existent just up to time T=t, all times over t are considered equal to -1).
+        targets (pd.Series): A Series with multi task targets (for data existent
+             just up to time T=t, all times over t are considered equal to -1).
         time_bins (np.array): Time bins to be used for multi task survival analysis.
     """
 
@@ -65,10 +70,10 @@ def _build_multi_task_targets(E, T, time_bins):
 # class to fit a BCE on the leaves of a XGB
 class XGBSEDebiasedBCE(XGBSEBaseEstimator):
     """
-    Train a set of logistic regressions on top of the leaf embedding produced by XGBoost,
+    Train a set of logistic regressions on top of leaf embeddings produced by XGBoost,
     each predicting survival at different user-defined discrete time windows.
-    The classifiers remove individuals as they are censored, with targets that are indicators
-    of surviving at each window.
+    The classifiers remove individuals as they are censored,
+     with targets that are indicatorsof surviving at each window.
 
     !!! Note
         * Training and scoring of logistic regression models is efficient,
@@ -85,24 +90,30 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
     def __init__(
         self,
         xgb_params: Optional[Dict[str, Any]] = None,
-        lr_params: Optional[Dict[str, Any]] = None,
+        lr_params: Dict[str, Any] = {},
         n_jobs: int = 1,
     ):
         """
         Args:
         """
 
-        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params, n_jobs=n_jobs)
-        self.lr_params = lr_params  
+        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
+        self.xgb_params = self.feature_extractor.xgb_params
+        self.lr_params = lr_params
+        self.n_jobs = n_jobs
+        self.persist_train = False
 
-
-def fit(
+    def fit(
         self,
         X,
         y,
-        persist_train=False,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[tuple] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+        persist_train: bool = False,
         index_id=None,
-        time_bins=None,
     ):
         """
         Transform feature space by fitting a XGBoost model and returning its leaf indices.
@@ -139,24 +150,26 @@ def fit(
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
         """
+        self.feature_extractor.fit(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
+            num_boost_round=num_boost_round,
+            early_stopping_rounds=early_stopping_rounds,
+            verbose_eval=verbose_eval,
+        )
+        self.feature_importances_ = self.feature_extractor.feature_importances_
 
-        if time_bins is None:
-            time_bins = get_time_bins(T_train, E_train)
-        self.time_bins = time_bins
-
-        # training XGB
-        self.feature_extractor.fit()
-        self.feature_importances_ = self.bst.get_score()
+        E_train, T_train = convert_y(y)
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
-        leaves = self.bst.predict(
-            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
         leaves_encoded = self.encoder.fit_transform(leaves)
 
         # convert targets for using with logistic regression
         self.targets, self.time_bins = _build_multi_task_targets(
-            E_train, T_train, self.time_bins
+            E_train, T_train, self.feature_extractor.time_bins
         )
 
         # fitting LR for several targets
@@ -166,11 +179,7 @@ def fit(
             self.persist_train = True
             if index_id is None:
                 index_id = X.index.copy()
-
-            index_leaves = self.bst.predict(
-                dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-            )
-            self.tree = BallTree(index_leaves, metric="hamming")
+            self.tree = BallTree(leaves, metric="hamming")
 
         self.index_id = index_id
 
@@ -269,32 +278,28 @@ def fit(
         # to cumulative survival curve
         return hazard_to_survival(preds)
 
-    def predict(self, X, return_interval_probs=False):
+    def predict(self, X: pd.DataFrame, return_interval_probs: bool = False):
         """
-        Predicts survival probabilities using the XGBoost + Logistic Regression pipeline.
+        Predicts survival probabilities using XGBoost + Logistic Regression pipeline.
 
         Args:
             X (pd.DataFrame): Dataframe of features to be used as input for the
                 XGBoost model.
 
-            return_interval_probs (Bool): Boolean indicating if interval probabilities are
-                supposed to be returned. If False the cumulative survival is returned.
+            return_interval_probs (Bool): Boolean indicating if interval probabilities
+             are to be returned. If False the cumulative survival is returned.
                 Default is False.
 
         Returns:
             pd.DataFrame: A dataframe of survival probabilities
             for all times (columns), from a time_bins array, for all samples of X
-            (rows). If return_interval_probs is True, the interval probabilities are returned
-            instead of the cumulative survival probabilities.
+            (rows). If return_interval_probs is True, the interval probabilities are
+            returned instead of the cumulative survival probabilities.
         """
 
-        # converting to xgb format
-        d_matrix = xgb.DMatrix(X)
-
         # getting leaves and extracting neighbors
-        leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
+
         leaves_encoded = self.encoder.transform(leaves)
 
         # predicting from logistic regression artifacts
