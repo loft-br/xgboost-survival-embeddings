@@ -96,12 +96,9 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         """
         Args:
         """
-
-        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
-        self.xgb_params = self.feature_extractor.xgb_params
+        super().__init__(xgb_params=xgb_params)
         self.lr_params = lr_params
         self.n_jobs = n_jobs
-        self.persist_train = False
 
     def fit(
         self,
@@ -150,7 +147,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
         """
-        self.feature_extractor.fit(
+        self.fit_feature_extractor(
             X,
             y,
             time_bins=time_bins,
@@ -159,7 +156,6 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             early_stopping_rounds=early_stopping_rounds,
             verbose_eval=verbose_eval,
         )
-        self.feature_importances_ = self.feature_extractor.feature_importances_
 
         E_train, T_train = convert_y(y)
         # predicting and encoding leaves

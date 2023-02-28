@@ -82,13 +82,10 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             radius (Float): If set, uses a radius around the point for neighbors search
         """
 
-        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
-        self.xgb_params = self.feature_extractor.xgb_params
+        super().__init__(xgb_params=xgb_params)
         self.n_neighbors = n_neighbors
         self.radius = radius
-        self.persist_train = False
         self.index_id = None
-        self.feature_importances_ = None
 
     def fit(
         self,
@@ -136,7 +133,7 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             XGBSEKaplanNeighbors: Fitted instance of XGBSEKaplanNeighbors
         """
 
-        self.feature_extractor.fit(
+        self.fit_feature_extractor(
             X,
             y,
             time_bins=time_bins,
@@ -145,11 +142,8 @@ class XGBSEKaplanNeighbors(XGBSEBaseEstimator):
             early_stopping_rounds=early_stopping_rounds,
             verbose_eval=verbose_eval,
         )
-        self.feature_importances_ = self.feature_extractor.feature_importances_
 
         self.E_train, self.T_train = convert_y(y)
-
-        self.time_bins = self.feature_extractor.time_bins
 
         # creating nearest neighbor index
         leaves = self.feature_extractor.predict_leaves(X)
@@ -310,11 +304,8 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
         if xgb_params is None:
             xgb_params = DEFAULT_PARAMS_TREE
 
-        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
-        self.xgb_params = self.feature_extractor.xgb_params
-        self.persist_train = False
+        super().__init__(xgb_params=xgb_params)
         self.index_id = None
-        self.feature_importances_ = None
 
     def fit(
         self,

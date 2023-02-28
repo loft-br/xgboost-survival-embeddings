@@ -1,7 +1,11 @@
+from typing import Any, Dict, Optional, Sequence
+
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator
 from sklearn.neighbors import BallTree
+
+from xgbse.feature_extractors import FeatureExtractor
 
 
 class XGBSEBaseEstimator(BaseEstimator):
@@ -9,11 +13,40 @@ class XGBSEBaseEstimator(BaseEstimator):
     Base class for all estimators in xgbse. Implements explainability through prototypes
     """
 
-    def __init__(self):
+    def __init__(
+        self,
+        xgb_params: Optional[Dict[str, Any]] = None,
+    ):
+        self.feature_extractor = FeatureExtractor(xgb_params=xgb_params)
+        self.xgb_params = self.feature_extractor.xgb_params
+
+        self.feature_importances_ = None
         self.persist_train = False
+
         self.index_id = None
         self.tree = None
-        self.feature_extractor = None
+
+    def fit_feature_extractor(
+        self,
+        X,
+        y,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[tuple] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+    ):
+        self.feature_extractor.fit(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
+            num_boost_round=num_boost_round,
+            early_stopping_rounds=early_stopping_rounds,
+            verbose_eval=verbose_eval,
+        )
+        self.feature_importances_ = self.feature_extractor.feature_importances_
+        self.time_bins = self.feature_extractor.time_bins
 
     def get_neighbors(
         self,
@@ -105,5 +138,7 @@ class DummyLogisticRegression(BaseEstimator):
 
     def predict_proba(self, X):
         y_hat = np.zeros((X.shape[0], 2))
+        y_hat[:, self.returns] += 1.0
+        return y_hat
         y_hat[:, self.returns] += 1.0
         return y_hat

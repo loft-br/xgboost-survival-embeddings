@@ -122,7 +122,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
             XGBSEStackedWeibull: Trained XGBSEStackedWeibull instance
         """
 
-        self.feature_extractor.fit(
+        self.fit_feature_extractor(
             X,
             y,
             time_bins=time_bins,
@@ -131,11 +131,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
             early_stopping_rounds=early_stopping_rounds,
             verbose_eval=verbose_eval,
         )
-        self.feature_importances_ = self.feature_extractor.feature_importances_
-
         E_train, T_train = convert_y(y)
-
-        self.time_bins = self.feature_extractor.time_bins
 
         # predicting hazard ratio from XGBoost
         train_risk = self.feature_extractor.predict_hazard(X)
