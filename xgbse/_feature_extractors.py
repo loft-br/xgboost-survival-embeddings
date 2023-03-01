@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy.typing as npt
 import xgboost as xgb
@@ -15,9 +15,9 @@ class FeatureExtractor:
     ):
         """
         Args:
-            xgb_params (Dict, None): Parameters for XGBoost model.
-                If not passed, will use XGBoost default parameters and set objective as `survival:aft`.
-                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
+        xgb_params (Dict, None): Parameters for XGBoost model.
+            If None, will use XGBoost defaults and set objective as `survival:aft`.
+            Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
 
         """
         if not xgb_params:
@@ -34,7 +34,7 @@ class FeatureExtractor:
         X,
         y,
         time_bins: Optional[npt.ArrayLike] = None,
-        validation_data: Optional[Tuple[Any, Any]] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
         num_boost_round: int = 10,
         early_stopping_rounds: Optional[int] = None,
         verbose_eval: int = 0,

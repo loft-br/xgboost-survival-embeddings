@@ -1,5 +1,5 @@
 import warnings
-from typing import Any, Dict, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import numpy.typing as npt
@@ -11,7 +11,6 @@ from sklearn.preprocessing import OneHotEncoder
 
 from xgbse._base import DummyLogisticRegression, XGBSEBaseEstimator
 from xgbse.converters import convert_y, hazard_to_survival
-from xgbse.feature_extractors import FeatureExtractor
 from xgbse.non_parametric import calculate_interval_failures
 
 KM_PERCENTILES = np.linspace(0, 1, 11)
@@ -96,6 +95,16 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
     ):
         """
         Args:
+            xgb_params (Dict, None): Parameters for XGBoost model.
+                If None, will use XGBoost defaults and set objective as `survival:aft`.
+                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
+
+            lr_params (Dict, None): Parameters for LogisticRegression model.
+                If None, will use scikit-learn default parameters.
+
+            n_jobs (int): Number of jobs used for parallel training of logistic regressions.
+
+            enable_categorical (bool): Enable categorical feature support on xgboost model
         """
         super().__init__(xgb_params=xgb_params, enable_categorical=enable_categorical)
         self.lr_params = lr_params
@@ -106,7 +115,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         X,
         y,
         time_bins: Optional[Sequence] = None,
-        validation_data: Optional[tuple] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
         num_boost_round: int = 10,
         early_stopping_rounds: Optional[int] = None,
         verbose_eval: int = 0,
@@ -114,9 +123,9 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         index_id=None,
     ):
         """
-        Transform feature space by fitting a XGBoost model and returning its leaf indices.
-        Leaves are transformed and considered as dummy variables to fit multiple logistic
-        regression models to each evaluated time bin.
+        Transform feature space by fitting a XGBoost model and returning its leafs.
+        Leaves are transformed and considered as dummy variables to fit multiple
+        logistic regression models to each evaluated time bin.
 
         Args:
             X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
@@ -124,10 +133,12 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
                 and time of event or time of censoring as second field.
 
-            num_boost_round (Int): Number of boosting iterations.
+            time_bins (np.array): Specified time windows to use when making survival predictions
 
-            validation_data (Tuple): Validation data in the format of a list of tuples [(X, y)]
+            validation_data (List[Tuple]): Validation data in the format of a list of tuples [(X, y)]
                 if user desires to use early stopping
+
+            num_boost_round (Int): Number of boosting iterations.
 
             early_stopping_rounds (Int): Activates early stopping.
                 Validation metric needs to improve at least once
@@ -141,9 +152,6 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
             index_id (pd.Index): User defined index if intended to use explainability
                 through prototypes
-
-            time_bins (np.array): Specified time windows to use when making survival predictions
-
 
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance

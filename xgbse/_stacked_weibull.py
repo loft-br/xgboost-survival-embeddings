@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
@@ -6,8 +6,8 @@ from lifelines import WeibullAFTFitter
 from sklearn.neighbors import BallTree
 
 from xgbse._base import XGBSEBaseEstimator
+from xgbse._feature_extractors import FeatureExtractor
 from xgbse.converters import convert_y
-from xgbse.feature_extractors import FeatureExtractor
 from xgbse.non_parametric import calculate_interval_failures
 
 KM_PERCENTILES = np.linspace(0, 1, 11)
@@ -42,32 +42,15 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         """
         Args:
             xgb_params (Dict, None): Parameters for XGBoost model.
-                If not passed, the following default parameters will be used:
-
-                ```
-                DEFAULT_PARAMS = {
-                    "objective": "survival:aft",
-                    "eval_metric": "aft-nloglik",
-                    "aft_loss_distribution": "normal",
-                    "aft_loss_distribution_scale": 1,
-                    "tree_method": "hist",
-                    "learning_rate": 5e-2,
-                    "max_depth": 8,
-                    "booster": "dart",
-                    "subsample": 0.5,
-                    "min_child_weight": 50,
-                    "colsample_bynode": 0.5,
-                }
-                ```
-
-                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for more options.
+                If None, will use XGBoost defaults and set objective as `survival:aft`.
+                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
 
             weibull_params (Dict): Parameters for Weibull Regerssion model.
                 If not passed, will use the default parameters as shown in the Lifelines documentation.
-
                 Check <https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html>
                 for more options.
 
+            enable_categorical (bool): Enable categorical feature support on xgboost model
 
         """
         self.feature_extractor = FeatureExtractor(
@@ -84,7 +67,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         X,
         y,
         time_bins: Optional[Sequence] = None,
-        validation_data: Optional[tuple] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
         num_boost_round: int = 10,
         early_stopping_rounds: Optional[int] = None,
         verbose_eval: int = 0,

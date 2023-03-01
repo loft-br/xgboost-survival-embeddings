@@ -1,7 +1,7 @@
 import pytest
 
 from tests.data import get_data
-from xgbse.feature_extractors import FeatureExtractor
+from xgbse._feature_extractors import FeatureExtractor
 
 (
     X_train,

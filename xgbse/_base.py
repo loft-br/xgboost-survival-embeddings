@@ -1,11 +1,11 @@
-from typing import Any, Dict, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator
 from sklearn.neighbors import BallTree
 
-from xgbse.feature_extractors import FeatureExtractor
+from xgbse._feature_extractors import FeatureExtractor
 
 
 class XGBSEBaseEstimator(BaseEstimator):
@@ -34,7 +34,7 @@ class XGBSEBaseEstimator(BaseEstimator):
         X,
         y,
         time_bins: Optional[Sequence] = None,
-        validation_data: Optional[tuple] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
         num_boost_round: int = 10,
         early_stopping_rounds: Optional[int] = None,
         verbose_eval: int = 0,
