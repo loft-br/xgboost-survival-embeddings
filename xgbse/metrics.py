@@ -84,7 +84,6 @@ def concordance_index(y_true, survival, risk_strategy="mean", which_window=None)
     # running loop for each uncensored sample,
     # as by https://arxiv.org/pdf/1811.11347.pdf
     for _, row in cind_df.query("e == True").iterrows():
-
         # getting all censored and uncensored samples
         # after current row
         samples_after_i = cind_df.query(f"""{row['t']} < t""")
@@ -98,7 +97,6 @@ def concordance_index(y_true, survival, risk_strategy="mean", which_window=None)
 
 
 def _match_times_to_windows(times, windows):
-
     """
     Match a list of event or censoring times to the corresponding
     time window on the survival dataframe.
@@ -153,7 +151,6 @@ def approx_brier_score(y_true, survival, aggregate="mean"):
 
     # loop for all suvival time windows
     for window in survival.columns:
-
         # adding window info to scoring df
         scoring_df = scoring_df.assign(surv_at_window=survival[window]).assign(
             cens_at_window=censoring_dist[window].values[0]

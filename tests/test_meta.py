@@ -28,7 +28,6 @@ from tests.data import get_data
 
 
 def is_ci_width_consistent(bootstrap, X):
-
     mean1, high1, low1 = bootstrap.predict(X, return_ci=True, ci_width=0.683)
     mean2, high2, low2 = bootstrap.predict(X, return_ci=True, ci_width=0.95)
 
@@ -43,7 +42,6 @@ def is_ci_width_consistent(bootstrap, X):
     "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEKaplanTree]
 )
 def test_ci_width_consistency(model):
-
     model = model()
     bootstrap = XGBSEBootstrapEstimator(model)
     bootstrap.fit(X_train, y_train)
@@ -52,7 +50,6 @@ def test_ci_width_consistency(model):
 
 
 def test_accuracy_improvement():
-
     base_model = XGBSEKaplanTree()
     base_model.fit(X_train, y_train)
 
