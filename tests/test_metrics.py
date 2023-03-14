@@ -1,12 +1,10 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 
-from xgbse.metrics import concordance_index, approx_brier_score, dist_calibration_score
-
-from xgbse import XGBSEDebiasedBCE
-
-from xgbse.non_parametric import get_time_bins, calculate_kaplan_vectorized
 from tests.data import get_data
+from xgbse import XGBSEDebiasedBCE
+from xgbse.metrics import approx_brier_score, concordance_index, dist_calibration_score
+from xgbse.non_parametric import calculate_kaplan_vectorized, get_time_bins
 
 (
     X_train,
@@ -27,7 +25,7 @@ from tests.data import get_data
 
 # generating Kaplan Meier for all tests
 
-time_bins = get_time_bins(T_train, E_train, 100)
+time_bins = get_time_bins(T_train, E_train, size=100)
 
 mean, high, low = calculate_kaplan_vectorized(
     T_train.values.reshape(1, -1), E_train.values.reshape(1, -1), time_bins
@@ -77,7 +75,6 @@ def is_dist_cal_return_correct_type():
 
 
 def test_concordance_index():
-
     assert concordance_index(y_train, km_survival) == 0.5
     assert concordance_index(y_test, preds) > 0.5
     assert np.isclose(
@@ -93,7 +90,6 @@ def test_concordance_index():
 
 
 def test_approx_brier_score():
-
     assert approx_brier_score(y_test, preds) < 0.25
     assert approx_brier_score(y_train, km_survival) < 0.2
     assert approx_brier_score(y_test, dummy_preds) == 0.25
@@ -101,7 +97,6 @@ def test_approx_brier_score():
 
 
 def test_dist_calibration_score():
-
     assert dist_calibration_score(y_train, km_survival) > 0.90
     assert dist_calibration_score(y_train, km_survival, returns="statistic") < 1.0
     assert dist_calibration_score(y_train, km_survival, returns="max_deviation") < 0.01

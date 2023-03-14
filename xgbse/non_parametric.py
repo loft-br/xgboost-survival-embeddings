@@ -1,12 +1,16 @@
-# basic imports
+from typing import Any
+
 import numpy as np
+import numpy.typing as npt
 import pandas as pd
 
 # epsilon to prevent division by zero
 EPS = 1e-6
 
 
-def get_time_bins(T, E, size=12):
+def get_time_bins(
+    T: npt.NDArray[Any], E: npt.NDArray[np.bool_], size=12
+) -> npt.NDArray[np.int64]:
     """
     Method to automatically define time bins
     """

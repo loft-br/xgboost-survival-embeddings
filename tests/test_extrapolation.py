@@ -1,8 +1,8 @@
+from tests.data import get_data
+from tests.test_survival_curves import between_01, monotonicity
 from xgbse import XGBSEDebiasedBCE
 from xgbse.extrapolation import extrapolate_constant_risk
-from xgbse.non_parametric import get_time_bins, calculate_kaplan_vectorized
-from tests.data import get_data
-from tests.test_survival_curves import monotonicity, between_01
+from xgbse.non_parametric import calculate_kaplan_vectorized, get_time_bins
 
 (
     X_train,
@@ -23,7 +23,7 @@ from tests.test_survival_curves import monotonicity, between_01
 
 # generating Kaplan Meier for all tests
 
-time_bins = get_time_bins(T_train, E_train, 100)
+time_bins = get_time_bins(T_train, E_train, size=30)
 
 mean, high, low = calculate_kaplan_vectorized(
     T_train.values.reshape(1, -1), E_train.values.reshape(1, -1), time_bins
@@ -34,7 +34,7 @@ xgbse_model = XGBSEDebiasedBCE()
 xgbse_model.fit(
     X_train,
     y_train,
-    num_boost_round=1000,
+    num_boost_round=100,
     validation_data=(X_valid, y_valid),
     early_stopping_rounds=10,
     verbose_eval=0,

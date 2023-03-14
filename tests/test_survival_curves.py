@@ -1,14 +1,14 @@
 import numpy as np
 import pytest
-from xgbse.metrics import concordance_index
 
-from tests.data import get_data
+from tests.data import get_data_with_categorical
 from xgbse import (
     XGBSEDebiasedBCE,
     XGBSEKaplanNeighbors,
     XGBSEKaplanTree,
     XGBSEStackedWeibull,
 )
+from xgbse.metrics import concordance_index
 
 (
     X_train,
@@ -24,7 +24,7 @@ from xgbse import (
     y_test,
     y_valid,
     features,
-) = get_data()
+) = get_data_with_categorical()
 
 
 def monotonicity(survival_curves):
@@ -50,7 +50,7 @@ def assert_survival_curve(xgbse, test, preds, cindex):
     "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEStackedWeibull]
 )
 def test_survival_curve(model):
-    xgbse = model()
+    xgbse = model(enable_categorical=True)
 
     xgbse.fit(
         X_train,
@@ -71,7 +71,7 @@ def test_survival_curve(model):
     "model", [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEStackedWeibull]
 )
 def test_survival_curve_without_early_stopping(model):
-    xgbse = model()
+    xgbse = model(enable_categorical=True)
 
     xgbse.fit(
         X_train,
@@ -85,7 +85,7 @@ def test_survival_curve_without_early_stopping(model):
 
 
 def test_survival_curve_tree():
-    xgbse = XGBSEKaplanTree()
+    xgbse = XGBSEKaplanTree(enable_categorical=True)
 
     xgbse.fit(X_train, y_train)
 
@@ -97,7 +97,21 @@ def test_survival_curve_tree():
 
 @pytest.mark.parametrize("model", [XGBSEKaplanTree, XGBSEKaplanNeighbors])
 def test_time_bins(model):
-    xgbse = model()
+    xgbse = model(enable_categorical=True)
+
+    bins = np.linspace(100, 1000, 6)
+    xgbse.fit(X_train, y_train, time_bins=bins)
+
+    preds = xgbse.predict(X_test)
+    assert (preds.columns == bins).all()
+
+
+@pytest.mark.parametrize(
+    "model",
+    [XGBSEDebiasedBCE, XGBSEKaplanNeighbors, XGBSEKaplanTree, XGBSEStackedWeibull],
+)
+def test_categorical_features(model):
+    xgbse = model(enable_categorical=True)
 
     bins = np.linspace(100, 1000, 6)
     xgbse.fit(X_train, y_train, time_bins=bins)

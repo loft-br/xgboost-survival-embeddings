@@ -28,7 +28,6 @@ class XGBSEBootstrapEstimator(BaseEstimator):
         self.random_state = random_state
 
     def fit(self, X, y, **kwargs):
-
         """
         Fit several (base) estimators and store them.
 
@@ -51,7 +50,6 @@ class XGBSEBootstrapEstimator(BaseEstimator):
 
         # loop for n_estimators
         for i in range(self.n_estimators):
-
             X_sample, y_sample = resample(X, y, random_state=i + self.random_state)
 
             trained_model = self.base_estimator.fit(X_sample, y_sample, **kwargs)
@@ -61,7 +59,6 @@ class XGBSEBootstrapEstimator(BaseEstimator):
         return self
 
     def predict(self, X, return_ci=False, ci_width=0.683, return_interval_probs=False):
-
         """
         Predicts survival as given by the base estimator. A survival function, its upper and lower
         confidence intervals can be returned for each sample of the dataframe X.
@@ -90,7 +87,6 @@ class XGBSEBootstrapEstimator(BaseEstimator):
         preds_list = []
 
         for estimator in self.estimators_:
-
             temp_preds = estimator.predict(
                 X, return_interval_probs=return_interval_probs
             )
@@ -101,7 +97,6 @@ class XGBSEBootstrapEstimator(BaseEstimator):
         preds_df = agg_preds.groupby(level=0).mean()
 
         if return_ci:
-
             low_p = 0.5 - ci_width / 2
             high_p = 0.5 + ci_width / 2
 
