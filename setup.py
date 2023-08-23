@@ -3,7 +3,7 @@ import setuptools
 install_requires = [
     "xgboost>=1.4.0",
     "numpy>=1.18.4",
-    "scikit-learn>=1.0.*",
+    "scikit-learn>=0.22.2",
     "pandas>=1.0.0",
     "joblib>=0.15.1",
     "lifelines>=0.25.4",
