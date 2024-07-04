@@ -1,8 +1,8 @@
 format:
-	ruff format xgbse setup.py tests/ --check
+	ruff format xgbse tests/ --check
 
 lint:
-	ruff check xgbse setup.py tests/
+	ruff check xgbse tests/
 
 test:
 	pytest --cov-report term-missing --cov=xgbse tests/
