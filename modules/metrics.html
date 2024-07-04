@@ -12,8 +12,15 @@
         <meta name="author" content="Loft Data Science Team">
       
       
+      
+        <link rel="prev" href="converters.html">
+      
+      
+        <link rel="next" href="../examples/basic_usage.html">
+      
+      
       <link rel="icon" href="../img/loft_icon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.4">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
@@ -21,13 +28,14 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
-        
       
+
+
     
+    
+      
     
     
       
@@ -45,23 +53,18 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css">
     
-    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
+    
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -89,7 +92,8 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -109,9 +113,13 @@
     </div>
     
     
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -119,24 +127,27 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -145,10 +156,10 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/loft-br/xgboost-survival-embeddings" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -167,55 +178,75 @@
           
             
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
+  <div class="md-grid">
     <ul class="md-tabs__list">
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
 
-
-  <li class="md-tabs__item">
-    <a href="../index.html" class="md-tabs__link">
-      Home
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../install.html" class="md-tabs__link">
+        
+  
+    
+  
+  Install
 
-
-  <li class="md-tabs__item">
-    <a href="../install.html" class="md-tabs__link">
-      Install
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../how_xgbse_works.html" class="md-tabs__link">
+        
+  
+    
+  
+  How XGBSE works
 
-
-  <li class="md-tabs__item">
-    <a href="../how_xgbse_works.html" class="md-tabs__link">
-      How XGBSE works
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../basic-usage.html" class="md-tabs__link">
+        
+  
+    
+  
+  Basic Usage
 
-
-  <li class="md-tabs__item">
-    <a href="../basic-usage.html" class="md-tabs__link">
-      Basic Usage
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
@@ -223,45 +254,54 @@
   
     
   
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="base.html" class="md-tabs__link">
+          
+  
+  Modules
 
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="base.html" class="md-tabs__link md-tabs__link--active">
-        Modules
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../examples/confidence_interval.html" class="md-tabs__link">
-        Examples
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
         
   
   
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../examples/basic_usage.html" class="md-tabs__link">
+          
+  
+  Examples
 
+        </a>
+      </li>
+    
+  
 
-  <li class="md-tabs__item">
-    <a href="../benchmarks/benchmarks.html" class="md-tabs__link">
-      Benchmarks
-    </a>
-  </li>
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../benchmarks/benchmarks.html" class="md-tabs__link">
+        
+  
+    
+  
+  Benchmarks
+
+      </a>
+    </li>
+  
 
       
     </ul>
@@ -282,6 +322,7 @@
                   <div class="md-sidebar__inner">
                     
 
+
   
 
 
@@ -296,10 +337,10 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/loft-br/xgboost-survival-embeddings" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -311,14 +352,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,14 +372,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../install.html" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -341,14 +392,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../how_xgbse_works.html" class="md-nav__link">
-        How XGBSE works
+        
+  
+  <span class="md-ellipsis">
+    How XGBSE works
+  </span>
+  
+
       </a>
     </li>
   
@@ -356,14 +412,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../basic-usage.html" class="md-nav__link">
-        Basic Usage
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+  </span>
+  
+
       </a>
     </li>
   
@@ -371,168 +432,250 @@
     
       
       
-      
-
   
   
     
   
   
+  
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      
+        
+        
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          Modules
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Modules" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Modules
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
           
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="base.html" class="md-nav__link">
-        XGBSEBaseEstimator
+        
+  
+  <span class="md-ellipsis">
+    XGBSEBaseEstimator
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="bce.html" class="md-nav__link">
-        XGBSEDebiasedBCE
+        
+  
+  <span class="md-ellipsis">
+    XGBSEDebiasedBCE
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="stacked_weibull.html" class="md-nav__link">
-        XGBSEStackedWeibull
+        
+  
+  <span class="md-ellipsis">
+    XGBSEStackedWeibull
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="kaplan_neighs.html" class="md-nav__link">
-        XGBSEKaplanNeighbors
+        
+  
+  <span class="md-ellipsis">
+    XGBSEKaplanNeighbors
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="kaplan_tree.html" class="md-nav__link">
-        XGBSEKaplanTree
+        
+  
+  <span class="md-ellipsis">
+    XGBSEKaplanTree
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="meta.html" class="md-nav__link">
-        XGBSEBootstrapEstimator
+        
+  
+  <span class="md-ellipsis">
+    XGBSEBootstrapEstimator
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="extrapolation.html" class="md-nav__link">
-        extrapolation
+        
+  
+  <span class="md-ellipsis">
+    extrapolation
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="converters.html" class="md-nav__link">
-        converters
+        
+  
+  <span class="md-ellipsis">
+    converters
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          metrics
+          
+  
+  <span class="md-ellipsis">
+    metrics
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="metrics.html" class="md-nav__link md-nav__link--active">
-        metrics
+        
+  
+  <span class="md-ellipsis">
+    metrics
+  </span>
+  
+
       </a>
       
         
@@ -552,28 +695,36 @@
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics" class="md-nav__link">
-    xgbse.metrics
+    <span class="md-ellipsis">
+      xgbse.metrics
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics.approx_brier_score" class="md-nav__link">
-    approx_brier_score()
+    <span class="md-ellipsis">
+      approx_brier_score()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics.concordance_index" class="md-nav__link">
-    concordance_index()
+    <span class="md-ellipsis">
+      concordance_index()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics.dist_calibration_score" class="md-nav__link">
-    dist_calibration_score()
+    <span class="md-ellipsis">
+      dist_calibration_score()
+    </span>
   </a>
   
 </li>
@@ -585,86 +736,138 @@
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Examples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
           
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/basic_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../examples/confidence_interval.html" class="md-nav__link">
-        Confidence intervals
+        
+  
+  <span class="md-ellipsis">
+    Confidence intervals
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../examples/extrapolation_example.html" class="md-nav__link">
-        Extrapolation
+        
+  
+  <span class="md-ellipsis">
+    Extrapolation
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../benchmarks/benchmarks.html" class="md-nav__link">
-        Benchmarks
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
       </a>
     </li>
   
@@ -700,28 +903,36 @@
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics" class="md-nav__link">
-    xgbse.metrics
+    <span class="md-ellipsis">
+      xgbse.metrics
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics.approx_brier_score" class="md-nav__link">
-    approx_brier_score()
+    <span class="md-ellipsis">
+      approx_brier_score()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics.concordance_index" class="md-nav__link">
-    concordance_index()
+    <span class="md-ellipsis">
+      concordance_index()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse.metrics.dist_calibration_score" class="md-nav__link">
-    dist_calibration_score()
+    <span class="md-ellipsis">
+      dist_calibration_score()
+    </span>
   </a>
   
 </li>
@@ -734,14 +945,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-<a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/modules/metrics.md" title="Edit this page" class="md-content__button md-icon">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-</a>
+                  
 
+  
+  
 
 
 <h1 id="xgbsemetrics">xgbse.metrics<a class="headerlink" href="#xgbsemetrics" title="Permanent link">&para;</a></h1>
@@ -769,11 +980,11 @@
 
 
 
-<h3 class="doc doc-heading" id="xgbse.metrics.approx_brier_score">
+<h2 id="xgbse.metrics.approx_brier_score" class="doc doc-heading">
 <code class="highlight language-python">approx_brier_score(y_true, survival, aggregate='mean')</code>
 
 
-<a class="headerlink" href="#xgbse.metrics.approx_brier_score" title="Permanent link">&para;</a></h3>
+<a href="#xgbse.metrics.approx_brier_score" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
@@ -838,6 +1049,88 @@ If risk_strategy is 'precomputed', is an array with representing risks for each 
     </tr>
   </tbody>
 </table>
+        <details class="quote">
+          <summary>Source code in <code>xgbse/metrics.py</code></summary>
+          <pre class="highlight"><code class="language-python">def approx_brier_score(y_true, survival, aggregate="mean"):
+    """
+    Estimate brier score for all survival time windows. Aggregate scores for an approximate
+    integrated brier score estimate.
+
+    Args:
+        y_true (structured array(numpy.bool_, numpy.number)): B inary event indicator as first field,
+            and time of event or time of censoring as second field.
+
+        survival ([pd.DataFrame, np.array]): A dataframe of survival probabilities
+            for all times (columns), from a time_bins array, for all samples of X (rows).
+            If risk_strategy is 'precomputed', is an array with representing risks for each sample.
+
+        aggregate ([string, None]): How to aggregate brier scores from different time windows:
+
+            * `mean` takes simple average
+
+            * `None` returns full list of brier scores for each time window
+
+    Returns:
+        [Float, np.array]:
+            single value if aggregate is 'mean'
+            np.array if aggregate is None
+    """
+    events, times = convert_y(y_true)
+    events = events.astype(bool)
+
+    # calculating censoring distribution
+    censoring_dist, _, _ = calculate_kaplan_vectorized(
+        times.reshape(1, -1), ~events.reshape(1, -1), survival.columns
+    )
+
+    # initializing scoring df
+    scoring_df = pd.DataFrame({"e": events, "t": times}, index=survival.index)
+
+    # adding censoring distribution survival at event
+    event_time_windows = _match_times_to_windows(times, survival.columns)
+    scoring_df["cens_at_event"] = censoring_dist[event_time_windows].iloc[0].values
+
+    # list of window results
+    window_results = []
+
+    # loop for all suvival time windows
+    for window in survival.columns:
+        # adding window info to scoring df
+        scoring_df = scoring_df.assign(surv_at_window=survival[window]).assign(
+            cens_at_window=censoring_dist[window].values[0]
+        )
+
+        # calculating censored brier score first term
+        # as by formula on B4.3 of https://arxiv.org/pdf/1811.11347.pdf
+        first_term = (
+            (scoring_df["t"] &lt;= window).astype(int)
+            * (scoring_df["e"])
+            * (scoring_df["surv_at_window"]) ** 2
+            / (scoring_df["cens_at_event"])
+        )
+
+        # calculating censored brier score second term
+        # as by formula on B4.3 of https://arxiv.org/pdf/1811.11347.pdf
+        second_term = (
+            (scoring_df["t"] &gt; window).astype(int)
+            * (1 - scoring_df["surv_at_window"]) ** 2
+            / (scoring_df["cens_at_window"])
+        )
+
+        # adding and taking average
+        result = (first_term + second_term).sum() / scoring_df.shape[0]
+        window_results.append(result)
+
+    if aggregate == "mean":
+        return np.array(window_results).mean()
+    elif aggregate is None:
+        return np.array(window_results)
+    else:
+        raise ValueError(
+            f"Chosen aggregating strategy of {aggregate} is not available."
+        )
+</code></pre>
+        </details>
     </div>
 
   </div>
@@ -848,11 +1141,11 @@ If risk_strategy is 'precomputed', is an array with representing risks for each 
 
 
 
-<h3 class="doc doc-heading" id="xgbse.metrics.concordance_index">
+<h2 id="xgbse.metrics.concordance_index" class="doc doc-heading">
 <code class="highlight language-python">concordance_index(y_true, survival, risk_strategy='mean', which_window=None)</code>
 
 
-<a class="headerlink" href="#xgbse.metrics.concordance_index" title="Permanent link">&para;</a></h3>
+<a href="#xgbse.metrics.concordance_index" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
@@ -938,6 +1231,95 @@ of the columns of the dataframe. Will raise ValueError if column is not present<
     </tr>
   </tbody>
 </table>
+        <details class="quote">
+          <summary>Source code in <code>xgbse/metrics.py</code></summary>
+          <pre class="highlight"><code class="language-python">def concordance_index(y_true, survival, risk_strategy="mean", which_window=None):
+    """
+    Compute the C-index for a structured array of ground truth times and events
+    and a predicted survival curve using different strategies for estimating risk from it.
+
+    !!! Note
+        * Computation of the C-index is $\\mathcal{O}(n^2)$.
+
+    Args:
+        y_true (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
+            and time of event or time of censoring as second field.
+
+        survival ([pd.DataFrame, np.array]): A dataframe of survival probabilities
+            for all times (columns), from a time_bins array, for all samples of X (rows).
+            If risk_strategy is 'precomputed', is an array with representing risks for each sample.
+
+        risk_strategy (string):
+            Strategy to compute risks from the survival curve. For a given sample:
+
+            * `mean` averages probabilities across all times
+
+            * `window`: lets user choose on of the time windows available (by which_window argument)
+                and uses probabilities of this specific window
+
+            * `midpoint`: selects the most central window of index int(survival.columns.shape[0]/2)
+                and uses probabilities of this specific window
+
+            * `precomputed`: assumes user has already calculated risk.
+                The survival argument is assumed to contain an array of risks instead
+
+        which_window (object): Which window to use when risk_strategy is 'window'. Should be one
+            of the columns of the dataframe. Will raise ValueError if column is not present
+
+    Returns:
+        Float: Concordance index for y_true and survival
+    """
+
+    # choosing risk calculation strategy
+
+    if risk_strategy == "mean":
+        risks = 1 - survival.mean(axis=1)
+
+    elif risk_strategy == "window":
+        if which_window is None:
+            raise ValueError(
+                "Need to set which window to use via the which_window parameter"
+            )
+        risks = 1 - survival[which_window]
+
+    elif risk_strategy == "midpoint":
+        midpoint = int(survival.columns.shape[0] / 2)
+        midpoint_col = survival.columns[midpoint]
+        risks = 1 - survival[midpoint_col]
+
+    elif risk_strategy == "precomputed":
+        risks = survival
+
+    else:
+        raise ValueError(
+            f"Chosen risk computing strategy of {risk_strategy} is not available."
+        )
+
+    # organizing event, time and risk data
+    events, times = convert_y(y_true)
+    events = events.astype(bool)
+
+    cind_df = pd.DataFrame({"t": times, "e": events, "r": risks})
+
+    count_pairs = 0
+    concordant_pairs = 0
+    tied_pairs = 0
+
+    # running loop for each uncensored sample,
+    # as by https://arxiv.org/pdf/1811.11347.pdf
+    for _, row in cind_df.query("e == True").iterrows():
+        # getting all censored and uncensored samples
+        # after current row
+        samples_after_i = cind_df.query(f"""{row['t']} &lt; t""")
+
+        # counting total, concordant and tied pairs
+        count_pairs += samples_after_i.shape[0]
+        concordant_pairs += (samples_after_i["r"] &lt; row["r"]).sum()
+        tied_pairs += (samples_after_i["r"] == row["r"]).sum()
+
+    return (concordant_pairs + tied_pairs / 2) / count_pairs
+</code></pre>
+        </details>
     </div>
 
   </div>
@@ -948,11 +1330,11 @@ of the columns of the dataframe. Will raise ValueError if column is not present<
 
 
 
-<h3 class="doc doc-heading" id="xgbse.metrics.dist_calibration_score">
+<h2 id="xgbse.metrics.dist_calibration_score" class="doc doc-heading">
 <code class="highlight language-python">dist_calibration_score(y_true, survival, n_bins=10, returns='pval')</code>
 
 
-<a class="headerlink" href="#xgbse.metrics.dist_calibration_score" title="Permanent link">&para;</a></h3>
+<a href="#xgbse.metrics.dist_calibration_score" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
@@ -1036,6 +1418,127 @@ where <code>expected_percentage = 1.0/n_bins</code></p>
     </tr>
   </tbody>
 </table>
+        <details class="quote">
+          <summary>Source code in <code>xgbse/metrics.py</code></summary>
+          <pre class="highlight"><code class="language-python">def dist_calibration_score(y_true, survival, n_bins=10, returns="pval"):
+    """
+    Estimate D-Calibration for the survival predictions.
+
+    Args:
+        y_true (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
+            and time of event or time of censoring as second field.
+
+        survival ([pd.DataFrame, np.array]): A dataframe of survival probabilities
+            for all times (columns), from a time_bins array, for all samples of X (rows).
+            If risk_strategy is 'precomputed', is an array with representing risks for each sample.
+
+        n_bins (Int): Number of bins to equally divide the [0, 1] interval
+
+        returns (string):
+            What information to return from the function:
+
+            * `statistic` returns the chi squared test statistic
+
+            * `pval` returns the chi squared test p value
+
+            * `max_deviation` returns the maximum percentage deviation from the expected value,
+            calculated as `abs(expected_percentage - real_percentage)`,
+            where `expected_percentage = 1.0/n_bins`
+
+            * `histogram` returns the full calibration histogram per bin
+
+            * `all` returns all of the above in a dictionary
+
+    Returns:
+        [Float, np.array, Dict]:
+        * Single value if returns is in `['statistic','pval','max_deviation']``
+        * np.array if returns is 'histogram'
+        * dict if returns is 'all'
+    """
+
+    # calculating bins
+    bins = np.round(np.linspace(0, 1, n_bins + 1), 2)
+
+    events, times = convert_y(y_true)
+    events = events.astype(bool)
+
+    # mapping event and censoring times to survival windows
+    event_time_windows = _match_times_to_windows(times, survival.columns)
+    survival_at_ti = np.array(
+        [survival.iloc[i][event_time_windows[i]] for i in range(len(survival))]
+    )
+    survival_at_ti = np.clip(survival_at_ti, EPS, None)
+
+    # creating data frame to calculate uncensored and censored counts
+    scoring_df = pd.DataFrame(
+        {
+            "survival_at_ti": survival_at_ti,
+            "t": times,
+            "e": events,
+            "bin": pd.cut(survival_at_ti, bins, include_lowest=True),
+            "cens_spill_term": 1 / (n_bins * survival_at_ti),
+        }
+    )
+
+    # computing uncensored counts:
+    # sum the number of events per bin
+    count_uncens = scoring_df.query("e == True").groupby("bin").size()
+
+    # computing censored counts at bin of censoring
+    # formula (A) as by page 49 of
+    # https://arxiv.org/pdf/1811.11347.pdf
+    count_cens = (
+        scoring_df.query("e == False")
+        .groupby("bin")
+        .apply(lambda x: (1 - np.clip(x.name.left, 0, 1) / x["survival_at_ti"]).sum())
+    )
+
+    # computing censored counts at bins after censoring
+    # effect of 'blurring'
+    # formula (B) as by page 49 of
+    # https://arxiv.org/pdf/1811.11347.pdf
+    count_cens_spill = (
+        scoring_df.query("e == False")
+        .groupby("bin")["cens_spill_term"]
+        .sum()
+        .iloc[::-1]
+        .shift()
+        .fillna(0)
+        .cumsum()
+        .iloc[::-1]
+    )
+
+    final_bin_counts = count_uncens + count_cens + count_cens_spill
+
+    if returns == "statistic":
+        result = chisquare(final_bin_counts)
+        return result.statistic
+
+    elif returns == "pval":
+        result = chisquare(final_bin_counts)
+        return result.pvalue
+
+    elif returns == "max_deviation":
+        proportions = final_bin_counts / final_bin_counts.sum()
+        return np.abs(proportions - 1 / n_bins).max()
+
+    elif returns == "histogram":
+        return final_bin_counts
+
+    elif returns == "all":
+        result = chisquare(final_bin_counts)
+        proportions = final_bin_counts / final_bin_counts.sum()
+        max_deviation = np.abs(proportions - 1 / n_bins).max()
+        return {
+            "statistic": result.statistic,
+            "pval": result.pvalue,
+            "max_deviation": max_deviation,
+            "histogram": final_bin_counts,
+        }
+    else:
+        raise ValueError(f"Chosen return of {returns} is not available.")
+</code></pre>
+        </details>
     </div>
 
   </div>
@@ -1051,49 +1554,33 @@ where <code>expected_percentage = 1.0/n_bins</code></p>
 
   </div>
 
-              
-            </article>
-          </div>
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="converters.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: converters" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              converters
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../examples/confidence_interval.html" class="md-footer__link md-footer__link--next" aria-label="Next: Confidence intervals" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Confidence intervals
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1115,10 +1602,12 @@ where <code>expected_percentage = 1.0/n_bins</code></p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.5413a266.min.js"></script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
       

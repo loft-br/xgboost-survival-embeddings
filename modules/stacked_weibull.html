@@ -12,8 +12,15 @@
         <meta name="author" content="Loft Data Science Team">
       
       
+      
+        <link rel="prev" href="bce.html">
+      
+      
+        <link rel="next" href="kaplan_neighs.html">
+      
+      
       <link rel="icon" href="../img/loft_icon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.4">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
@@ -21,13 +28,14 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
-        
       
+
+
     
+    
+      
     
     
       
@@ -45,23 +53,18 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css">
     
-    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
+    
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -89,7 +92,8 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -109,9 +113,13 @@
     </div>
     
     
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -119,24 +127,27 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -145,10 +156,10 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/loft-br/xgboost-survival-embeddings" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -167,55 +178,75 @@
           
             
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
+  <div class="md-grid">
     <ul class="md-tabs__list">
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
 
-
-  <li class="md-tabs__item">
-    <a href="../index.html" class="md-tabs__link">
-      Home
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../install.html" class="md-tabs__link">
+        
+  
+    
+  
+  Install
 
-
-  <li class="md-tabs__item">
-    <a href="../install.html" class="md-tabs__link">
-      Install
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../how_xgbse_works.html" class="md-tabs__link">
+        
+  
+    
+  
+  How XGBSE works
 
-
-  <li class="md-tabs__item">
-    <a href="../how_xgbse_works.html" class="md-tabs__link">
-      How XGBSE works
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../basic-usage.html" class="md-tabs__link">
+        
+  
+    
+  
+  Basic Usage
 
-
-  <li class="md-tabs__item">
-    <a href="../basic-usage.html" class="md-tabs__link">
-      Basic Usage
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
         
@@ -223,45 +254,54 @@
   
     
   
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="base.html" class="md-tabs__link">
+          
+  
+  Modules
 
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="base.html" class="md-tabs__link md-tabs__link--active">
-        Modules
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../examples/confidence_interval.html" class="md-tabs__link">
-        Examples
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
         
   
   
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../examples/basic_usage.html" class="md-tabs__link">
+          
+  
+  Examples
 
+        </a>
+      </li>
+    
+  
 
-  <li class="md-tabs__item">
-    <a href="../benchmarks/benchmarks.html" class="md-tabs__link">
-      Benchmarks
-    </a>
-  </li>
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../benchmarks/benchmarks.html" class="md-tabs__link">
+        
+  
+    
+  
+  Benchmarks
+
+      </a>
+    </li>
+  
 
       
     </ul>
@@ -282,6 +322,7 @@
                   <div class="md-sidebar__inner">
                     
 
+
   
 
 
@@ -296,10 +337,10 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/loft-br/xgboost-survival-embeddings" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -311,14 +352,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,14 +372,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../install.html" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -341,14 +392,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../how_xgbse_works.html" class="md-nav__link">
-        How XGBSE works
+        
+  
+  <span class="md-ellipsis">
+    How XGBSE works
+  </span>
+  
+
       </a>
     </li>
   
@@ -356,14 +412,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../basic-usage.html" class="md-nav__link">
-        Basic Usage
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+  </span>
+  
+
       </a>
     </li>
   
@@ -371,84 +432,124 @@
     
       
       
-      
-
   
   
     
   
   
+  
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      
+        
+        
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          Modules
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Modules" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Modules
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
           
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="base.html" class="md-nav__link">
-        XGBSEBaseEstimator
+        
+  
+  <span class="md-ellipsis">
+    XGBSEBaseEstimator
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="bce.html" class="md-nav__link">
-        XGBSEDebiasedBCE
+        
+  
+  <span class="md-ellipsis">
+    XGBSEDebiasedBCE
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          XGBSEStackedWeibull
+          
+  
+  <span class="md-ellipsis">
+    XGBSEStackedWeibull
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="stacked_weibull.html" class="md-nav__link md-nav__link--active">
-        XGBSEStackedWeibull
+        
+  
+  <span class="md-ellipsis">
+    XGBSEStackedWeibull
+  </span>
+  
+
       </a>
       
         
@@ -468,29 +569,103 @@
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull" class="md-nav__link">
-    xgbse._stacked_weibull.XGBSEStackedWeibull
+    <span class="md-ellipsis">
+      xgbse._stacked_weibull.XGBSEStackedWeibull
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.__init__" class="md-nav__link">
-    __init__()
+    <span class="md-ellipsis">
+      __init__()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.fit" class="md-nav__link">
-    fit()
+    <span class="md-ellipsis">
+      fit()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.predict" class="md-nav__link">
-    predict()
+    <span class="md-ellipsis">
+      predict()
+    </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_fit_request()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set_fit_request()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_predict_request()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set_predict_request()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -501,170 +676,264 @@
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="kaplan_neighs.html" class="md-nav__link">
-        XGBSEKaplanNeighbors
+        
+  
+  <span class="md-ellipsis">
+    XGBSEKaplanNeighbors
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="kaplan_tree.html" class="md-nav__link">
-        XGBSEKaplanTree
+        
+  
+  <span class="md-ellipsis">
+    XGBSEKaplanTree
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="meta.html" class="md-nav__link">
-        XGBSEBootstrapEstimator
+        
+  
+  <span class="md-ellipsis">
+    XGBSEBootstrapEstimator
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="extrapolation.html" class="md-nav__link">
-        extrapolation
+        
+  
+  <span class="md-ellipsis">
+    extrapolation
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="converters.html" class="md-nav__link">
-        converters
+        
+  
+  <span class="md-ellipsis">
+    converters
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="metrics.html" class="md-nav__link">
-        metrics
+        
+  
+  <span class="md-ellipsis">
+    metrics
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Examples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
           
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/basic_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../examples/confidence_interval.html" class="md-nav__link">
-        Confidence intervals
+        
+  
+  <span class="md-ellipsis">
+    Confidence intervals
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../examples/extrapolation_example.html" class="md-nav__link">
-        Extrapolation
+        
+  
+  <span class="md-ellipsis">
+    Extrapolation
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../benchmarks/benchmarks.html" class="md-nav__link">
-        Benchmarks
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
       </a>
     </li>
   
@@ -700,29 +969,103 @@
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull" class="md-nav__link">
-    xgbse._stacked_weibull.XGBSEStackedWeibull
+    <span class="md-ellipsis">
+      xgbse._stacked_weibull.XGBSEStackedWeibull
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.__init__" class="md-nav__link">
-    __init__()
+    <span class="md-ellipsis">
+      __init__()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.fit" class="md-nav__link">
-    fit()
+    <span class="md-ellipsis">
+      fit()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.predict" class="md-nav__link">
-    predict()
+    <span class="md-ellipsis">
+      predict()
+    </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_fit_request()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set_fit_request()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_predict_request()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set_predict_request()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Returns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -734,14 +1077,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-<a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/modules/stacked_weibull.md" title="Edit this page" class="md-content__button md-icon">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-</a>
+                  
 
+  
+  
 
 
 <h1 id="xgbse_stacked_weibullxgbsestackedweibull">xgbse._stacked_weibull.XGBSEStackedWeibull<a class="headerlink" href="#xgbse_stacked_weibullxgbsestackedweibull" title="Permanent link">&para;</a></h1>
@@ -769,6 +1112,174 @@ problem in <code>XGBSEKaplanNeighbors</code> and <code>XGBSEKaplanTree</code>.</
 </div>
 <p>Read more in <a href="https://loft-br.github.io/xgboost-survival-embeddings/how_xgbse_works.html">How XGBSE works</a>.</p>
 
+        <details class="quote">
+          <summary>Source code in <code>xgbse/_stacked_weibull.py</code></summary>
+          <pre class="highlight"><code class="language-python">class XGBSEStackedWeibull(XGBSEBaseEstimator):
+    """
+    Perform stacking of a XGBoost survival model with a Weibull AFT parametric model.
+    The XGBoost fits the data and then predicts a value that is interpreted as a risk metric.
+    This risk metric is fed to the Weibull regression which uses it as its only independent variable.
+
+    Thus, we can get the benefit of XGBoost discrimination power alongside the Weibull AFT
+    statistical rigor (e.g. calibrated survival curves).
+
+    !!! Note
+        * As we're stacking XGBoost with a single, one-variable parametric model
+        (as opposed to `XGBSEDebiasedBCE`), the model can be much faster (especially in training).
+        * We also have better extrapolation capabilities, as opposed to the cure fraction
+        problem in `XGBSEKaplanNeighbors` and `XGBSEKaplanTree`.
+        * However, we also have stronger assumptions about the shape of the survival curve.
+
+    Read more in [How XGBSE works](https://loft-br.github.io/xgboost-survival-embeddings/how_xgbse_works.html).
+
+    """
+
+    def __init__(
+        self,
+        xgb_params: Optional[Dict[str, Any]] = None,
+        weibull_params: Optional[Dict[str, Any]] = {},
+        enable_categorical: bool = False,
+    ):
+        """
+        Args:
+            xgb_params (Dict, None): Parameters for XGBoost model.
+                If None, will use XGBoost defaults and set objective as `survival:aft`.
+                Check &lt;https://xgboost.readthedocs.io/en/latest/parameter.html&gt; for options.
+
+            weibull_params (Dict): Parameters for Weibull Regerssion model.
+                If not passed, will use the default parameters as shown in the Lifelines documentation.
+                Check &lt;https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html&gt;
+                for more options.
+
+            enable_categorical (bool): Enable categorical feature support on xgboost model
+
+        """
+        self.feature_extractor = FeatureExtractor(
+            xgb_params=xgb_params, enable_categorical=enable_categorical
+        )
+        self.xgb_params = self.feature_extractor.xgb_params
+        self.weibull_params = weibull_params
+
+        self.persist_train = False
+        self.feature_importances_ = None
+
+    def fit(
+        self,
+        X,
+        y,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+        persist_train: bool = False,
+        index_id=None,
+    ):
+        """
+        Fit XGBoost model to predict a value that is interpreted as a risk metric.
+        Fit Weibull Regression model using risk metric as only independent variable.
+
+        Args:
+            X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
+
+            y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
+                and time of event or time of censoring as second field.
+
+            num_boost_round (Int): Number of boosting iterations.
+
+            validation_data (Tuple): Validation data in the format of a list of tuples [(X, y)]
+                if user desires to use early stopping
+
+            early_stopping_rounds (Int): Activates early stopping.
+                Validation metric needs to improve at least once
+                in every **early_stopping_rounds** round(s) to continue training.
+                See xgboost.train documentation.
+
+            verbose_eval ([Bool, Int]): Level of verbosity. See xgboost.train documentation.
+
+            persist_train (Bool): Whether or not to persist training data to use explainability
+                through prototypes
+
+            index_id (pd.Index): User defined index if intended to use explainability
+                through prototypes
+
+            time_bins (np.array): Specified time windows to use when making survival predictions
+
+        Returns:
+            XGBSEStackedWeibull: Trained XGBSEStackedWeibull instance
+        """
+
+        self.fit_feature_extractor(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
+            num_boost_round=num_boost_round,
+            early_stopping_rounds=early_stopping_rounds,
+            verbose_eval=verbose_eval,
+        )
+        E_train, T_train = convert_y(y)
+
+        # predicting hazard ratio from XGBoost
+        train_risk = self.feature_extractor.predict_hazard(X)
+
+        # replacing 0 by minimum positive value in df
+        # so Weibull can be fitted
+        min_positive_value = T_train[T_train &gt; 0].min()
+        T_train = np.clip(T_train, min_positive_value, None)
+
+        # creating df to use lifelines API
+        weibull_train_df = pd.DataFrame(
+            {"risk": train_risk, "duration": T_train, "event": E_train}
+        )
+
+        # fitting weibull aft
+        self.weibull_aft = WeibullAFTFitter(**self.weibull_params)
+        self.weibull_aft.fit(weibull_train_df, "duration", "event", ancillary=True)
+
+        if persist_train:
+            self.persist_train = True
+            if index_id is None:
+                index_id = X.index.copy()
+
+            index_leaves = self.feature_extractor.predict_leaves(X)
+            self.tree = BallTree(index_leaves, metric="hamming")
+
+        self.index_id = index_id
+
+        return self
+
+    def predict(self, X, return_interval_probs=False):
+        """
+        Predicts survival probabilities using the XGBoost + Weibull AFT stacking pipeline.
+
+        Args:
+            X (pd.DataFrame): Dataframe of features to be used as input for the
+                XGBoost model.
+
+            return_interval_probs (Bool): Boolean indicating if interval probabilities are
+                supposed to be returned. If False the cumulative survival is returned.
+                Default is False.
+
+        Returns:
+            pd.DataFrame: A dataframe of survival probabilities
+            for all times (columns), from a time_bins array, for all samples of X
+            (rows). If return_interval_probs is True, the interval probabilities are returned
+            instead of the cumulative survival probabilities.
+        """
+        risk = self.feature_extractor.predict_hazard(X)
+        weibull_score_df = pd.DataFrame({"risk": risk})
+
+        preds_df = self.weibull_aft.predict_survival_function(
+            weibull_score_df, self.time_bins
+        ).T
+
+        if return_interval_probs:
+            preds_df = calculate_interval_failures(preds_df)
+
+        return preds_df
+</code></pre>
+        </details>
 
 
 
@@ -786,14 +1297,14 @@ problem in <code>XGBSEKaplanNeighbors</code> and <code>XGBSEKaplanTree</code>.</
 
 
 
-<h3 class="doc doc-heading" id="xgbse._stacked_weibull.XGBSEStackedWeibull.__init__">
-<code class="highlight language-python">__init__(self, xgb_params=None, weibull_params=None)</code>
+<h2 id="xgbse._stacked_weibull.XGBSEStackedWeibull.__init__" class="doc doc-heading">
+<code class="highlight language-python">__init__(self, xgb_params=None, weibull_params={}, enable_categorical=False)</code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
   </span>
 
-<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.__init__" title="Permanent link">&para;</a></h3>
+<a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.__init__" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
@@ -813,34 +1324,59 @@ problem in <code>XGBSEKaplanNeighbors</code> and <code>XGBSEKaplanTree</code>.</
         <td><code>xgb_params</code></td>
         <td><code>Dict, None</code></td>
         <td><p>Parameters for XGBoost model.
-If not passed, the following default parameters will be used:</p>
-<pre class="highlight"><code>DEFAULT_PARAMS = {
-    "objective": "survival:aft",
-    "eval_metric": "aft-nloglik",
-    "aft_loss_distribution": "normal",
-    "aft_loss_distribution_scale": 1,
-    "tree_method": "hist",
-    "learning_rate": 5e-2,
-    "max_depth": 8,
-    "booster": "dart",
-    "subsample": 0.5,
-    "min_child_weight": 50,
-    "colsample_bynode": 0.5,
-}</code></pre>
-<p>Check <a href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a> for more options.</p></td>
+If None, will use XGBoost defaults and set objective as <code>survival:aft</code>.
+Check <a href="https://xgboost.readthedocs.io/en/latest/parameter.html">https://xgboost.readthedocs.io/en/latest/parameter.html</a> for options.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>weibull_params</code></td>
         <td><code>Dict</code></td>
         <td><p>Parameters for Weibull Regerssion model.
-If not passed, will use the default parameters as shown in the Lifelines documentation.</p>
-<p>Check <a href="https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html">https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html</a>
+If not passed, will use the default parameters as shown in the Lifelines documentation.
+Check <a href="https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html">https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html</a>
 for more options.</p></td>
-        <td><code>None</code></td>
+        <td><code>{}</code></td>
+      </tr>
+      <tr>
+        <td><code>enable_categorical</code></td>
+        <td><code>bool</code></td>
+        <td><p>Enable categorical feature support on xgboost model</p></td>
+        <td><code>False</code></td>
       </tr>
   </tbody>
 </table>
+        <details class="quote">
+          <summary>Source code in <code>xgbse/_stacked_weibull.py</code></summary>
+          <pre class="highlight"><code class="language-python">def __init__(
+    self,
+    xgb_params: Optional[Dict[str, Any]] = None,
+    weibull_params: Optional[Dict[str, Any]] = {},
+    enable_categorical: bool = False,
+):
+    """
+    Args:
+        xgb_params (Dict, None): Parameters for XGBoost model.
+            If None, will use XGBoost defaults and set objective as `survival:aft`.
+            Check &lt;https://xgboost.readthedocs.io/en/latest/parameter.html&gt; for options.
+
+        weibull_params (Dict): Parameters for Weibull Regerssion model.
+            If not passed, will use the default parameters as shown in the Lifelines documentation.
+            Check &lt;https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html&gt;
+            for more options.
+
+        enable_categorical (bool): Enable categorical feature support on xgboost model
+
+    """
+    self.feature_extractor = FeatureExtractor(
+        xgb_params=xgb_params, enable_categorical=enable_categorical
+    )
+    self.xgb_params = self.feature_extractor.xgb_params
+    self.weibull_params = weibull_params
+
+    self.persist_train = False
+    self.feature_importances_ = None
+</code></pre>
+        </details>
     </div>
 
   </div>
@@ -851,11 +1387,11 @@ for more options.</p></td>
 
 
 
-<h3 class="doc doc-heading" id="xgbse._stacked_weibull.XGBSEStackedWeibull.fit">
-<code class="highlight language-python">fit(self, X, y, num_boost_round=1000, validation_data=None, early_stopping_rounds=None, verbose_eval=0, persist_train=False, index_id=None, time_bins=None)</code>
+<h2 id="xgbse._stacked_weibull.XGBSEStackedWeibull.fit" class="doc doc-heading">
+<code class="highlight language-python">fit(self, X, y, time_bins=None, validation_data=None, num_boost_round=10, early_stopping_rounds=None, verbose_eval=0, persist_train=False, index_id=None)</code>
 
 
-<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.fit" title="Permanent link">&para;</a></h3>
+<a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.fit" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
@@ -890,7 +1426,7 @@ and time of event or time of censoring as second field.</p></td>
         <td><code>num_boost_round</code></td>
         <td><code>Int</code></td>
         <td><p>Number of boosting iterations.</p></td>
-        <td><code>1000</code></td>
+        <td><code>10</code></td>
       </tr>
       <tr>
         <td><code>validation_data</code></td>
@@ -951,6 +1487,95 @@ through prototypes</p></td>
     </tr>
   </tbody>
 </table>
+        <details class="quote">
+          <summary>Source code in <code>xgbse/_stacked_weibull.py</code></summary>
+          <pre class="highlight"><code class="language-python">def fit(
+    self,
+    X,
+    y,
+    time_bins: Optional[Sequence] = None,
+    validation_data: Optional[List[Tuple[Any, Any]]] = None,
+    num_boost_round: int = 10,
+    early_stopping_rounds: Optional[int] = None,
+    verbose_eval: int = 0,
+    persist_train: bool = False,
+    index_id=None,
+):
+    """
+    Fit XGBoost model to predict a value that is interpreted as a risk metric.
+    Fit Weibull Regression model using risk metric as only independent variable.
+
+    Args:
+        X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
+
+        y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
+            and time of event or time of censoring as second field.
+
+        num_boost_round (Int): Number of boosting iterations.
+
+        validation_data (Tuple): Validation data in the format of a list of tuples [(X, y)]
+            if user desires to use early stopping
+
+        early_stopping_rounds (Int): Activates early stopping.
+            Validation metric needs to improve at least once
+            in every **early_stopping_rounds** round(s) to continue training.
+            See xgboost.train documentation.
+
+        verbose_eval ([Bool, Int]): Level of verbosity. See xgboost.train documentation.
+
+        persist_train (Bool): Whether or not to persist training data to use explainability
+            through prototypes
+
+        index_id (pd.Index): User defined index if intended to use explainability
+            through prototypes
+
+        time_bins (np.array): Specified time windows to use when making survival predictions
+
+    Returns:
+        XGBSEStackedWeibull: Trained XGBSEStackedWeibull instance
+    """
+
+    self.fit_feature_extractor(
+        X,
+        y,
+        time_bins=time_bins,
+        validation_data=validation_data,
+        num_boost_round=num_boost_round,
+        early_stopping_rounds=early_stopping_rounds,
+        verbose_eval=verbose_eval,
+    )
+    E_train, T_train = convert_y(y)
+
+    # predicting hazard ratio from XGBoost
+    train_risk = self.feature_extractor.predict_hazard(X)
+
+    # replacing 0 by minimum positive value in df
+    # so Weibull can be fitted
+    min_positive_value = T_train[T_train &gt; 0].min()
+    T_train = np.clip(T_train, min_positive_value, None)
+
+    # creating df to use lifelines API
+    weibull_train_df = pd.DataFrame(
+        {"risk": train_risk, "duration": T_train, "event": E_train}
+    )
+
+    # fitting weibull aft
+    self.weibull_aft = WeibullAFTFitter(**self.weibull_params)
+    self.weibull_aft.fit(weibull_train_df, "duration", "event", ancillary=True)
+
+    if persist_train:
+        self.persist_train = True
+        if index_id is None:
+            index_id = X.index.copy()
+
+        index_leaves = self.feature_extractor.predict_leaves(X)
+        self.tree = BallTree(index_leaves, metric="hamming")
+
+    self.index_id = index_id
+
+    return self
+</code></pre>
+        </details>
     </div>
 
   </div>
@@ -961,11 +1586,11 @@ through prototypes</p></td>
 
 
 
-<h3 class="doc doc-heading" id="xgbse._stacked_weibull.XGBSEStackedWeibull.predict">
+<h2 id="xgbse._stacked_weibull.XGBSEStackedWeibull.predict" class="doc doc-heading">
 <code class="highlight language-python">predict(self, X, return_interval_probs=False)</code>
 
 
-<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.predict" title="Permanent link">&para;</a></h3>
+<a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.predict" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
@@ -1017,6 +1642,255 @@ instead of the cumulative survival probabilities.</p></td>
     </tr>
   </tbody>
 </table>
+        <details class="quote">
+          <summary>Source code in <code>xgbse/_stacked_weibull.py</code></summary>
+          <pre class="highlight"><code class="language-python">def predict(self, X, return_interval_probs=False):
+    """
+    Predicts survival probabilities using the XGBoost + Weibull AFT stacking pipeline.
+
+    Args:
+        X (pd.DataFrame): Dataframe of features to be used as input for the
+            XGBoost model.
+
+        return_interval_probs (Bool): Boolean indicating if interval probabilities are
+            supposed to be returned. If False the cumulative survival is returned.
+            Default is False.
+
+    Returns:
+        pd.DataFrame: A dataframe of survival probabilities
+        for all times (columns), from a time_bins array, for all samples of X
+        (rows). If return_interval_probs is True, the interval probabilities are returned
+        instead of the cumulative survival probabilities.
+    """
+    risk = self.feature_extractor.predict_hazard(X)
+    weibull_score_df = pd.DataFrame({"risk": risk})
+
+    preds_df = self.weibull_aft.predict_survival_function(
+        weibull_score_df, self.time_bins
+    ).T
+
+    if return_interval_probs:
+        preds_df = calculate_interval_failures(preds_df)
+
+    return preds_df
+</code></pre>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request" class="doc doc-heading">
+<code class="highlight language-python">set_fit_request(self, *, early_stopping_rounds='$UNCHANGED$', index_id='$UNCHANGED$', num_boost_round='$UNCHANGED$', persist_train='$UNCHANGED$', time_bins='$UNCHANGED$', validation_data='$UNCHANGED$', verbose_eval='$UNCHANGED$')</code>
+
+
+<a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Request metadata passed to the <code>fit</code> method.</p>
+<p>Note that this method is only relevant if
+<code>enable_metadata_routing=True</code> (see :func:<code>sklearn.set_config</code>).
+Please see :ref:<code>User Guide &lt;metadata_routing&gt;</code> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul>
+<li>
+<p><code>True</code>: metadata is requested, and passed to <code>fit</code> if provided. The request is ignored if metadata is not provided.</p>
+</li>
+<li>
+<p><code>False</code>: metadata is not requested and the meta-estimator will not pass it to <code>fit</code>.</p>
+</li>
+<li>
+<p><code>None</code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p>
+</li>
+<li>
+<p><code>str</code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p>
+</li>
+</ul>
+<p>The default (<code>sklearn.utils.metadata_routing.UNCHANGED</code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<p>.. versionadded:: 1.3</p>
+<p>.. note::
+    This method is only relevant if this estimator is used as a
+    sub-estimator of a meta-estimator, e.g. used inside a
+    :class:<code>~sklearn.pipeline.Pipeline</code>. Otherwise it has no effect.</p>
+<h4 id="xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--parameters">Parameters<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--parameters" title="Permanent link">&para;</a></h4>
+<p>early_stopping_rounds : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>early_stopping_rounds</code> parameter in <code>fit</code>.</p>
+<p>index_id : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>index_id</code> parameter in <code>fit</code>.</p>
+<p>num_boost_round : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>num_boost_round</code> parameter in <code>fit</code>.</p>
+<p>persist_train : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>persist_train</code> parameter in <code>fit</code>.</p>
+<p>time_bins : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>time_bins</code> parameter in <code>fit</code>.</p>
+<p>validation_data : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>validation_data</code> parameter in <code>fit</code>.</p>
+<p>verbose_eval : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>verbose_eval</code> parameter in <code>fit</code>.</p>
+<h4 id="xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--returns">Returns<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_fit_request--returns" title="Permanent link">&para;</a></h4>
+<p>self : object
+    The updated object.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>xgbse/_stacked_weibull.py</code></summary>
+          <pre class="highlight"><code class="language-python">def func(*args, **kw):
+    """Updates the request for provided parameters
+
+    This docstring is overwritten below.
+    See REQUESTER_DOC for expected functionality
+    """
+    if not _routing_enabled():
+        raise RuntimeError(
+            "This method is only available when metadata routing is enabled."
+            " You can enable it using"
+            " sklearn.set_config(enable_metadata_routing=True)."
+        )
+
+    if self.validate_keys and (set(kw) - set(self.keys)):
+        raise TypeError(
+            f"Unexpected args: {set(kw) - set(self.keys)} in {self.name}. "
+            f"Accepted arguments are: {set(self.keys)}"
+        )
+
+    # This makes it possible to use the decorated method as an unbound method,
+    # for instance when monkeypatching.
+    # https://github.com/scikit-learn/scikit-learn/issues/28632
+    if instance is None:
+        _instance = args[0]
+        args = args[1:]
+    else:
+        _instance = instance
+
+    # Replicating python's behavior when positional args are given other than
+    # `self`, and `self` is only allowed if this method is unbound.
+    if args:
+        raise TypeError(
+            f"set_{self.name}_request() takes 0 positional argument but"
+            f" {len(args)} were given"
+        )
+
+    requests = _instance._get_metadata_request()
+    method_metadata_request = getattr(requests, self.name)
+
+    for prop, alias in kw.items():
+        if alias is not UNCHANGED:
+            method_metadata_request.add_request(param=prop, alias=alias)
+    _instance._metadata_request = requests
+
+    return _instance
+</code></pre>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h2 id="xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request" class="doc doc-heading">
+<code class="highlight language-python">set_predict_request(self, *, return_interval_probs='$UNCHANGED$')</code>
+
+
+<a href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Request metadata passed to the <code>predict</code> method.</p>
+<p>Note that this method is only relevant if
+<code>enable_metadata_routing=True</code> (see :func:<code>sklearn.set_config</code>).
+Please see :ref:<code>User Guide &lt;metadata_routing&gt;</code> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul>
+<li>
+<p><code>True</code>: metadata is requested, and passed to <code>predict</code> if provided. The request is ignored if metadata is not provided.</p>
+</li>
+<li>
+<p><code>False</code>: metadata is not requested and the meta-estimator will not pass it to <code>predict</code>.</p>
+</li>
+<li>
+<p><code>None</code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p>
+</li>
+<li>
+<p><code>str</code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p>
+</li>
+</ul>
+<p>The default (<code>sklearn.utils.metadata_routing.UNCHANGED</code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<p>.. versionadded:: 1.3</p>
+<p>.. note::
+    This method is only relevant if this estimator is used as a
+    sub-estimator of a meta-estimator, e.g. used inside a
+    :class:<code>~sklearn.pipeline.Pipeline</code>. Otherwise it has no effect.</p>
+<h4 id="xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--parameters">Parameters<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--parameters" title="Permanent link">&para;</a></h4>
+<p>return_interval_probs : str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED
+    Metadata routing for <code>return_interval_probs</code> parameter in <code>predict</code>.</p>
+<h4 id="xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--returns">Returns<a class="headerlink" href="#xgbse._stacked_weibull.XGBSEStackedWeibull.set_predict_request--returns" title="Permanent link">&para;</a></h4>
+<p>self : object
+    The updated object.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>xgbse/_stacked_weibull.py</code></summary>
+          <pre class="highlight"><code class="language-python">def func(*args, **kw):
+    """Updates the request for provided parameters
+
+    This docstring is overwritten below.
+    See REQUESTER_DOC for expected functionality
+    """
+    if not _routing_enabled():
+        raise RuntimeError(
+            "This method is only available when metadata routing is enabled."
+            " You can enable it using"
+            " sklearn.set_config(enable_metadata_routing=True)."
+        )
+
+    if self.validate_keys and (set(kw) - set(self.keys)):
+        raise TypeError(
+            f"Unexpected args: {set(kw) - set(self.keys)} in {self.name}. "
+            f"Accepted arguments are: {set(self.keys)}"
+        )
+
+    # This makes it possible to use the decorated method as an unbound method,
+    # for instance when monkeypatching.
+    # https://github.com/scikit-learn/scikit-learn/issues/28632
+    if instance is None:
+        _instance = args[0]
+        args = args[1:]
+    else:
+        _instance = instance
+
+    # Replicating python's behavior when positional args are given other than
+    # `self`, and `self` is only allowed if this method is unbound.
+    if args:
+        raise TypeError(
+            f"set_{self.name}_request() takes 0 positional argument but"
+            f" {len(args)} were given"
+        )
+
+    requests = _instance._get_metadata_request()
+    method_metadata_request = getattr(requests, self.name)
+
+    for prop, alias in kw.items():
+        if alias is not UNCHANGED:
+            method_metadata_request.add_request(param=prop, alias=alias)
+    _instance._metadata_request = requests
+
+    return _instance
+</code></pre>
+        </details>
     </div>
 
   </div>
@@ -1031,49 +1905,33 @@ instead of the cumulative survival probabilities.</p></td>
 
   </div>
 
-              
-            </article>
-          </div>
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="bce.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: XGBSEDebiasedBCE" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              XGBSEDebiasedBCE
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="kaplan_neighs.html" class="md-footer__link md-footer__link--next" aria-label="Next: XGBSEKaplanNeighbors" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              XGBSEKaplanNeighbors
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1095,10 +1953,12 @@ instead of the cumulative survival probabilities.</p></td>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.5413a266.min.js"></script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
       

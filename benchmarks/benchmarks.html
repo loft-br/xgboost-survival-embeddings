@@ -12,8 +12,13 @@
         <meta name="author" content="Loft Data Science Team">
       
       
+      
+        <link rel="prev" href="../examples/extrapolation_example.html">
+      
+      
+      
       <link rel="icon" href="../img/loft_icon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.4">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
@@ -21,13 +26,14 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2d9f7617.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
-        
       
+
+
     
+    
+      
     
     
       
@@ -45,23 +51,18 @@
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/googlecode.min.css">
     
-    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
+    
   </head>
   
   
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -89,7 +90,8 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -109,9 +111,13 @@
     </div>
     
     
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -119,24 +125,27 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -145,10 +154,10 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/loft-br/xgboost-survival-embeddings" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -167,68 +176,21 @@
           
             
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
+  <div class="md-grid">
     <ul class="md-tabs__list">
       
         
   
   
-
-
-  <li class="md-tabs__item">
-    <a href="../index.html" class="md-tabs__link">
-      Home
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../install.html" class="md-tabs__link">
-      Install
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../how_xgbse_works.html" class="md-tabs__link">
-      How XGBSE works
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../basic-usage.html" class="md-tabs__link">
-      Basic Usage
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  
-  
   
     <li class="md-tabs__item">
-      <a href="../modules/base.html" class="md-tabs__link">
-        Modules
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
       </a>
     </li>
   
@@ -237,16 +199,87 @@
         
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../install.html" class="md-tabs__link">
+        
+  
+    
+  
+  Install
 
+      </a>
+    </li>
+  
 
+      
+        
   
   
   
     <li class="md-tabs__item">
-      <a href="../examples/confidence_interval.html" class="md-tabs__link">
-        Examples
+      <a href="../how_xgbse_works.html" class="md-tabs__link">
+        
+  
+    
+  
+  How XGBSE works
+
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../basic-usage.html" class="md-tabs__link">
+        
+  
+    
+  
+  Basic Usage
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../modules/base.html" class="md-tabs__link">
+          
+  
+  Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../examples/basic_usage.html" class="md-tabs__link">
+          
+  
+  Examples
+
+        </a>
+      </li>
+    
   
 
       
@@ -255,13 +288,18 @@
   
     
   
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="benchmarks.html" class="md-tabs__link">
+        
+  
+    
+  
+  Benchmarks
 
-
-  <li class="md-tabs__item">
-    <a href="benchmarks.html" class="md-tabs__link md-tabs__link--active">
-      Benchmarks
-    </a>
-  </li>
+      </a>
+    </li>
+  
 
       
     </ul>
@@ -282,6 +320,7 @@
                   <div class="md-sidebar__inner">
                     
 
+
   
 
 
@@ -296,10 +335,10 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/loft-br/xgboost-survival-embeddings/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/loft-br/xgboost-survival-embeddings" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -311,14 +350,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,14 +370,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../install.html" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -341,14 +390,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../how_xgbse_works.html" class="md-nav__link">
-        How XGBSE works
+        
+  
+  <span class="md-ellipsis">
+    How XGBSE works
+  </span>
+  
+
       </a>
     </li>
   
@@ -356,14 +410,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../basic-usage.html" class="md-nav__link">
-        Basic Usage
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+  </span>
+  
+
       </a>
     </li>
   
@@ -371,248 +430,379 @@
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
-          Modules
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Modules" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Modules
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
           
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/base.html" class="md-nav__link">
-        XGBSEBaseEstimator
+        
+  
+  <span class="md-ellipsis">
+    XGBSEBaseEstimator
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/bce.html" class="md-nav__link">
-        XGBSEDebiasedBCE
+        
+  
+  <span class="md-ellipsis">
+    XGBSEDebiasedBCE
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/stacked_weibull.html" class="md-nav__link">
-        XGBSEStackedWeibull
+        
+  
+  <span class="md-ellipsis">
+    XGBSEStackedWeibull
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/kaplan_neighs.html" class="md-nav__link">
-        XGBSEKaplanNeighbors
+        
+  
+  <span class="md-ellipsis">
+    XGBSEKaplanNeighbors
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/kaplan_tree.html" class="md-nav__link">
-        XGBSEKaplanTree
+        
+  
+  <span class="md-ellipsis">
+    XGBSEKaplanTree
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/meta.html" class="md-nav__link">
-        XGBSEBootstrapEstimator
+        
+  
+  <span class="md-ellipsis">
+    XGBSEBootstrapEstimator
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/extrapolation.html" class="md-nav__link">
-        extrapolation
+        
+  
+  <span class="md-ellipsis">
+    extrapolation
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/converters.html" class="md-nav__link">
-        converters
+        
+  
+  <span class="md-ellipsis">
+    converters
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../modules/metrics.html" class="md-nav__link">
-        metrics
+        
+  
+  <span class="md-ellipsis">
+    metrics
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     
+    
+    
+      
+      
+    
+    
     <li class="md-nav__item md-nav__item--nested">
       
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          Examples
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Examples" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          Examples
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
           
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/basic_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../examples/confidence_interval.html" class="md-nav__link">
-        Confidence intervals
+        
+  
+  <span class="md-ellipsis">
+    Confidence intervals
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../examples/extrapolation_example.html" class="md-nav__link">
-        Extrapolation
+        
+  
+  <span class="md-ellipsis">
+    Extrapolation
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Benchmarks
+          
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="benchmarks.html" class="md-nav__link md-nav__link--active">
-        Benchmarks
+        
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
       </a>
       
         
@@ -630,14 +820,18 @@
       
         <li class="md-nav__item">
   <a href="#metrics" class="md-nav__link">
-    Metrics
+    <span class="md-ellipsis">
+      Metrics
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#results" class="md-nav__link">
-    Results
+    <span class="md-ellipsis">
+      Results
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Results">
@@ -645,35 +839,45 @@
         
           <li class="md-nav__item">
   <a href="#flchain" class="md-nav__link">
-    FLCHAIN
+    <span class="md-ellipsis">
+      FLCHAIN
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#metabric" class="md-nav__link">
-    METABRIC
+    <span class="md-ellipsis">
+      METABRIC
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#rrnlnph" class="md-nav__link">
-    RRNLNPH
+    <span class="md-ellipsis">
+      RRNLNPH
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#sac3" class="md-nav__link">
-    SAC3
+    <span class="md-ellipsis">
+      SAC3
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#support" class="md-nav__link">
-    SUPPORT
+    <span class="md-ellipsis">
+      SUPPORT
+    </span>
   </a>
   
 </li>
@@ -685,7 +889,9 @@
       
         <li class="md-nav__item">
   <a href="#analysis" class="md-nav__link">
-    Analysis
+    <span class="md-ellipsis">
+      Analysis
+    </span>
   </a>
   
 </li>
@@ -726,14 +932,18 @@
       
         <li class="md-nav__item">
   <a href="#metrics" class="md-nav__link">
-    Metrics
+    <span class="md-ellipsis">
+      Metrics
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#results" class="md-nav__link">
-    Results
+    <span class="md-ellipsis">
+      Results
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Results">
@@ -741,35 +951,45 @@
         
           <li class="md-nav__item">
   <a href="#flchain" class="md-nav__link">
-    FLCHAIN
+    <span class="md-ellipsis">
+      FLCHAIN
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#metabric" class="md-nav__link">
-    METABRIC
+    <span class="md-ellipsis">
+      METABRIC
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#rrnlnph" class="md-nav__link">
-    RRNLNPH
+    <span class="md-ellipsis">
+      RRNLNPH
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#sac3" class="md-nav__link">
-    SAC3
+    <span class="md-ellipsis">
+      SAC3
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#support" class="md-nav__link">
-    SUPPORT
+    <span class="md-ellipsis">
+      SUPPORT
+    </span>
   </a>
   
 </li>
@@ -781,7 +1001,9 @@
       
         <li class="md-nav__item">
   <a href="#analysis" class="md-nav__link">
-    Analysis
+    <span class="md-ellipsis">
+      Analysis
+    </span>
   </a>
   
 </li>
@@ -794,14 +1016,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-<a href="https://github.com/loft-br/xgboost-survival-embeddings/edit/master/docs/benchmarks/benchmarks.md" title="Edit this page" class="md-content__button md-icon">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-</a>
+                  
 
+  
+  
 
 
   <h1>Benchmarks</h1>
@@ -822,96 +1044,96 @@
 <table>
 <thead>
 <tr>
-<th align="left">model</th>
-<th align="right">c-index</th>
-<th align="right">dcal_max_dev</th>
-<th align="right">dcal_pval</th>
-<th align="right">ibs</th>
-<th align="right">inference_time</th>
-<th align="right">training_time</th>
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">c-index</th>
+<th style="text-align: right;">dcal_max_dev</th>
+<th style="text-align: right;">dcal_pval</th>
+<th style="text-align: right;">ibs</th>
+<th style="text-align: right;">inference_time</th>
+<th style="text-align: right;">training_time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Weibull AFT</td>
-<td align="right">0.789</td>
-<td align="right">0.013</td>
-<td align="right">0.849</td>
-<td align="right">0.099</td>
-<td align="right">0.006</td>
-<td align="right">0.537</td>
+<td style="text-align: left;">Weibull AFT</td>
+<td style="text-align: right;">0.789</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.849</td>
+<td style="text-align: right;">0.099</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.537</td>
 </tr>
 <tr>
-<td align="left">Cox-PH</td>
-<td align="right">0.788</td>
-<td align="right">0.011</td>
-<td align="right">0.971</td>
-<td align="right">0.099</td>
-<td align="right">0.005</td>
-<td align="right">0.942</td>
+<td style="text-align: left;">Cox-PH</td>
+<td style="text-align: right;">0.788</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.971</td>
+<td style="text-align: right;">0.099</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.942</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Debiased BCE</td>
-<td align="right">0.784</td>
-<td align="right">0.037</td>
-<td align="right">0</td>
-<td align="right">0.117</td>
-<td align="right">0.233</td>
-<td align="right">3.062</td>
+<td style="text-align: left;">XGBSE - Debiased BCE</td>
+<td style="text-align: right;">0.784</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.117</td>
+<td style="text-align: right;">0.233</td>
+<td style="text-align: right;">3.062</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Bootstrap Trees</td>
-<td align="right">0.781</td>
-<td align="right">0.009</td>
-<td align="right">0.985</td>
-<td align="right">0.1</td>
-<td align="right">0.382</td>
-<td align="right">15.351</td>
+<td style="text-align: left;">XGBSE - Bootstrap Trees</td>
+<td style="text-align: right;">0.781</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.985</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.382</td>
+<td style="text-align: right;">15.351</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Neighbors</td>
-<td align="right">0.777</td>
-<td align="right">0.013</td>
-<td align="right">0.918</td>
-<td align="right">0.102</td>
-<td align="right">0.543</td>
-<td align="right">0.479</td>
+<td style="text-align: left;">XGBSE - Kaplan Neighbors</td>
+<td style="text-align: right;">0.777</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.918</td>
+<td style="text-align: right;">0.102</td>
+<td style="text-align: right;">0.543</td>
+<td style="text-align: right;">0.479</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Stacked Weibull</td>
-<td align="right">0.776</td>
-<td align="right">0.008</td>
-<td align="right">0.994</td>
-<td align="right">0.103</td>
-<td align="right">0.011</td>
-<td align="right">0.719</td>
+<td style="text-align: left;">XGBSE - Stacked Weibull</td>
+<td style="text-align: right;">0.776</td>
+<td style="text-align: right;">0.008</td>
+<td style="text-align: right;">0.994</td>
+<td style="text-align: right;">0.103</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.719</td>
 </tr>
 <tr>
-<td align="left">XGB - Cox</td>
-<td align="right">0.775</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.054</td>
+<td style="text-align: left;">XGB - Cox</td>
+<td style="text-align: right;">0.775</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.054</td>
 </tr>
 <tr>
-<td align="left">XGB - AFT</td>
-<td align="right">0.772</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.106</td>
+<td style="text-align: left;">XGB - AFT</td>
+<td style="text-align: right;">0.772</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.106</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Tree</td>
-<td align="right">0.768</td>
-<td align="right">0.011</td>
-<td align="right">0.929</td>
-<td align="right">0.103</td>
-<td align="right">0.003</td>
-<td align="right">0.167</td>
+<td style="text-align: left;">XGBSE - Kaplan Tree</td>
+<td style="text-align: right;">0.768</td>
+<td style="text-align: right;">0.011</td>
+<td style="text-align: right;">0.929</td>
+<td style="text-align: right;">0.103</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.167</td>
 </tr>
 </tbody>
 </table>
@@ -919,96 +1141,96 @@
 <table>
 <thead>
 <tr>
-<th align="left">model</th>
-<th align="right">c-index</th>
-<th align="right">dcal_max_dev</th>
-<th align="right">dcal_pval</th>
-<th align="right">ibs</th>
-<th align="right">inference_time</th>
-<th align="right">training_time</th>
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">c-index</th>
+<th style="text-align: right;">dcal_max_dev</th>
+<th style="text-align: right;">dcal_pval</th>
+<th style="text-align: right;">ibs</th>
+<th style="text-align: right;">inference_time</th>
+<th style="text-align: right;">training_time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">XGBSE - Stacked Weibull</td>
-<td align="right">0.63</td>
-<td align="right">0.045</td>
-<td align="right">0.146</td>
-<td align="right">0.162</td>
-<td align="right">0.01</td>
-<td align="right">0.525</td>
+<td style="text-align: left;">XGBSE - Stacked Weibull</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">0.162</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.525</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Debiased BCE</td>
-<td align="right">0.627</td>
-<td align="right">0.033</td>
-<td align="right">0.128</td>
-<td align="right">0.165</td>
-<td align="right">0.09</td>
-<td align="right">3.165</td>
+<td style="text-align: left;">XGBSE - Debiased BCE</td>
+<td style="text-align: right;">0.627</td>
+<td style="text-align: right;">0.033</td>
+<td style="text-align: right;">0.128</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">3.165</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Bootstrap Trees</td>
-<td align="right">0.624</td>
-<td align="right">0.024</td>
-<td align="right">0.563</td>
-<td align="right">0.155</td>
-<td align="right">0.301</td>
-<td align="right">6.165</td>
+<td style="text-align: left;">XGBSE - Bootstrap Trees</td>
+<td style="text-align: right;">0.624</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.563</td>
+<td style="text-align: right;">0.155</td>
+<td style="text-align: right;">0.301</td>
+<td style="text-align: right;">6.165</td>
 </tr>
 <tr>
-<td align="left">Weibull AFT</td>
-<td align="right">0.622</td>
-<td align="right">0.024</td>
-<td align="right">0.667</td>
-<td align="right">0.154</td>
-<td align="right">0.005</td>
-<td align="right">0.284</td>
+<td style="text-align: left;">Weibull AFT</td>
+<td style="text-align: right;">0.622</td>
+<td style="text-align: right;">0.024</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">0.005</td>
+<td style="text-align: right;">0.284</td>
 </tr>
 <tr>
-<td align="left">Cox-PH</td>
-<td align="right">0.622</td>
-<td align="right">0.026</td>
-<td align="right">0.567</td>
-<td align="right">0.154</td>
-<td align="right">0.004</td>
-<td align="right">0.244</td>
+<td style="text-align: left;">Cox-PH</td>
+<td style="text-align: right;">0.622</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.567</td>
+<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.244</td>
 </tr>
 <tr>
-<td align="left">XGB - Cox</td>
-<td align="right">0.617</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.096</td>
+<td style="text-align: left;">XGB - Cox</td>
+<td style="text-align: right;">0.617</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.096</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Neighbors</td>
-<td align="right">0.605</td>
-<td align="right">0.023</td>
-<td align="right">0.588</td>
-<td align="right">0.163</td>
-<td align="right">0.111</td>
-<td align="right">0.154</td>
+<td style="text-align: left;">XGBSE - Kaplan Neighbors</td>
+<td style="text-align: right;">0.605</td>
+<td style="text-align: right;">0.023</td>
+<td style="text-align: right;">0.588</td>
+<td style="text-align: right;">0.163</td>
+<td style="text-align: right;">0.111</td>
+<td style="text-align: right;">0.154</td>
 </tr>
 <tr>
-<td align="left">XGB - AFT</td>
-<td align="right">0.6</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.044</td>
+<td style="text-align: left;">XGB - AFT</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.044</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Tree</td>
-<td align="right">0.59</td>
-<td align="right">0.036</td>
-<td align="right">0.18</td>
-<td align="right">0.165</td>
-<td align="right">0.002</td>
-<td align="right">0.05</td>
+<td style="text-align: left;">XGBSE - Kaplan Tree</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.05</td>
 </tr>
 </tbody>
 </table>
@@ -1016,96 +1238,96 @@
 <table>
 <thead>
 <tr>
-<th align="left">model</th>
-<th align="right">c-index</th>
-<th align="right">dcal_max_dev</th>
-<th align="right">dcal_pval</th>
-<th align="right">ibs</th>
-<th align="right">inference_time</th>
-<th align="right">training_time</th>
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">c-index</th>
+<th style="text-align: right;">dcal_max_dev</th>
+<th style="text-align: right;">dcal_pval</th>
+<th style="text-align: right;">ibs</th>
+<th style="text-align: right;">inference_time</th>
+<th style="text-align: right;">training_time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">XGBSE - Stacked Weibull</td>
-<td align="right">0.826</td>
-<td align="right">0.05</td>
-<td align="right">0</td>
-<td align="right">0.113</td>
-<td align="right">0.019</td>
-<td align="right">2.255</td>
+<td style="text-align: left;">XGBSE - Stacked Weibull</td>
+<td style="text-align: right;">0.826</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.113</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">2.255</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Bootstrap Trees</td>
-<td align="right">0.826</td>
-<td align="right">0.035</td>
-<td align="right">0</td>
-<td align="right">0.097</td>
-<td align="right">0.534</td>
-<td align="right">44.736</td>
+<td style="text-align: left;">XGBSE - Bootstrap Trees</td>
+<td style="text-align: right;">0.826</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.097</td>
+<td style="text-align: right;">0.534</td>
+<td style="text-align: right;">44.736</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Neighbors</td>
-<td align="right">0.824</td>
-<td align="right">0.038</td>
-<td align="right">0</td>
-<td align="right">0.1</td>
-<td align="right">15.662</td>
-<td align="right">1.504</td>
+<td style="text-align: left;">XGBSE - Kaplan Neighbors</td>
+<td style="text-align: right;">0.824</td>
+<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">15.662</td>
+<td style="text-align: right;">1.504</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Debiased BCE</td>
-<td align="right">0.824</td>
-<td align="right">0.068</td>
-<td align="right">0</td>
-<td align="right">0.108</td>
-<td align="right">0.285</td>
-<td align="right">4.562</td>
+<td style="text-align: left;">XGBSE - Debiased BCE</td>
+<td style="text-align: right;">0.824</td>
+<td style="text-align: right;">0.068</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.108</td>
+<td style="text-align: right;">0.285</td>
+<td style="text-align: right;">4.562</td>
 </tr>
 <tr>
-<td align="left">XGB - Cox</td>
-<td align="right">0.824</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.002</td>
-<td align="right">0.375</td>
+<td style="text-align: left;">XGB - Cox</td>
+<td style="text-align: right;">0.824</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">0.375</td>
 </tr>
 <tr>
-<td align="left">XGB - AFT</td>
-<td align="right">0.823</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.243</td>
+<td style="text-align: left;">XGB - AFT</td>
+<td style="text-align: right;">0.823</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.243</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Tree</td>
-<td align="right">0.821</td>
-<td align="right">0.044</td>
-<td align="right">0</td>
-<td align="right">0.101</td>
-<td align="right">0.006</td>
-<td align="right">0.49</td>
+<td style="text-align: left;">XGBSE - Kaplan Tree</td>
+<td style="text-align: right;">0.821</td>
+<td style="text-align: right;">0.044</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.101</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.49</td>
 </tr>
 <tr>
-<td align="left">Weibull AFT</td>
-<td align="right">0.787</td>
-<td align="right">0.057</td>
-<td align="right">0</td>
-<td align="right">0.136</td>
-<td align="right">0.01</td>
-<td align="right">0.326</td>
+<td style="text-align: left;">Weibull AFT</td>
+<td style="text-align: right;">0.787</td>
+<td style="text-align: right;">0.057</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.136</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.326</td>
 </tr>
 <tr>
-<td align="left">Cox-PH</td>
-<td align="right">0.787</td>
-<td align="right">0.055</td>
-<td align="right">0</td>
-<td align="right">0.135</td>
-<td align="right">0.021</td>
-<td align="right">2.267</td>
+<td style="text-align: left;">Cox-PH</td>
+<td style="text-align: right;">0.787</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.135</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: right;">2.267</td>
 </tr>
 </tbody>
 </table>
@@ -1113,96 +1335,96 @@
 <table>
 <thead>
 <tr>
-<th align="left">model</th>
-<th align="right">c-index</th>
-<th align="right">dcal_max_dev</th>
-<th align="right">dcal_pval</th>
-<th align="right">ibs</th>
-<th align="right">inference_time</th>
-<th align="right">training_time</th>
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">c-index</th>
+<th style="text-align: right;">dcal_max_dev</th>
+<th style="text-align: right;">dcal_pval</th>
+<th style="text-align: right;">ibs</th>
+<th style="text-align: right;">inference_time</th>
+<th style="text-align: right;">training_time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">XGBSE - Stacked Weibull</td>
-<td align="right">0.697</td>
-<td align="right">0.04</td>
-<td align="right">0</td>
-<td align="right">0.171</td>
-<td align="right">0.153</td>
-<td align="right">32.469</td>
+<td style="text-align: left;">XGBSE - Stacked Weibull</td>
+<td style="text-align: right;">0.697</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.171</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">32.469</td>
 </tr>
 <tr>
-<td align="left">XGB - AFT</td>
-<td align="right">0.691</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.004</td>
-<td align="right">7.413</td>
+<td style="text-align: left;">XGB - AFT</td>
+<td style="text-align: right;">0.691</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">7.413</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Debiased BCE</td>
-<td align="right">0.69</td>
-<td align="right">0.045</td>
-<td align="right">0</td>
-<td align="right">0.169</td>
-<td align="right">1.141</td>
-<td align="right">47.814</td>
+<td style="text-align: left;">XGBSE - Debiased BCE</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">0.045</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.169</td>
+<td style="text-align: right;">1.141</td>
+<td style="text-align: right;">47.814</td>
 </tr>
 <tr>
-<td align="left">XGB - Cox</td>
-<td align="right">0.686</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.002</td>
-<td align="right">4.885</td>
+<td style="text-align: left;">XGB - Cox</td>
+<td style="text-align: right;">0.686</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.002</td>
+<td style="text-align: right;">4.885</td>
 </tr>
 <tr>
-<td align="left">Cox-PH</td>
-<td align="right">0.682</td>
-<td align="right">0.035</td>
-<td align="right">0</td>
-<td align="right">0.165</td>
-<td align="right">0.039</td>
-<td align="right">1.84</td>
+<td style="text-align: left;">Cox-PH</td>
+<td style="text-align: right;">0.682</td>
+<td style="text-align: right;">0.035</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">1.84</td>
 </tr>
 <tr>
-<td align="left">Weibull AFT</td>
-<td align="right">0.682</td>
-<td align="right">0.039</td>
-<td align="right">0</td>
-<td align="right">0.165</td>
-<td align="right">0.043</td>
-<td align="right">2.307</td>
+<td style="text-align: left;">Weibull AFT</td>
+<td style="text-align: right;">0.682</td>
+<td style="text-align: right;">0.039</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.165</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">2.307</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Bootstrap Trees</td>
-<td align="right">0.677</td>
-<td align="right">0.043</td>
-<td align="right">0</td>
-<td align="right">0.168</td>
-<td align="right">3.134</td>
-<td align="right">164.173</td>
+<td style="text-align: left;">XGBSE - Bootstrap Trees</td>
+<td style="text-align: right;">0.677</td>
+<td style="text-align: right;">0.043</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.168</td>
+<td style="text-align: right;">3.134</td>
+<td style="text-align: right;">164.173</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Neighbors</td>
-<td align="right">0.666</td>
-<td align="right">0.037</td>
-<td align="right">0</td>
-<td align="right">0.175</td>
-<td align="right">416.382</td>
-<td align="right">36.759</td>
+<td style="text-align: left;">XGBSE - Kaplan Neighbors</td>
+<td style="text-align: right;">0.666</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.175</td>
+<td style="text-align: right;">416.382</td>
+<td style="text-align: right;">36.759</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Tree</td>
-<td align="right">0.631</td>
-<td align="right">0.034</td>
-<td align="right">0</td>
-<td align="right">0.191</td>
-<td align="right">0.036</td>
-<td align="right">1.478</td>
+<td style="text-align: left;">XGBSE - Kaplan Tree</td>
+<td style="text-align: right;">0.631</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.191</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">1.478</td>
 </tr>
 </tbody>
 </table>
@@ -1210,96 +1432,96 @@
 <table>
 <thead>
 <tr>
-<th align="left">model</th>
-<th align="right">c-index</th>
-<th align="right">dcal_max_dev</th>
-<th align="right">dcal_pval</th>
-<th align="right">ibs</th>
-<th align="right">inference_time</th>
-<th align="right">training_time</th>
+<th style="text-align: left;">model</th>
+<th style="text-align: right;">c-index</th>
+<th style="text-align: right;">dcal_max_dev</th>
+<th style="text-align: right;">dcal_pval</th>
+<th style="text-align: right;">ibs</th>
+<th style="text-align: right;">inference_time</th>
+<th style="text-align: right;">training_time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">XGBSE - Stacked Weibull</td>
-<td align="right">0.621</td>
-<td align="right">0.092</td>
-<td align="right">0</td>
-<td align="right">0.198</td>
-<td align="right">0.013</td>
-<td align="right">0.954</td>
+<td style="text-align: left;">XGBSE - Stacked Weibull</td>
+<td style="text-align: right;">0.621</td>
+<td style="text-align: right;">0.092</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.198</td>
+<td style="text-align: right;">0.013</td>
+<td style="text-align: right;">0.954</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Debiased BCE</td>
-<td align="right">0.617</td>
-<td align="right">0.139</td>
-<td align="right">0</td>
-<td align="right">0.188</td>
-<td align="right">0.272</td>
-<td align="right">3.852</td>
+<td style="text-align: left;">XGBSE - Debiased BCE</td>
+<td style="text-align: right;">0.617</td>
+<td style="text-align: right;">0.139</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.188</td>
+<td style="text-align: right;">0.272</td>
+<td style="text-align: right;">3.852</td>
 </tr>
 <tr>
-<td align="left">XGB - Cox</td>
-<td align="right">0.61</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.069</td>
+<td style="text-align: left;">XGB - Cox</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.069</td>
 </tr>
 <tr>
-<td align="left">XGB - AFT</td>
-<td align="right">0.609</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">nan</td>
-<td align="right">0.001</td>
-<td align="right">0.137</td>
+<td style="text-align: left;">XGB - AFT</td>
+<td style="text-align: right;">0.609</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">nan</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.137</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Bootstrap Trees</td>
-<td align="right">0.607</td>
-<td align="right">0.103</td>
-<td align="right">0</td>
-<td align="right">0.188</td>
-<td align="right">0.371</td>
-<td align="right">18.202</td>
+<td style="text-align: left;">XGBSE - Bootstrap Trees</td>
+<td style="text-align: right;">0.607</td>
+<td style="text-align: right;">0.103</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.188</td>
+<td style="text-align: right;">0.371</td>
+<td style="text-align: right;">18.202</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Neighbors</td>
-<td align="right">0.601</td>
-<td align="right">0.099</td>
-<td align="right">0</td>
-<td align="right">0.197</td>
-<td align="right">1.488</td>
-<td align="right">0.752</td>
+<td style="text-align: left;">XGBSE - Kaplan Neighbors</td>
+<td style="text-align: right;">0.601</td>
+<td style="text-align: right;">0.099</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.197</td>
+<td style="text-align: right;">1.488</td>
+<td style="text-align: right;">0.752</td>
 </tr>
 <tr>
-<td align="left">XGBSE - Kaplan Tree</td>
-<td align="right">0.598</td>
-<td align="right">0.097</td>
-<td align="right">0</td>
-<td align="right">0.203</td>
-<td align="right">0.004</td>
-<td align="right">0.149</td>
+<td style="text-align: left;">XGBSE - Kaplan Tree</td>
+<td style="text-align: right;">0.598</td>
+<td style="text-align: right;">0.097</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.203</td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">0.149</td>
 </tr>
 <tr>
-<td align="left">Cox-PH</td>
-<td align="right">0.578</td>
-<td align="right">0.16</td>
-<td align="right">0</td>
-<td align="right">0.201</td>
-<td align="right">0.006</td>
-<td align="right">0.465</td>
+<td style="text-align: left;">Cox-PH</td>
+<td style="text-align: right;">0.578</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.201</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.465</td>
 </tr>
 <tr>
-<td align="left">Weibull AFT</td>
-<td align="right">0.576</td>
-<td align="right">0.138</td>
-<td align="right">0</td>
-<td align="right">0.201</td>
-<td align="right">0.007</td>
-<td align="right">0.461</td>
+<td style="text-align: left;">Weibull AFT</td>
+<td style="text-align: right;">0.576</td>
+<td style="text-align: right;">0.138</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.201</td>
+<td style="text-align: right;">0.007</td>
+<td style="text-align: right;">0.461</td>
 </tr>
 </tbody>
 </table>
@@ -1312,34 +1534,33 @@
 <li><code>xgbse</code> takes longer to fit than vanilla <code>xgboost</code>. Specially for <code>XGBSEDebiasedBCE</code>, we have to build N logistic regressions where N is the number of time windows we'll predict. In all cases we used N = 30. <code>XGBSEStackedWeibull</code> is the most efficient method, behind <code>XGBSEKaplanTree</code>.</li>
 </ul>
 
-              
-            </article>
-          </div>
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../examples/extrapolation_example.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Extrapolation" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Extrapolation
-            </div>
-          </div>
-        </a>
-      
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1361,10 +1582,12 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.5413a266.min.js"></script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
       
