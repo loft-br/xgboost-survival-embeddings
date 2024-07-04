@@ -1,23 +1,63 @@
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 from sklearn.base import BaseEstimator
 from sklearn.neighbors import BallTree
+
+from xgbse._feature_extractors import FeatureExtractor
 
 
 class XGBSEBaseEstimator(BaseEstimator):
     """
-    Base class for all estimators in xgbse. Implements explainability through prototypes.
+    Base class for all estimators in xgbse. Implements explainability through prototypes
     """
 
-    def __init__(self):
+    def __init__(
+        self,
+        xgb_params: Optional[Dict[str, Any]] = None,
+        enable_categorical: bool = False,
+    ):
+        self.feature_extractor = FeatureExtractor(
+            xgb_params=xgb_params, enable_categorical=enable_categorical
+        )
+        self.xgb_params = self.feature_extractor.xgb_params
+
+        self.feature_importances_ = None
         self.persist_train = False
+
         self.index_id = None
         self.tree = None
-        self.bst = None
+
+    def fit_feature_extractor(
+        self,
+        X,
+        y,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+    ):
+        self.feature_extractor.fit(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
+            num_boost_round=num_boost_round,
+            early_stopping_rounds=early_stopping_rounds,
+            verbose_eval=verbose_eval,
+        )
+        self.feature_importances_ = self.feature_extractor.feature_importances_
+        self.time_bins = self.feature_extractor.time_bins
 
     def get_neighbors(
-        self, query_data, index_data=None, query_id=None, index_id=None, n_neighbors=30
+        self,
+        query_data,
+        index_data=None,
+        query_id=None,
+        index_id=None,
+        n_neighbors: int = 30,
     ):
         """
         Search for portotypes (size: n_neighbors) for each unit in a
@@ -28,10 +68,11 @@ class XGBSEBaseEstimator(BaseEstimator):
         Args:
             query_data (pd.DataFrame): Dataframe of features to be used as input
 
-            query_id ([pd.Series, np.array]): Series or array of identification for each sample of query_data.
-                Will be used in set_index if specified.
+            query_id ([pd.Series, np.array]): Series or array of identification for
+                each sample of query_data. Will be used in set_index if specified.
 
-            index_id ([pd.Series, np.array]): Series or array of identification for each sample of index_id.
+            index_id ([pd.Series, np.array]): Series or array of identification for
+                each sample of index_id.
                 If specified, comparables will be returned using this identifier.
 
             n_neighbors (int): Number of neighbors/comparables to be considered.
@@ -57,23 +98,13 @@ class XGBSEBaseEstimator(BaseEstimator):
             index_id = self.index_id
             index = self.tree
         else:
-            index_matrix = xgb.DMatrix(index_data)
-            index_leaves = self.bst.predict(
-                index_matrix,
-                pred_leaf=True,
-                iteration_range=(0, self.bst.best_iteration + 1),
-            )
+            index_leaves = self.feature_extractor.predict_leaves(index_data)
 
             if len(index_leaves.shape) == 1:
                 index_leaves = index_leaves.reshape(-1, 1)
             index = BallTree(index_leaves, metric="hamming")
 
-        query_matrix = xgb.DMatrix(query_data)
-        query_leaves = self.bst.predict(
-            query_matrix,
-            pred_leaf=True,
-            iteration_range=(0, self.bst.best_iteration + 1),
-        )
+        query_leaves = self.feature_extractor.predict_leaves(query_data)
 
         if len(query_leaves.shape) == 1:
             query_leaves = query_leaves.reshape(-1, 1)
@@ -110,5 +141,7 @@ class DummyLogisticRegression(BaseEstimator):
 
     def predict_proba(self, X):
         y_hat = np.zeros((X.shape[0], 2))
+        y_hat[:, self.returns] += 1.0
+        return y_hat
         y_hat[:, self.returns] += 1.0
         return y_hat

@@ -3,12 +3,8 @@ import time
 import numpy as np
 import pandas as pd
 
-
-from xgbse.metrics import concordance_index, approx_brier_score, dist_calibration_score
-from xgbse.converters import (
-    convert_data_to_xgb_format,
-    convert_to_structured,
-)
+from xgbse.converters import convert_data_to_xgb_format, convert_to_structured
+from xgbse.metrics import approx_brier_score, concordance_index, dist_calibration_score
 
 # setting seed
 np.random.seed(42)
@@ -244,6 +240,7 @@ class BenchmarkXGBSE(BenchmarkBase):
                 validation_data=(self.X_valid, self.y_valid),
                 early_stopping_rounds=10,
                 time_bins=self.time_bins,
+                num_boost_round=1000,
             )
 
         else:

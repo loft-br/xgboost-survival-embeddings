@@ -1,36 +1,19 @@
 import warnings
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
 import numpy as np
+import numpy.typing as npt
 import pandas as pd
-import xgboost as xgb
 from joblib import Parallel, delayed
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import BallTree
 from sklearn.preprocessing import OneHotEncoder
 
-# lib utils
-from xgbse._base import XGBSEBaseEstimator, DummyLogisticRegression
-from xgbse.converters import convert_data_to_xgb_format, convert_y, hazard_to_survival
-
-# at which percentiles will the KM predict
-from xgbse.non_parametric import get_time_bins, calculate_interval_failures
+from xgbse._base import DummyLogisticRegression, XGBSEBaseEstimator
+from xgbse.converters import convert_y, hazard_to_survival
+from xgbse.non_parametric import calculate_interval_failures
 
 KM_PERCENTILES = np.linspace(0, 1, 11)
-
-DEFAULT_PARAMS = {
-    "objective": "survival:aft",
-    "eval_metric": "aft-nloglik",
-    "aft_loss_distribution": "normal",
-    "aft_loss_distribution_scale": 1,
-    "tree_method": "hist",
-    "learning_rate": 5e-2,
-    "max_depth": 8,
-    "booster": "dart",
-    "subsample": 0.5,
-    "min_child_weight": 50,
-    "colsample_bynode": 0.5,
-}
-
-DEFAULT_PARAMS_LR = {"C": 1e-3, "max_iter": 500}
 
 
 def _repeat_array(x, n):
@@ -48,7 +31,9 @@ def _repeat_array(x, n):
     return np.array([x] * n).T
 
 
-def _build_multi_task_targets(E, T, time_bins):
+def _build_multi_task_targets(
+    E: npt.NDArray[np.bool_], T: npt.NDArray[np.int64], time_bins: npt.NDArray[np.int64]
+):
     """
     Builds targets for a multi task survival regression problem.
     This function creates a times array from time 0 to T, where T is the
@@ -62,7 +47,8 @@ def _build_multi_task_targets(E, T, time_bins):
         time_bins ([np.array]): Specified time bins to split targets.
 
     Returns:
-        targets (pd.Series): A Series with multi task targets (for data existent just up to time T=t, all times over t are considered equal to -1).
+        targets (pd.Series): A Series with multi task targets (for data existent
+             just up to time T=t, all times over t are considered equal to -1).
         time_bins (np.array): Time bins to be used for multi task survival analysis.
     """
 
@@ -83,10 +69,10 @@ def _build_multi_task_targets(E, T, time_bins):
 # class to fit a BCE on the leaves of a XGB
 class XGBSEDebiasedBCE(XGBSEBaseEstimator):
     """
-    Train a set of logistic regressions on top of the leaf embedding produced by XGBoost,
+    Train a set of logistic regressions on top of leaf embeddings produced by XGBoost,
     each predicting survival at different user-defined discrete time windows.
-    The classifiers remove individuals as they are censored, with targets that are indicators
-    of surviving at each window.
+    The classifiers remove individuals as they are censored,
+     with targets that are indicatorsof surviving at each window.
 
     !!! Note
         * Training and scoring of logistic regression models is efficient,
@@ -102,71 +88,44 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
 
     def __init__(
         self,
-        xgb_params=None,
-        lr_params=None,
-        n_jobs=-1,
+        xgb_params: Optional[Dict[str, Any]] = None,
+        lr_params: Dict[str, Any] = {},
+        n_jobs: int = 1,
+        enable_categorical: bool = False,
     ):
         """
         Args:
             xgb_params (Dict, None): Parameters for XGBoost model.
-                If not passed, the following default parameters will be used:
+                If None, will use XGBoost defaults and set objective as `survival:aft`.
+                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
 
-                ```
-                DEFAULT_PARAMS = {
-                    "objective": "survival:aft",
-                    "eval_metric": "aft-nloglik",
-                    "aft_loss_distribution": "normal",
-                    "aft_loss_distribution_scale": 1,
-                    "tree_method": "hist",
-                    "learning_rate": 5e-2,
-                    "max_depth": 8,
-                    "booster": "dart",
-                    "subsample": 0.5,
-                    "min_child_weight": 50,
-                    "colsample_bynode": 0.5,
-                }
-                ```
+            lr_params (Dict, None): Parameters for LogisticRegression model.
+                If None, will use scikit-learn default parameters.
 
-                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for more options.
+            n_jobs (int): Number of jobs used for parallel training of logistic regressions.
 
-            lr_params (Dict, None): Parameters for Logistic Regression models.
-                If not passed, the following default parameters will be used:
-                ```
-                DEFAULT_PARAMS_LR = {"C": 1e-3, "max_iter": 500}
-                ```
-
-                Check <https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html> for more options.
-
-            n_jobs (Int): Number of CPU cores used to fit logistic regressions via joblib.
-
+            enable_categorical (bool): Enable categorical feature support on xgboost model
         """
-        if xgb_params is None:
-            xgb_params = DEFAULT_PARAMS
-        if lr_params is None:
-            lr_params = DEFAULT_PARAMS_LR
-
-        self.xgb_params = xgb_params
+        super().__init__(xgb_params=xgb_params, enable_categorical=enable_categorical)
         self.lr_params = lr_params
         self.n_jobs = n_jobs
-        self.persist_train = False
-        self.feature_importances_ = None
 
     def fit(
         self,
         X,
         y,
-        num_boost_round=1000,
-        validation_data=None,
-        early_stopping_rounds=None,
-        verbose_eval=0,
-        persist_train=False,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+        persist_train: bool = False,
         index_id=None,
-        time_bins=None,
     ):
         """
-        Transform feature space by fitting a XGBoost model and returning its leaf indices.
-        Leaves are transformed and considered as dummy variables to fit multiple logistic
-        regression models to each evaluated time bin.
+        Transform feature space by fitting a XGBoost model and returning its leafs.
+        Leaves are transformed and considered as dummy variables to fit multiple
+        logistic regression models to each evaluated time bin.
 
         Args:
             X ([pd.DataFrame, np.array]): Features to be used while fitting XGBoost model
@@ -174,10 +133,12 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             y (structured array(numpy.bool_, numpy.number)): Binary event indicator as first field,
                 and time of event or time of censoring as second field.
 
-            num_boost_round (Int): Number of boosting iterations.
+            time_bins (np.array): Specified time windows to use when making survival predictions
 
-            validation_data (Tuple): Validation data in the format of a list of tuples [(X, y)]
+            validation_data (List[Tuple]): Validation data in the format of a list of tuples [(X, y)]
                 if user desires to use early stopping
+
+            num_boost_round (Int): Number of boosting iterations.
 
             early_stopping_rounds (Int): Activates early stopping.
                 Validation metric needs to improve at least once
@@ -192,50 +153,28 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             index_id (pd.Index): User defined index if intended to use explainability
                 through prototypes
 
-            time_bins (np.array): Specified time windows to use when making survival predictions
-
-
         Returns:
             XGBSEDebiasedBCE: Trained XGBSEDebiasedBCE instance
         """
-
-        E_train, T_train = convert_y(y)
-        if time_bins is None:
-            time_bins = get_time_bins(T_train, E_train)
-        self.time_bins = time_bins
-
-        # converting data to xgb format
-        dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
-
-        # converting validation data to xgb format
-        evals = ()
-        if validation_data:
-            X_val, y_val = validation_data
-            dvalid = convert_data_to_xgb_format(
-                X_val, y_val, self.xgb_params["objective"]
-            )
-            evals = [(dvalid, "validation")]
-
-        # training XGB
-        self.bst = xgb.train(
-            self.xgb_params,
-            dtrain,
+        self.fit_feature_extractor(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
             num_boost_round=num_boost_round,
             early_stopping_rounds=early_stopping_rounds,
-            evals=evals,
             verbose_eval=verbose_eval,
         )
-        self.feature_importances_ = self.bst.get_score()
+
+        E_train, T_train = convert_y(y)
         # predicting and encoding leaves
         self.encoder = OneHotEncoder()
-        leaves = self.bst.predict(
-            dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
         leaves_encoded = self.encoder.fit_transform(leaves)
 
         # convert targets for using with logistic regression
         self.targets, self.time_bins = _build_multi_task_targets(
-            E_train, T_train, self.time_bins
+            E_train, T_train, self.feature_extractor.time_bins
         )
 
         # fitting LR for several targets
@@ -245,11 +184,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
             self.persist_train = True
             if index_id is None:
                 index_id = X.index.copy()
-
-            index_leaves = self.bst.predict(
-                dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-            )
-            self.tree = BallTree(index_leaves, metric="hamming")
+            self.tree = BallTree(leaves, metric="hamming")
 
         self.index_id = index_id
 
@@ -348,32 +283,28 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
         # to cumulative survival curve
         return hazard_to_survival(preds)
 
-    def predict(self, X, return_interval_probs=False):
+    def predict(self, X: pd.DataFrame, return_interval_probs: bool = False):
         """
-        Predicts survival probabilities using the XGBoost + Logistic Regression pipeline.
+        Predicts survival probabilities using XGBoost + Logistic Regression pipeline.
 
         Args:
             X (pd.DataFrame): Dataframe of features to be used as input for the
                 XGBoost model.
 
-            return_interval_probs (Bool): Boolean indicating if interval probabilities are
-                supposed to be returned. If False the cumulative survival is returned.
+            return_interval_probs (Bool): Boolean indicating if interval probabilities
+             are to be returned. If False the cumulative survival is returned.
                 Default is False.
 
         Returns:
             pd.DataFrame: A dataframe of survival probabilities
             for all times (columns), from a time_bins array, for all samples of X
-            (rows). If return_interval_probs is True, the interval probabilities are returned
-            instead of the cumulative survival probabilities.
+            (rows). If return_interval_probs is True, the interval probabilities are
+            returned instead of the cumulative survival probabilities.
         """
 
-        # converting to xgb format
-        d_matrix = xgb.DMatrix(X)
-
         # getting leaves and extracting neighbors
-        leaves = self.bst.predict(
-            d_matrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        leaves = self.feature_extractor.predict_leaves(X)
+
         leaves_encoded = self.encoder.transform(leaves)
 
         # predicting from logistic regression artifacts

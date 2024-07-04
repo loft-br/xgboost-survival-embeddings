@@ -1,33 +1,16 @@
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 from lifelines import WeibullAFTFitter
 from sklearn.neighbors import BallTree
 
-# lib utils
 from xgbse._base import XGBSEBaseEstimator
-from xgbse.converters import convert_data_to_xgb_format, convert_y
-
-# at which percentiles will the KM predict
-from xgbse.non_parametric import get_time_bins, calculate_interval_failures
+from xgbse._feature_extractors import FeatureExtractor
+from xgbse.converters import convert_y
+from xgbse.non_parametric import calculate_interval_failures
 
 KM_PERCENTILES = np.linspace(0, 1, 11)
-
-DEFAULT_PARAMS = {
-    "objective": "survival:aft",
-    "eval_metric": "aft-nloglik",
-    "aft_loss_distribution": "normal",
-    "aft_loss_distribution_scale": 1,
-    "tree_method": "hist",
-    "learning_rate": 5e-2,
-    "max_depth": 8,
-    "booster": "dart",
-    "subsample": 0.5,
-    "min_child_weight": 50,
-    "colsample_bynode": 0.5,
-}
-
-DEFAULT_PARAMS_WEIBULL = {}
 
 
 class XGBSEStackedWeibull(XGBSEBaseEstimator):
@@ -52,47 +35,30 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
 
     def __init__(
         self,
-        xgb_params=None,
-        weibull_params=None,
+        xgb_params: Optional[Dict[str, Any]] = None,
+        weibull_params: Optional[Dict[str, Any]] = {},
+        enable_categorical: bool = False,
     ):
         """
         Args:
             xgb_params (Dict, None): Parameters for XGBoost model.
-                If not passed, the following default parameters will be used:
-
-                ```
-                DEFAULT_PARAMS = {
-                    "objective": "survival:aft",
-                    "eval_metric": "aft-nloglik",
-                    "aft_loss_distribution": "normal",
-                    "aft_loss_distribution_scale": 1,
-                    "tree_method": "hist",
-                    "learning_rate": 5e-2,
-                    "max_depth": 8,
-                    "booster": "dart",
-                    "subsample": 0.5,
-                    "min_child_weight": 50,
-                    "colsample_bynode": 0.5,
-                }
-                ```
-
-                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for more options.
+                If None, will use XGBoost defaults and set objective as `survival:aft`.
+                Check <https://xgboost.readthedocs.io/en/latest/parameter.html> for options.
 
             weibull_params (Dict): Parameters for Weibull Regerssion model.
                 If not passed, will use the default parameters as shown in the Lifelines documentation.
-
                 Check <https://lifelines.readthedocs.io/en/latest/fitters/regression/WeibullAFTFitter.html>
                 for more options.
 
+            enable_categorical (bool): Enable categorical feature support on xgboost model
 
         """
-        if xgb_params is None:
-            xgb_params = DEFAULT_PARAMS
-        if weibull_params is None:
-            weibull_params = DEFAULT_PARAMS_WEIBULL
-
-        self.xgb_params = xgb_params
+        self.feature_extractor = FeatureExtractor(
+            xgb_params=xgb_params, enable_categorical=enable_categorical
+        )
+        self.xgb_params = self.feature_extractor.xgb_params
         self.weibull_params = weibull_params
+
         self.persist_train = False
         self.feature_importances_ = None
 
@@ -100,13 +66,13 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
         self,
         X,
         y,
-        num_boost_round=1000,
-        validation_data=None,
-        early_stopping_rounds=None,
-        verbose_eval=0,
-        persist_train=False,
+        time_bins: Optional[Sequence] = None,
+        validation_data: Optional[List[Tuple[Any, Any]]] = None,
+        num_boost_round: int = 10,
+        early_stopping_rounds: Optional[int] = None,
+        verbose_eval: int = 0,
+        persist_train: bool = False,
         index_id=None,
-        time_bins=None,
     ):
         """
         Fit XGBoost model to predict a value that is interpreted as a risk metric.
@@ -142,38 +108,19 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
             XGBSEStackedWeibull: Trained XGBSEStackedWeibull instance
         """
 
-        E_train, T_train = convert_y(y)
-        if time_bins is None:
-            time_bins = get_time_bins(T_train, E_train)
-        self.time_bins = time_bins
-
-        # converting data to xgb format
-        dtrain = convert_data_to_xgb_format(X, y, self.xgb_params["objective"])
-
-        # converting validation data to xgb format
-        evals = ()
-        if validation_data:
-            X_val, y_val = validation_data
-            dvalid = convert_data_to_xgb_format(
-                X_val, y_val, self.xgb_params["objective"]
-            )
-            evals = [(dvalid, "validation")]
-
-        # training XGB
-        self.bst = xgb.train(
-            self.xgb_params,
-            dtrain,
+        self.fit_feature_extractor(
+            X,
+            y,
+            time_bins=time_bins,
+            validation_data=validation_data,
             num_boost_round=num_boost_round,
             early_stopping_rounds=early_stopping_rounds,
-            evals=evals,
             verbose_eval=verbose_eval,
         )
-        self.feature_importances_ = self.bst.get_score()
+        E_train, T_train = convert_y(y)
 
-        # predicting risk from XGBoost
-        train_risk = self.bst.predict(
-            dtrain, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        # predicting hazard ratio from XGBoost
+        train_risk = self.feature_extractor.predict_hazard(X)
 
         # replacing 0 by minimum positive value in df
         # so Weibull can be fitted
@@ -194,9 +141,7 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
             if index_id is None:
                 index_id = X.index.copy()
 
-            index_leaves = self.bst.predict(
-                dtrain, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-            )
+            index_leaves = self.feature_extractor.predict_leaves(X)
             self.tree = BallTree(index_leaves, metric="hamming")
 
         self.index_id = index_id
@@ -221,17 +166,8 @@ class XGBSEStackedWeibull(XGBSEBaseEstimator):
             (rows). If return_interval_probs is True, the interval probabilities are returned
             instead of the cumulative survival probabilities.
         """
-
-        # converting to xgb format
-        d_matrix = xgb.DMatrix(X)
-
-        # getting leaves and extracting neighbors
-        risk = self.bst.predict(
-            d_matrix, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        risk = self.feature_extractor.predict_hazard(X)
         weibull_score_df = pd.DataFrame({"risk": risk})
-
-        # predicting from logistic regression artifacts
 
         preds_df = self.weibull_aft.predict_survival_function(
             weibull_score_df, self.time_bins
