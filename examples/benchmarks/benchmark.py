@@ -11,7 +11,6 @@ np.random.seed(42)
 
 
 def dataframe_to_xy(dataf, event_column, time_column):
-
     e = dataf.loc[:, event_column]
     t = dataf.loc[:, time_column]
     return dataf.drop([event_column, time_column], axis=1), convert_to_structured(t, e)
@@ -65,7 +64,6 @@ class BenchmarkBase:
         pass
 
     def test(self):
-
         self.predict()
         try:
             c_index = concordance_index(
@@ -172,7 +170,6 @@ class BenchmarkXGBoost(BenchmarkBase):
         )
 
     def train(self):
-
         start = time.time()
         params = {"objective": self.objective}
 
@@ -226,14 +223,12 @@ class BenchmarkXGBSE(BenchmarkBase):
         self.objective = objective
 
     def train(self):
-
         start = time.time()
 
         if self.model.__class__.__name__ not in [
             "XGBSEKaplanTree",
             "XGBSEBootstrapEstimator",
         ]:
-
             self.model.fit(
                 self.X_train,
                 self.y_train,
@@ -244,7 +239,6 @@ class BenchmarkXGBSE(BenchmarkBase):
             )
 
         else:
-
             self.model.fit(self.X_train, self.y_train, time_bins=self.time_bins)
 
         self.training_time = time.time() - start
@@ -284,7 +278,6 @@ class BenchmarkPysurvival(BenchmarkBase):
         )
 
     def train(self):
-
         T = self.train_dataset[self.time_column]
         E = self.train_dataset[self.event_column]
 

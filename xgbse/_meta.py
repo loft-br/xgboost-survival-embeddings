@@ -5,7 +5,6 @@ from sklearn.base import BaseEstimator
 
 
 class XGBSEBootstrapEstimator(BaseEstimator):
-
     """
     Bootstrap meta-estimator for XGBSE models:
 

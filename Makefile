@@ -1,13 +1,13 @@
-black:
-	black xgbse setup.py tests/ --check
+format:
+	ruff format xgbse tests/ --check
 
-flake:
-	flake8 xgbse setup.py tests/
+lint:
+	ruff check xgbse tests/
 
 test:
 	pytest --cov-report term-missing --cov=xgbse tests/
 
-check: black flake test clean
+check: format lint test clean
 
 install:
 	python -m pip install -e .

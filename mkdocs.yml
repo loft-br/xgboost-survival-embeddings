@@ -19,13 +19,12 @@ nav:
       - converters: modules/converters.md
       - metrics: modules/metrics.md
   - Examples:
+      - Basic usage: examples/basic_usage.md
       - Confidence intervals: examples/confidence_interval.md
       - Extrapolation: examples/extrapolation_example.md
   - Benchmarks: benchmarks/benchmarks.md
 plugins:
-  - mkdocstrings:
-      watch:
-        - xgbse
+  - mkdocstrings
   - search
 copyright:
 theme:

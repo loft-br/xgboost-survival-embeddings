@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "xgbse"
+version = "0.3.1"
+description = "Improving XGBoost survival analysis with embeddings and debiased estimators"
+authors = ["Loft Data Science Team <bandits@loft.com.br>"]
+readme = "README.md"
+packages = [{ include = "xgbse" }]
+repository = "https://github.com/loft-br/xgboost-survival-embeddings"
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+xgboost = "^2.1.0"
+numpy = "^1.26.4"
+scikit-learn = "^1.5.0"
+pandas = "^2.2.0"
+joblib = "^1.4.2"
+lifelines = "^0.29.0"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.6.0"
+mkdocs-material = "^9.5.28"
+mkdocstrings = { version = ">=0.18", extras = ["python-legacy"] }
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.1"
+pytest = "^8.2.2"
+pytest-cov = "^5.0.0"
+ruff = "^0.5.0"
+
+[tool.poetry.group.benchmark.dependencies]
+pycox = "0.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

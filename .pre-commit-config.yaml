@@ -9,12 +9,8 @@ repos:
         -   id: check-yaml
         -   id: check-added-large-files
             args: ["--maxkb=2000"]
-    -   repo: https://gitlab.com/pycqa/flake8
-        rev: 8f9b4931b9a28896fb43edccb23016a7540f5b82
+    -   repo: https://github.com/astral-sh/ruff-pre-commit
+        rev: v0.5.0
         hooks:
-        -   id: flake8
-    -   repo: https://github.com/psf/black
-        rev: 20.8b1
-        hooks:
-          - id: black
-            language_version: python3.7
+        -    id: ruff
+        -    id: ruff-format
