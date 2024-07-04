@@ -31,18 +31,21 @@ def test_no_objective():
 
 def test_predict_leaves_early_stop():
     xgbse = FeatureExtractor()
+    early_stopping_rounds = 10
     xgbse.fit(
         X_train,
         y_train,
-        num_boost_round=10000,
+        num_boost_round=1000,
         validation_data=(X_valid, y_valid),
-        early_stopping_rounds=10,
+        early_stopping_rounds=early_stopping_rounds,
         verbose_eval=0,
     )
     prediction = xgbse.predict_leaves(X_test)
-    assert prediction.shape == (
-        X_test.shape[0],
-        xgbse.bst.best_iteration + 1,
+    assert prediction.shape[0] == X_test.shape[0]
+    assert (
+        xgbse.bst.best_iteration
+        <= prediction.shape[1]
+        <= xgbse.bst.best_iteration + 1 + early_stopping_rounds
     )
 
 
@@ -64,7 +67,7 @@ def test_predict_hazard_early_stop():
     xgbse.fit(
         X_train,
         y_train,
-        num_boost_round=10000,
+        num_boost_round=1000,
         validation_data=(X_valid, y_valid),
         early_stopping_rounds=10,
         verbose_eval=0,

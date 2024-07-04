@@ -22,7 +22,7 @@ class FeatureExtractor:
         """
         if not xgb_params:
             xgb_params = {}
-        xgb_params = check_xgboost_parameters(xgb_params)
+        xgb_params = check_xgboost_parameters(xgb_params, enable_categorical)
 
         self.xgb_params = xgb_params
         self.persist_train = False
@@ -119,21 +119,20 @@ class FeatureExtractor:
             raise ValueError("XGBoost model not fitted yet.")
 
         dmatrix = xgb.DMatrix(X, enable_categorical=self.enable_categorical)
-        return self.bst.predict(
-            dmatrix, pred_leaf=True, iteration_range=(0, self.bst.best_iteration + 1)
-        )
+        return self.bst.predict(dmatrix, pred_leaf=True)
 
     def predict_hazard(self, X):
         if not hasattr(self, "bst"):
             raise ValueError("XGBoost model not fitted yet.")
 
         return self.bst.predict(
-            xgb.DMatrix(X, enable_categorical=self.enable_categorical),
-            iteration_range=(0, self.bst.best_iteration + 1),
+            xgb.DMatrix(X, enable_categorical=self.enable_categorical)
         )
 
 
-def check_xgboost_parameters(xgb_params: Dict[str, Any]) -> Dict[str, Any]:
+def check_xgboost_parameters(
+    xgb_params: Dict[str, Any], enable_categorical: bool
+) -> Dict[str, Any]:
     """Check if XGBoost objective parameter is valid.
 
     Args:
@@ -145,6 +144,14 @@ def check_xgboost_parameters(xgb_params: Dict[str, Any]) -> Dict[str, Any]:
     Raises:
         ValueError: If XGBoost parameters are not valid for survival analysis.
     """
+    if enable_categorical:
+        if "tree_method" not in xgb_params:
+            xgb_params["tree_method"] = "hist"
+        if xgb_params["tree_method"] not in ("hist", "gpu_hist"):
+            raise ValueError(
+                "XGBoost tree_method must be either 'hist' or 'gpu_hist' for categorical features"
+            )
+
     if "objective" not in xgb_params:
         xgb_params["objective"] = "survival:aft"
     if xgb_params["objective"] not in ("survival:aft", "survival:cox"):

@@ -19,7 +19,7 @@ KM_PERCENTILES = np.linspace(0, 1, 11)
 DEFAULT_PARAMS_TREE = {
     "objective": "survival:cox",
     "eval_metric": "cox-nloglik",
-    "tree_method": "exact",
+    "tree_method": "hist",
     "max_depth": 100,
     "booster": "dart",
     "subsample": 1.0,
@@ -275,7 +275,7 @@ class XGBSEKaplanTree(XGBSEBaseEstimator):
                 DEFAULT_PARAMS_TREE = {
                     "objective": "survival:cox",
                     "eval_metric": "cox-nloglik",
-                    "tree_method": "exact",
+                    "tree_method": "hist",
                     "max_depth": 100,
                     "booster": "dart",
                     "subsample": 1.0,

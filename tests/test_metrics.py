@@ -68,7 +68,7 @@ def is_dist_cal_return_correct_len():
 
 def is_dist_cal_return_correct_type():
     result = dist_calibration_score(y_train, km_survival, returns="all")
-    return type(result) == dict
+    return isinstance(result, dict)
 
 
 # testing

@@ -292,7 +292,7 @@ class XGBSEDebiasedBCE(XGBSEBaseEstimator):
                 XGBoost model.
 
             return_interval_probs (Bool): Boolean indicating if interval probabilities
-             are to be returned. If False the cumulative survival is returned.
+                are to be returned. If False the cumulative survival is returned.
                 Default is False.
 
         Returns:
