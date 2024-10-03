@@ -42,7 +42,7 @@ def convert_y(y):
     return y[event_field], y[time_field]
 
 
-def convert_data_to_xgb_format(X, y, objective, enable_categorical: bool):
+def convert_data_to_xgb_format(X, y, objective, enable_categorical: bool = False):
     """Convert (X, y) data format to xgb.DMatrix format, either using cox or aft models.
 
     Args:
@@ -51,6 +51,7 @@ def convert_data_to_xgb_format(X, y, objective, enable_categorical: bool):
         y (structured array(numpy.bool_, numpy.number)): binary event indicator as first field,
             and time of event or time of censoring as second field.
         objective (string): one of 'survival:aft' or 'survival:cox'
+        enable_categorical (bool): whether to enable categorical features - default is False
 
     Returns:
         xgb.DMatrix: data to train xgb
