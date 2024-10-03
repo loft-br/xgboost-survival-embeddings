@@ -18,6 +18,7 @@ class XGBSEBaseEstimator(BaseEstimator):
         xgb_params: Optional[Dict[str, Any]] = None,
         enable_categorical: bool = False,
     ):
+        self.enable_categorical = enable_categorical
         self.feature_extractor = FeatureExtractor(
             xgb_params=xgb_params, enable_categorical=enable_categorical
         )
@@ -141,7 +142,5 @@ class DummyLogisticRegression(BaseEstimator):
 
     def predict_proba(self, X):
         y_hat = np.zeros((X.shape[0], 2))
-        y_hat[:, self.returns] += 1.0
-        return y_hat
         y_hat[:, self.returns] += 1.0
         return y_hat

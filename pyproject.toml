@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "xgbse"
-version = "0.3.1"
+version = "0.3.2"
 description = "Improving XGBoost survival analysis with embeddings and debiased estimators"
 authors = ["Loft Data Science Team <bandits@loft.com.br>"]
 readme = "README.md"
